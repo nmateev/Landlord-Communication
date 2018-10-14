@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class AsyncSchedulerProvider implements SchedulerProvider {
-    private static SchedulerProvider instance;
+    private static SchedulerProvider sSchedulerProvider;
 
     private AsyncSchedulerProvider() {
 
@@ -17,10 +17,10 @@ public class AsyncSchedulerProvider implements SchedulerProvider {
 
     public static SchedulerProvider getInstance() {
 
-        if (Objects.equals(instance, null)) {
-            instance = new AsyncSchedulerProvider();
+        if (Objects.equals(sSchedulerProvider, null)) {
+            sSchedulerProvider = new AsyncSchedulerProvider();
         }
-        return instance;
+        return sSchedulerProvider;
     }
 
     @Override

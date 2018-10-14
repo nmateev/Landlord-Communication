@@ -12,11 +12,11 @@ import okhttp3.Response;
 
 public class OkHttpHttpRequester implements HttpRequester {
 
-    private OkHttpClient httpClient;
+    private final OkHttpClient mHttpClient;
 
     public OkHttpHttpRequester() {
 
-        httpClient = new OkHttpClient();
+        mHttpClient = new OkHttpClient();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class OkHttpHttpRequester implements HttpRequester {
                 .url(url)
                 .build();
 
-        Response response = httpClient
+        Response response = mHttpClient
                 .newCall(request)
                 .execute();
 
@@ -46,7 +46,7 @@ public class OkHttpHttpRequester implements HttpRequester {
                 .post(requestBody)
                 .build();
 
-        Response response = httpClient
+        Response response = mHttpClient
                 .newCall(request)
                 .execute();
         return response
@@ -64,7 +64,7 @@ public class OkHttpHttpRequester implements HttpRequester {
                 .put(requestBody)
                 .build();
 
-        Response response = httpClient
+        Response response = mHttpClient
                 .newCall(request)
                 .execute();
         return response
@@ -80,7 +80,7 @@ public class OkHttpHttpRequester implements HttpRequester {
                 .delete()
                 .build();
 
-        Response response = httpClient
+        Response response = mHttpClient
                 .newCall(request)
                 .execute();
 
