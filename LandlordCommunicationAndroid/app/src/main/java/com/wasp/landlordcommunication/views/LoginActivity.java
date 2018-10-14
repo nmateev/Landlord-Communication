@@ -1,7 +1,9 @@
-package com.wasp.landlordcommunication;
+package com.wasp.landlordcommunication.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.wasp.landlordcommunication.R;
 
 public class LoginActivity extends AppCompatActivity {
 
