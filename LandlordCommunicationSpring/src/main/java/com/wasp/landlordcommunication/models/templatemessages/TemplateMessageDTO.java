@@ -3,8 +3,12 @@ package com.wasp.landlordcommunication.models.templatemessages;
 public class TemplateMessageDTO {
     private String templateText;
 
+    public TemplateMessageDTO() {
+
+    }
+
     public TemplateMessageDTO(String templateText) {
-       setTemplateText(templateText);
+        setTemplateText(templateText);
     }
 
     public String getTemplateText() {

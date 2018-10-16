@@ -1,5 +1,6 @@
 package com.wasp.landlordcommunication.controllers;
 
+import com.wasp.landlordcommunication.models.mappers.base.TemplateMessageMapper;
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessageDTO;
 import com.wasp.landlordcommunication.services.base.TemplateMessageService;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -17,10 +18,12 @@ import java.util.stream.Collectors;
 public class TemplateMessagesApiController {
 
     private TemplateMessageService templateMessagesService;
+    private TemplateMessageMapper templateMessageMapper;
 
     @Autowired
-    public TemplateMessagesApiController(TemplateMessageService templateMessageService) {
+    public TemplateMessagesApiController(TemplateMessageService templateMessageService, TemplateMessageMapper templateMessageMapper) {
         this.templateMessagesService = templateMessageService;
+        this.templateMessageMapper = templateMessageMapper;
     }
 
 
@@ -31,7 +34,7 @@ public class TemplateMessagesApiController {
                 .getByTemplateType(templateType)
                 .stream()
                 .map(templateMessage ->
-                        new TemplateMessageDTO(templateMessage.getTemplateText()))
+                        templateMessageMapper.mapToTemplateMessageDTO(templateMessage))
                 .collect(Collectors.toList());
 
     }

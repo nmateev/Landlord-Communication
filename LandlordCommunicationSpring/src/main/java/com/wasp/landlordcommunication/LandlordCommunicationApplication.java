@@ -1,5 +1,7 @@
 package com.wasp.landlordcommunication;
 
+import com.wasp.landlordcommunication.models.mappers.TemplateMessageMapperImpl;
+import com.wasp.landlordcommunication.models.mappers.base.TemplateMessageMapper;
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
 import com.wasp.landlordcommunication.utils.Constants;
 import org.hibernate.SessionFactory;
@@ -22,5 +24,10 @@ public class LandlordCommunicationApplication {
                 .addAnnotatedClass(TemplateMessage.class)
                 .buildSessionFactory();
 
+    }
+
+    @Bean
+    public TemplateMessageMapper getTemplateMessageMapper() {
+        return new TemplateMessageMapperImpl();
     }
 }
