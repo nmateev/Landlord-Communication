@@ -1,7 +1,8 @@
 package com.wasp.landlordcommunication.services;
 
-import com.wasp.landlordcommunication.models.TemplateMessage;
-import com.wasp.landlordcommunication.repositories.TemplateMessageRepository;
+import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
+import com.wasp.landlordcommunication.repositories.base.TemplateMessageRepository;
+import com.wasp.landlordcommunication.services.base.TemplateMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,7 @@ public class TemplateMessageServiceImpl implements TemplateMessageService {
     }
 
     @Override
-    public List<TemplateMessage> getByMessageType(String templateType) {
-        return repository.getByMessageType(templateType);
+    public List<TemplateMessage> getByTemplateType(String templateType) {
+        return repository.getByTemplateType(templateType);
     }
-
 }
