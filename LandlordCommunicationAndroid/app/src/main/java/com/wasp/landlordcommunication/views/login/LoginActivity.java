@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-//todo extend base drawer activity after the drawer activity is implemented
+//TODO: Extend base drawer activity after the drawer activity is implemented
 public class LoginActivity extends DaggerAppCompatActivity {
 
     @Inject
@@ -27,5 +27,11 @@ public class LoginActivity extends DaggerAppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.fr_login, mLoginFragment)
                 .commit();
+    }
+
+    @Override
+    public void onDestroy() {
+        mPresenter = null;
+        super.onDestroy();
     }
 }
