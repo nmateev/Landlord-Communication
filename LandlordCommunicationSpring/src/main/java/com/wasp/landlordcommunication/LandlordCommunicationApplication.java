@@ -1,5 +1,6 @@
 package com.wasp.landlordcommunication;
 
+import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.models.mappers.TemplateMessageMapperImpl;
 import com.wasp.landlordcommunication.models.mappers.base.TemplateMessageMapper;
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
@@ -22,6 +23,7 @@ public class LandlordCommunicationApplication {
         return new Configuration()
                 .configure(Constants.HIBERNATE_CONFIGURATION_FILE_NAME)
                 .addAnnotatedClass(TemplateMessage.class)
+                .addAnnotatedClass(User.class)
                 .buildSessionFactory();
 
     }
