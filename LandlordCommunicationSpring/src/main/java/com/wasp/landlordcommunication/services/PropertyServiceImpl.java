@@ -1,29 +1,36 @@
 package com.wasp.landlordcommunication.services;
 
-import com.wasp.landlordcommunication.models.properties.Property;
+import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.repositories.base.PropertyRepository;
 import com.wasp.landlordcommunication.services.base.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 public class PropertyServiceImpl implements PropertyService {
-    private PropertyRepository repository;
+
+    private PropertyRepository propertyRepository;
 
     @Autowired
-    public PropertyServiceImpl(PropertyRepository repository){
-        this.repository=repository;
+    public PropertyServiceImpl(PropertyRepository propertyRepository) {
+        this.propertyRepository = propertyRepository;
     }
 
-
-    @Override
-    public List<Property> getAllProperties() {
-        return repository.getAllProperties();
-    }
 
     @Override
     public Property getPropertyById(int id) {
-        return repository.getPropertyById(id);
+        return propertyRepository.getPropertyById(id);
+    }
+
+    @Override
+    public Property addNewProperty(Property newProperty) {
+
+        return propertyRepository.addNewProperty(newProperty);
+    }
+
+    @Override
+    public Property updateProperty(Property propertyToUpdate, int id) {
+
+        return propertyRepository.updateProperty(propertyToUpdate, id);
     }
 }

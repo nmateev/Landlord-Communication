@@ -1,6 +1,6 @@
 package com.wasp.landlordcommunication.controllers;
 
-import com.wasp.landlordcommunication.models.mappers.base.TemplateMessageMapper;
+import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessageDTO;
 import com.wasp.landlordcommunication.services.base.TemplateMessageService;
 import com.wasp.landlordcommunication.utils.Constants;

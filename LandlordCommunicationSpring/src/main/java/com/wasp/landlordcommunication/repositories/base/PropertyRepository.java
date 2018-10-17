@@ -1,10 +1,12 @@
 package com.wasp.landlordcommunication.repositories.base;
 
-import com.wasp.landlordcommunication.models.properties.Property;
-
-import java.util.List;
+import com.wasp.landlordcommunication.models.Property;
 
 public interface PropertyRepository {
-    List<Property> getAllProperties();
+
     Property getPropertyById(int id);
+
+    Property addNewProperty(Property newProperty);
+
+    Property updateProperty(Property propertyToUpdate, int id);
 }

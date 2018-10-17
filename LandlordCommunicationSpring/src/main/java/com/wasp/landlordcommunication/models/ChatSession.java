@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = Constants.CHAT_SESSIONS_TABLE_NAME)
-public class ChatSessions {
+public class ChatSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +26,15 @@ public class ChatSessions {
     )
     private Set<User> users;
 
-    public ChatSessions() {
+
+    @OneToMany(mappedBy = "chatSession")
+    private Set<ChatMessage> chatMessages;
+
+    public ChatSession() {
 
     }
 
-    public ChatSessions(Date dateCreated, Set<User> users) {
+    public ChatSession(Date dateCreated, Set<User> users) {
         setDateCreated(dateCreated);
         setUsers(users);
     }
@@ -45,6 +49,10 @@ public class ChatSessions {
 
     public Set<User> getUsers() {
         return users;
+    }
+
+    public Set<ChatMessage> getChatMessages() {
+        return chatMessages;
     }
 
     private void setChatSessionId(int chatSessionId) {

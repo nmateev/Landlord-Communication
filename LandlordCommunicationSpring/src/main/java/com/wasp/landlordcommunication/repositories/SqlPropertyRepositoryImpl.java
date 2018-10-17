@@ -1,14 +1,12 @@
 package com.wasp.landlordcommunication.repositories;
 
-import com.wasp.landlordcommunication.models.properties.Property;
+import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.repositories.base.PropertyRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class SqlPropertyRepositoryImpl implements PropertyRepository {
@@ -17,35 +15,56 @@ public class SqlPropertyRepositoryImpl implements PropertyRepository {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Property> getAllProperties() {
-        List<Property> result = new ArrayList<>();
-        try (
-                Session session = sessionFactory.openSession();
-        ) {
-            session.beginTransaction();
-            result = session.createQuery("from Property ").list();
-            session.getTransaction().commit();
+    public Property getPropertyById(int id) {
+        Property result = null;
+        try (Session session = sessionFactory.openSession()) {
+
+            Transaction transaction = session.beginTransaction();
+
+            result = session.get(Property.class, id);
+            transaction.commit();
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return result;
-
     }
 
     @Override
-    public Property getPropertyById(int id) {
-        Property result=null;
-        try (
-                Session session = sessionFactory.openSession();
-        ) {
-            session.beginTransaction();
-             result = session.get(Property.class,id);
-            session.getTransaction().commit();
+    public Property addNewProperty(Property newProperty) {
+
+        try (Session session = sessionFactory.openSession()) {
+
+            Transaction transaction = session.beginTransaction();
+
+            session.save(newProperty);
+            transaction.commit();
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        return result;
+        return newProperty;
+    }
+
+    @Override
+    public Property updateProperty(Property propertyToUpdate, int id) {
+
+        try (Session session = sessionFactory.openSession()) {
+
+            Transaction transaction = session.beginTransaction();
+
+            Property property = getPropertyById(id);
+
+            property.setRentPrice(propertyToUpdate.getRentPrice());
+            property.setDescription(propertyToUpdate.getDescription());
+            property.setRentPaid(propertyToUpdate.getIsRentPaid());
+
+            transaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return getPropertyById(id);
     }
 }

@@ -30,7 +30,7 @@ public class IssueReport {
     private Date issueDate;
 
     @ManyToOne
-    @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME)
+    @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME, insertable = false, updatable = false)
     private User user;
 
     public IssueReport() {

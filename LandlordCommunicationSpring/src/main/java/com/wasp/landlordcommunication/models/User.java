@@ -1,6 +1,5 @@
 package com.wasp.landlordcommunication.models;
 
-import com.wasp.landlordcommunication.models.properties.Property;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
@@ -58,10 +57,15 @@ public class User {
             joinColumns = @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME),
             inverseJoinColumns = @JoinColumn(name = Constants.CHAT_SESSIONS_TABLE_ID_FIELD)
     )
-    private Set<ChatSessions> chatSessions;
+    private Set<ChatSession> chatSessions;
 
     @OneToMany(mappedBy = "user")
     private Set<IssueReport> issueReports;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Payment> payments;
+
+
 
     public User() {
 
@@ -130,12 +134,16 @@ public class User {
         return properties;
     }
 
-    public Set<ChatSessions> getChatSessions() {
+    public Set<ChatSession> getChatSessions() {
         return chatSessions;
     }
 
     public Set<IssueReport> getIssueReports() {
         return issueReports;
+    }
+
+    public Set<Payment> getPayments() {
+        return payments;
     }
 
     private void setUserId(int userId) {

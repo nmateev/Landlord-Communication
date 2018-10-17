@@ -1,13 +1,10 @@
 package com.wasp.landlordcommunication;
 
-import com.wasp.landlordcommunication.models.ChatSessions;
-import com.wasp.landlordcommunication.models.IssueReport;
-import com.wasp.landlordcommunication.models.User;
-import com.wasp.landlordcommunication.models.mappers.TemplateMessageMapperImpl;
-import com.wasp.landlordcommunication.models.mappers.base.TemplateMessageMapper;
-import com.wasp.landlordcommunication.models.properties.Property;
+import com.wasp.landlordcommunication.models.*;
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
 import com.wasp.landlordcommunication.utils.Constants;
+import com.wasp.landlordcommunication.utils.mappers.TemplateMessageMapperImpl;
+import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
@@ -26,11 +23,12 @@ public class LandlordCommunicationApplication {
         return new Configuration()
                 .configure(Constants.HIBERNATE_CONFIGURATION_FILE_NAME)
                 .addAnnotatedClass(TemplateMessage.class)
-                .addAnnotatedClass(Property.class)
+                .addAnnotatedClass(ChatMessage.class)
+                .addAnnotatedClass(ChatSession.class)
                 .addAnnotatedClass(User.class)
-                .addAnnotatedClass(ChatSessions.class)
-                .addAnnotatedClass(IssueReport.class)
                 .addAnnotatedClass(Property.class)
+                .addAnnotatedClass(IssueReport.class)
+                .addAnnotatedClass(Payment.class)
                 .buildSessionFactory();
     }
 

@@ -11,7 +11,7 @@
         </property>
 
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/landlordcommunicationdb
+            jdbc:mysql://localhost:3306/landlordcommunication
         </property>
 
         <property name="connection.username">
