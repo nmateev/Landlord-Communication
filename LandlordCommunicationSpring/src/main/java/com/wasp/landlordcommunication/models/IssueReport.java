@@ -29,6 +29,10 @@ public class IssueReport {
     @Column(name = Constants.ISSUE_REPORTS_ISSUE_DATE_COLUMN_NAME)
     private Date issueDate;
 
+    @ManyToOne
+    @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME)
+    private User user;
+
     public IssueReport() {
 
     }
@@ -63,6 +67,10 @@ public class IssueReport {
 
     public Date getIssueDate() {
         return issueDate;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     private void setIssueId(int issueId) {

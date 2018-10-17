@@ -1,5 +1,7 @@
 package com.wasp.landlordcommunication;
 
+import com.wasp.landlordcommunication.models.ChatSessions;
+import com.wasp.landlordcommunication.models.IssueReport;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.models.mappers.TemplateMessageMapperImpl;
 import com.wasp.landlordcommunication.models.mappers.base.TemplateMessageMapper;
@@ -26,6 +28,9 @@ public class LandlordCommunicationApplication {
                 .addAnnotatedClass(TemplateMessage.class)
                 .addAnnotatedClass(Property.class)
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(ChatSessions.class)
+                .addAnnotatedClass(IssueReport.class)
+                .addAnnotatedClass(Property.class)
                 .buildSessionFactory();
     }
 

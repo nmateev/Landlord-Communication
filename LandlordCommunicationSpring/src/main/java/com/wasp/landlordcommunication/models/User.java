@@ -60,8 +60,7 @@ public class User {
     )
     private Set<ChatSessions> chatSessions;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
+    @OneToMany(mappedBy = "user")
     private Set<IssueReport> issueReports;
 
     public User() {
@@ -69,7 +68,7 @@ public class User {
     }
 
     public User(String userName, String userPassword, String userPasswordSalt, String firstName, String lastName, String userType, byte[] userPicture,
-                long userVoteCount, double userVoteSum, double userRating, Set<Property> properties, Set<ChatSessions> chatSessions, Set<IssueReport> issueReports) {
+                long userVoteCount, double userVoteSum, double userRating) {
         setUserName(userName);
         setUserPassword(userPassword);
         setUserPasswordSalt(userPasswordSalt);
@@ -80,9 +79,6 @@ public class User {
         setUserVoteCount(userVoteCount);
         setUserVoteSum(userVoteSum);
         setUserRating(userRating);
-        setProperties(properties);
-        setChatSessions(chatSessions);
-        setIssueReports(issueReports);
     }
 
     public int getUserId() {
@@ -186,15 +182,4 @@ public class User {
         this.userRating = userRating;
     }
 
-    private void setProperties(Set<Property> properties) {
-        this.properties = properties;
-    }
-
-    private void setChatSessions(Set<ChatSessions> chatSessions) {
-        this.chatSessions = chatSessions;
-    }
-
-    private void setIssueReports(Set<IssueReport> issueReports) {
-        this.issueReports = issueReports;
-    }
 }
