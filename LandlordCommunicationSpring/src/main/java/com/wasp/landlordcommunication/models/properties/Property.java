@@ -1,9 +1,13 @@
 package com.wasp.landlordcommunication.models.properties;
 
+
+import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
+
 @Entity
 @Table(name = Constants.PROPERTY_TABLE_NAME)
 public class Property {
@@ -22,6 +26,13 @@ public class Property {
     private byte[] propertyPicture;
     @Column(name = Constants.PROPERTIES_DESCRIPTION_COLUMN_NAME)
     private String description;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = Constants.USERS_PROPERTIES_TABLE,
+            joinColumns = @JoinColumn(name = Constants.PROPERTY_TABLE_ID_FIELD),
+            inverseJoinColumns = @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME)
+    )
+    private Set<User> users;
 
     public Property(){
 
@@ -85,5 +96,8 @@ public class Property {
         this.description = description;
     }
 
+    public Set<User> getUsers() {
+        return users;
+    }
 
 }
