@@ -1,8 +1,8 @@
-package com.wasp.landlordcommunication.services.base;
+package com.wasp.landlordcommunication.repositories.base;
 
 import com.wasp.landlordcommunication.models.Property;
 
-public interface PropertyService {
+public interface PropertiesRepository {
 
     Property getPropertyById(int id);
 

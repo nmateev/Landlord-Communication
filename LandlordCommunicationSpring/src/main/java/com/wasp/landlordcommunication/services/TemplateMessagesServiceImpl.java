@@ -1,19 +1,19 @@
 package com.wasp.landlordcommunication.services;
 
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
-import com.wasp.landlordcommunication.repositories.base.TemplateMessageRepository;
-import com.wasp.landlordcommunication.services.base.TemplateMessageService;
+import com.wasp.landlordcommunication.repositories.base.TemplateMessagesRepository;
+import com.wasp.landlordcommunication.services.base.TemplateMessagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TemplateMessageServiceImpl implements TemplateMessageService {
-    private TemplateMessageRepository repository;
+public class TemplateMessagesServiceImpl implements TemplateMessagesService {
+    private final TemplateMessagesRepository repository;
 
     @Autowired
-    public TemplateMessageServiceImpl(TemplateMessageRepository repository) {
+    public TemplateMessagesServiceImpl(TemplateMessagesRepository repository) {
         this.repository = repository;
     }
 

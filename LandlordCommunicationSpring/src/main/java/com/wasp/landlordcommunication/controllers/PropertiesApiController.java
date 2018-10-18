@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.controllers;
 
 import com.wasp.landlordcommunication.models.Property;
-import com.wasp.landlordcommunication.services.base.PropertyService;
+import com.wasp.landlordcommunication.services.base.PropertiesService;
 import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(Constants.PROPERTY_ROOT_MAPPING)
 public class PropertiesApiController {
 
-    private PropertyService propertyService;
+    private final PropertiesService propertiesService;
 
     @Autowired
-    public PropertiesApiController(PropertyService propertyService) {
+    public PropertiesApiController(PropertiesService propertiesService) {
 
-        this.propertyService = propertyService;
+        this.propertiesService = propertiesService;
     }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Property getPropertyById(@PathVariable int id) {
-        return propertyService.getPropertyById(id);
+        return propertiesService.getPropertyById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Property addNewProperty(@RequestBody Property newProperty) {
-        return propertyService.addNewProperty(newProperty);
+        return propertiesService.addNewProperty(newProperty);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Property updateProperty(@RequestBody Property propertyToUpdate, int id) {
 
-        return propertyService.updateProperty(propertyToUpdate, id);
+        return propertiesService.updateProperty(propertyToUpdate, id);
     }
 
 }

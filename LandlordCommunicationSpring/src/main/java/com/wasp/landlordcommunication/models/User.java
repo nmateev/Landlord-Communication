@@ -59,10 +59,10 @@ public class User {
     )
     private Set<ChatSession> chatSessions;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<IssueReport> issueReports;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Payment> payments;
 
 

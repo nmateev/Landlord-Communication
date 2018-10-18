@@ -4,7 +4,7 @@ import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
 
 import java.util.List;
 
-public interface TemplateMessageRepository {
+public interface TemplateMessagesRepository {
 
     List<TemplateMessage> getByTemplateType(String templateType);
 
