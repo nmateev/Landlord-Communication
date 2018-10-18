@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.repositories;
 
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
-import com.wasp.landlordcommunication.repositories.base.TemplateMessageRepository;
+import com.wasp.landlordcommunication.repositories.base.TemplateMessagesRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,11 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class SqlTemplateMessageRepositoryImpl implements TemplateMessageRepository {
+public class SqlTemplateMessagesRepositoryImpl implements TemplateMessagesRepository {
     private static final String TEMPLATE_TYPE_PARAMETER = "templateType";
     private static final String GET_BY_TEMPLATE_TYPE_QUERY = "FROM TemplateMessage WHERE templateType = :templateType";
+
+    private final SessionFactory sessionFactory;
+
     @Autowired
-    private SessionFactory sessionFactory;
+    public SqlTemplateMessagesRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
 
     @Override
     public List<TemplateMessage> getByTemplateType(String templateType) {

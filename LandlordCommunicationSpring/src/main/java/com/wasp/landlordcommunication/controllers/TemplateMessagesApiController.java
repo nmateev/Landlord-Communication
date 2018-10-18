@@ -2,13 +2,10 @@ package com.wasp.landlordcommunication.controllers;
 
 import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
 import com.wasp.landlordcommunication.models.templatemessages.TemplateMessageDTO;
-import com.wasp.landlordcommunication.services.base.TemplateMessageService;
+import com.wasp.landlordcommunication.services.base.TemplateMessagesService;
 import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,24 +14,23 @@ import java.util.stream.Collectors;
 @RequestMapping(Constants.TEMPLATE_MESSAGES_ROOT_MAPPING)
 public class TemplateMessagesApiController {
 
-    private TemplateMessageService templateMessagesService;
-    private TemplateMessageMapper templateMessageMapper;
+    private final TemplateMessagesService templateMessagesService;
+    private final TemplateMessageMapper templateMessageMapper;
 
     @Autowired
-    public TemplateMessagesApiController(TemplateMessageService templateMessageService, TemplateMessageMapper templateMessageMapper) {
-        this.templateMessagesService = templateMessageService;
+    public TemplateMessagesApiController(TemplateMessagesService templateMessagesService, TemplateMessageMapper templateMessageMapper) {
+        this.templateMessagesService = templateMessagesService;
         this.templateMessageMapper = templateMessageMapper;
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    List<TemplateMessageDTO> getByMessageType(@RequestParam String templateType) {
+    @RequestMapping(value = "/{templateType}", method = RequestMethod.GET)
+    List<TemplateMessageDTO> getByMessageType(@PathVariable String templateType) {
 
         return templateMessagesService
                 .getByTemplateType(templateType)
                 .stream()
-                .map(templateMessage ->
-                        templateMessageMapper.mapToTemplateMessageDTO(templateMessage))
+                .map(templateMessageMapper::mapToTemplateMessageDTO)
                 .collect(Collectors.toList());
 
     }

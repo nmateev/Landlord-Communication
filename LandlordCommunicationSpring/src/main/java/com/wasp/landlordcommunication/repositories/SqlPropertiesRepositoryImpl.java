@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.repositories;
 
 import com.wasp.landlordcommunication.models.Property;
-import com.wasp.landlordcommunication.repositories.base.PropertyRepository;
+import com.wasp.landlordcommunication.repositories.base.PropertiesRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class SqlPropertyRepositoryImpl implements PropertyRepository {
+public class SqlPropertiesRepositoryImpl implements PropertiesRepository {
+
+
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    public SqlPropertiesRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Property getPropertyById(int id) {
