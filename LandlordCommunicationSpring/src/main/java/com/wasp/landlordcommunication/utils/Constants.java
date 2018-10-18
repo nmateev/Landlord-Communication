@@ -67,5 +67,6 @@ public class Constants {
     public static final String CHAT_MESSAGES_TEXT_COLUMN = "message_text";
     public static final String CHAT_MESSAGES_IMAGE_COLUMN = "image_message";
 
+    public static final String CHAT_MESSAGES_ROOT_MAPPING ="/api/messages" ;
 }
 

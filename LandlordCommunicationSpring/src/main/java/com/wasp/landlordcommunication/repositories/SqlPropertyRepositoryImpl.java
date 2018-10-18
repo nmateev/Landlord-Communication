@@ -32,7 +32,6 @@ public class SqlPropertyRepositoryImpl implements PropertyRepository {
 
     @Override
     public Property addNewProperty(Property newProperty) {
-
         try (Session session = sessionFactory.openSession()) {
 
             Transaction transaction = session.beginTransaction();
