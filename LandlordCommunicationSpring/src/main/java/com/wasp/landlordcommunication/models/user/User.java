@@ -1,9 +1,8 @@
-package com.wasp.landlordcommunication.models;
+package com.wasp.landlordcommunication.models.user;
 
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = Constants.USERS_TABLE_NAME)
@@ -43,28 +42,6 @@ public class User {
 
     @Column(name = Constants.USERS_TABLE_USER_RATING_COLUMN)
     private double userRating;
-
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = Constants.USERS_PROPERTIES_TABLE,
-            joinColumns = @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME),
-            inverseJoinColumns = @JoinColumn(name = Constants.PROPERTY_TABLE_ID_FIELD)
-    )
-    private Set<Property> properties;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = Constants.USERS_CHAT_SESSIONS_TABLE,
-            joinColumns = @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME),
-            inverseJoinColumns = @JoinColumn(name = Constants.CHAT_SESSIONS_TABLE_ID_FIELD)
-    )
-    private Set<ChatSession> chatSessions;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<IssueReport> issueReports;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Payment> payments;
-
 
 
     public User() {
@@ -117,7 +94,6 @@ public class User {
         return userPicture;
     }
 
-
     public long getUserVoteCount() {
         return userVoteCount;
     }
@@ -130,20 +106,20 @@ public class User {
         return userRating;
     }
 
-    public Set<Property> getProperties() {
-        return properties;
+    public void setUserPicture(byte[] userPicture) {
+        this.userPicture = userPicture;
     }
 
-    public Set<ChatSession> getChatSessions() {
-        return chatSessions;
+    public void setUserVoteCount(long userVoteCount) {
+        this.userVoteCount = userVoteCount;
     }
 
-    public Set<IssueReport> getIssueReports() {
-        return issueReports;
+    public void setUserVoteSum(double userVoteSum) {
+        this.userVoteSum = userVoteSum;
     }
 
-    public Set<Payment> getPayments() {
-        return payments;
+    public void setUserRating(double userRating) {
+        this.userRating = userRating;
     }
 
     private void setUserId(int userId) {
@@ -174,20 +150,6 @@ public class User {
         this.userType = userType;
     }
 
-    private void setUserPicture(byte[] userPicture) {
-        this.userPicture = userPicture;
-    }
 
-    private void setUserVoteCount(long userVoteCount) {
-        this.userVoteCount = userVoteCount;
-    }
-
-    private void setUserVoteSum(double userVoteSum) {
-        this.userVoteSum = userVoteSum;
-    }
-
-    private void setUserRating(double userRating) {
-        this.userRating = userRating;
-    }
 
 }

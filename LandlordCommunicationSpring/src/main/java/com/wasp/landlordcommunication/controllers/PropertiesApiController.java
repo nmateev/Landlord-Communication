@@ -6,8 +6,10 @@ import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(Constants.PROPERTY_ROOT_MAPPING)
+@RequestMapping(Constants.PROPERTIES_ROOT_MAPPING)
 public class PropertiesApiController {
 
     private final PropertiesService propertiesService;
@@ -24,13 +26,23 @@ public class PropertiesApiController {
         return propertiesService.getPropertyById(id);
     }
 
+    @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
+    List<Property> getPropertiesByTenant(@PathVariable int tenantId) {
+        return propertiesService.getPropertiesByTenant(tenantId);
+    }
+
+    @RequestMapping(value = "/landlord/{landlordId}", method = RequestMethod.GET)
+    List<Property> getPropertiesByLandlord(@PathVariable int landlordId) {
+        return propertiesService.getPropertiesByLandlord(landlordId);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public Property addNewProperty(@RequestBody Property newProperty) {
         return propertiesService.addNewProperty(newProperty);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Property updateProperty(@RequestBody Property propertyToUpdate, int id) {
+    public Property updateProperty(@RequestBody Property propertyToUpdate, @PathVariable int id) {
 
         return propertiesService.updateProperty(propertyToUpdate, id);
     }

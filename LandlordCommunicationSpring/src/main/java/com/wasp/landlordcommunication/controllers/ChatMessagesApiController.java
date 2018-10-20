@@ -2,29 +2,49 @@ package com.wasp.landlordcommunication.controllers;
 
 
 import com.wasp.landlordcommunication.models.ChatMessage;
-import com.wasp.landlordcommunication.services.base.ChatMessageService;
+import com.wasp.landlordcommunication.services.base.ChatMessagesService;
 import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(Constants.CHAT_MESSAGES_ROOT_MAPPING)
 public class ChatMessagesApiController {
 
-    private ChatMessageService chatMessageService;
+    private final ChatMessagesService chatMessagesService;
 
     @Autowired
-    public ChatMessagesApiController(ChatMessageService chatMessageService) {
-        this.chatMessageService = chatMessageService;
+    public ChatMessagesApiController(ChatMessagesService chatMessagesService) {
+        this.chatMessagesService = chatMessagesService;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ChatMessage getChatMessageById(@PathVariable int id) {
-        return chatMessageService.getChatMessageById(id);
+    public List<ChatMessage> getMessagesByChatSessionId(@PathVariable int id) {
+        return chatMessagesService.getMessagesByChatSessionId(id);
+    }
+
+    @RequestMapping(value = "/tenant/{id}", method = RequestMethod.GET)
+    public List<ChatMessage> getTenantsUndeliveredMessagesByChatSessionId(@PathVariable int id) {
+        System.out.println(new Date());
+        return chatMessagesService.getTenantsUndeliveredMessagesByChatSessionId(id);
+    }
+
+    @RequestMapping(value = "/landlord/{id}", method = RequestMethod.GET)
+    public List<ChatMessage> getLandlordsUndeliveredMessagesByChatSessionId(@PathVariable int id) {
+        return chatMessagesService.getLandlordsUndeliveredMessagesByChatSessionId(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ChatMessage postChatMessage(@RequestBody ChatMessage newMessage) {
-        return chatMessageService.postChatMessage(newMessage);
+        return chatMessagesService.postChatMessage(newMessage);
     }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ChatMessage updateChatMessage(@RequestBody ChatMessage messageToUpdate) {
+        return chatMessagesService.updateChatMessage(messageToUpdate);
+    }
+
 }

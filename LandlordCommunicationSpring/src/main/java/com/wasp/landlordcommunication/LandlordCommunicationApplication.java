@@ -1,10 +1,16 @@
 package com.wasp.landlordcommunication;
 
 import com.wasp.landlordcommunication.models.*;
-import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
+import com.wasp.landlordcommunication.models.chatsession.ChatSession;
+import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
+import com.wasp.landlordcommunication.models.user.User;
 import com.wasp.landlordcommunication.utils.Constants;
+import com.wasp.landlordcommunication.utils.DateFormatter;
+import com.wasp.landlordcommunication.utils.DateFromatterImpl;
 import com.wasp.landlordcommunication.utils.mappers.TemplateMessageMapperImpl;
+import com.wasp.landlordcommunication.utils.mappers.UserMapperImpl;
 import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
+import com.wasp.landlordcommunication.utils.mappers.base.UserMapper;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +33,6 @@ public class LandlordCommunicationApplication {
                 .addAnnotatedClass(ChatSession.class)
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Property.class)
-                .addAnnotatedClass(IssueReport.class)
                 .addAnnotatedClass(Payment.class)
                 .buildSessionFactory();
     }
@@ -35,5 +40,15 @@ public class LandlordCommunicationApplication {
     @Bean
     public TemplateMessageMapper getTemplateMessageMapper() {
         return new TemplateMessageMapperImpl();
+    }
+
+    @Bean
+    public UserMapper getUserMapper() {
+        return new UserMapperImpl();
+    }
+
+    @Bean
+    public DateFormatter getDateFormatter() {
+        return new DateFromatterImpl();
     }
 }

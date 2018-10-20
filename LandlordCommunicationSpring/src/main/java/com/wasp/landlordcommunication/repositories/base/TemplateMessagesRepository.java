@@ -1,6 +1,6 @@
 package com.wasp.landlordcommunication.repositories.base;
 
-import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
+import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
 
 import java.util.List;
 

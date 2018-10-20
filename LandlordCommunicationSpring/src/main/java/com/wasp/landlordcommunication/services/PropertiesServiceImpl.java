@@ -6,6 +6,8 @@ import com.wasp.landlordcommunication.services.base.PropertiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PropertiesServiceImpl implements PropertiesService {
 
@@ -20,6 +22,16 @@ public class PropertiesServiceImpl implements PropertiesService {
     @Override
     public Property getPropertyById(int id) {
         return propertiesRepository.getPropertyById(id);
+    }
+
+    @Override
+    public List<Property> getPropertiesByTenant(int tenantId) {
+        return propertiesRepository.getPropertiesByTenant(tenantId);
+    }
+
+    @Override
+    public List<Property> getPropertiesByLandlord(int landlordId) {
+        return propertiesRepository.getPropertiesByLandlord(landlordId);
     }
 
     @Override

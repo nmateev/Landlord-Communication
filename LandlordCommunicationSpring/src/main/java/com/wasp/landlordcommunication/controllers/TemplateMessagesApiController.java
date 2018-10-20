@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.controllers;
 
 import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
-import com.wasp.landlordcommunication.models.templatemessages.TemplateMessageDTO;
+import com.wasp.landlordcommunication.models.templatemessage.TemplateMessageDTO;
 import com.wasp.landlordcommunication.services.base.TemplateMessagesService;
 import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
