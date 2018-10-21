@@ -25,7 +25,7 @@ public class TemplateMessagesApiController {
 
 
     @RequestMapping(value = "/{templateType}", method = RequestMethod.GET)
-    List<TemplateMessageDTO> getByMessageType(@PathVariable String templateType) {
+    public List<TemplateMessageDTO> getByMessageType(@PathVariable String templateType) {
 
         return templateMessagesService
                 .getByTemplateType(templateType)

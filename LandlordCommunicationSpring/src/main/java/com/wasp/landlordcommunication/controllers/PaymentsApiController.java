@@ -21,25 +21,25 @@ public class PaymentsApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    Payment makePayment(@RequestBody @Valid Payment newPayment) {
+    public Payment makePayment(@RequestBody @Valid Payment newPayment) {
 
         return paymentsService.makePayment(newPayment);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    Payment getPaymentById(@PathVariable int id) {
+    public Payment getPaymentById(@PathVariable int id) {
 
         return paymentsService.getPaymentById(id);
     }
 
     @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
-    List<Payment> getPaymentsByTenantId(@PathVariable int tenantId) {
+    public List<Payment> getPaymentsByTenantId(@PathVariable int tenantId) {
 
         return paymentsService.getPaymentsByTenantId(tenantId);
     }
 
     @RequestMapping(value = "/landlord/{landlordId}", method = RequestMethod.GET)
-    List<Payment> getPaymentsByLandlordId(@PathVariable int landlordId) {
+    public List<Payment> getPaymentsByLandlordId(@PathVariable int landlordId) {
 
         return paymentsService.getPaymentsByLandlordId(landlordId);
     }

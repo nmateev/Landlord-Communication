@@ -8,7 +8,7 @@ import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
 import com.wasp.landlordcommunication.models.user.User;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.DateFormatter;
-import com.wasp.landlordcommunication.utils.DateFromatterImpl;
+import com.wasp.landlordcommunication.utils.DateFormatterImpl;
 import com.wasp.landlordcommunication.utils.mappers.TemplateMessageMapperImpl;
 import com.wasp.landlordcommunication.utils.mappers.UserMapperImpl;
 import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
@@ -53,6 +53,6 @@ public class AppConfiguration {
 
     @Bean
     public DateFormatter provideDateFormatter() {
-        return new DateFromatterImpl();
+        return new DateFormatterImpl();
     }
 }

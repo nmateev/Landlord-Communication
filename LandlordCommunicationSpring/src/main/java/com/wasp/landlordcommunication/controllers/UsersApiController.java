@@ -26,39 +26,39 @@ public class UsersApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    User createUser(@RequestBody @Valid User userToCreate) {
+    public User createUser(@RequestBody @Valid User userToCreate) {
 
         return usersService.createUser(userToCreate);
 
     }
 
     @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
-    User getUserByUserName(@PathVariable String userName) {
+    public User getUserByUserName(@PathVariable String userName) {
 
         return usersService.getUserByUserName(userName);
     }
 
     @RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)
-    User getUserById(@PathVariable int userId) {
-
+    public User getUserById(@PathVariable int userId) {
         return usersService.getUserById(userId);
+
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    boolean isUserNameAvailable(@RequestParam String name) {
+    public boolean isUserNameAvailable(@RequestParam String name) {
 
         return usersService.isUserNameAvailable(name);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    User updateUser(@RequestBody @Valid User userToUpdate, @PathVariable int userId) {
+    public User updateUser(@RequestBody @Valid User userToUpdate, @PathVariable int userId) {
 
         return usersService.updateUser(userToUpdate, userId);
 
     }
 
     @RequestMapping(value = "/type/{userType}", method = RequestMethod.GET)
-    List<UserDTO> getUsersByType(@PathVariable String userType) {
+    public List<UserDTO> getUsersByType(@PathVariable String userType) {
 
         return usersService
                 .getUsersByType(userType)
@@ -66,5 +66,4 @@ public class UsersApiController {
                 .map(userMapper::mapUserToDTO)
                 .collect(Collectors.toList());
     }
-
 }

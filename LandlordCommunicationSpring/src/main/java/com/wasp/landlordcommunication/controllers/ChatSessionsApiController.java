@@ -22,28 +22,28 @@ public class ChatSessionsApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    ChatSession createChatSession(@RequestBody @Valid ChatSession newChatSession) {
+    public ChatSession createChatSession(@RequestBody @Valid ChatSession newChatSession) {
         return chatSessionsService.createChatSession(newChatSession);
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
-    boolean isChatSessionCreated(@RequestBody ChatSessionDTO chatSessionDTO) {
+    public boolean isChatSessionCreated(@RequestBody ChatSessionDTO chatSessionDTO) {
         return chatSessionsService.isChatSessionCreated(chatSessionDTO);
     }
 
     @RequestMapping(value = "/relation", method = RequestMethod.POST)
-    ChatSession getChatSessionByTenantAndLandlord(@RequestBody ChatSessionDTO chatSessionDTO) {
+    public ChatSession getChatSessionByTenantAndLandlord(@RequestBody ChatSessionDTO chatSessionDTO) {
         return chatSessionsService.getChatSessionByTenantAndLandlord(chatSessionDTO);
     }
 
 
     @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
-    List<ChatSession> getAllChatSessionsByTenant(@PathVariable int tenantId) {
+    public List<ChatSession> getAllChatSessionsByTenant(@PathVariable int tenantId) {
         return chatSessionsService.getAllChatSessionsByTenant(tenantId);
     }
 
     @RequestMapping(value = "/landlord/{landlordId}", method = RequestMethod.GET)
-    List<ChatSession> getAllChatSessionsByLandlord(@PathVariable int landlordId) {
+    public List<ChatSession> getAllChatSessionsByLandlord(@PathVariable int landlordId) {
         return chatSessionsService.getAllChatSessionsByLandlord(landlordId);
     }
 }

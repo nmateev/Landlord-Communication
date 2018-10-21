@@ -28,12 +28,12 @@ public class PropertiesApiController {
     }
 
     @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
-    List<Property> getPropertiesByTenant(@PathVariable int tenantId) {
+    public List<Property> getPropertiesByTenant(@PathVariable int tenantId) {
         return propertiesService.getPropertiesByTenant(tenantId);
     }
 
     @RequestMapping(value = "/landlord/{landlordId}", method = RequestMethod.GET)
-    List<Property> getPropertiesByLandlord(@PathVariable int landlordId) {
+    public List<Property> getPropertiesByLandlord(@PathVariable int landlordId) {
         return propertiesService.getPropertiesByLandlord(landlordId);
     }
 
