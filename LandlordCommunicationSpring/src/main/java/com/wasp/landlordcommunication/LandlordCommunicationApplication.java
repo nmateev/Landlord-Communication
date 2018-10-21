@@ -1,6 +1,8 @@
 package com.wasp.landlordcommunication;
 
-import com.wasp.landlordcommunication.models.*;
+import com.wasp.landlordcommunication.models.ChatMessage;
+import com.wasp.landlordcommunication.models.Payment;
+import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.chatsession.ChatSession;
 import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
 import com.wasp.landlordcommunication.models.user.User;
@@ -17,11 +19,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
+
 @SpringBootApplication
 public class LandlordCommunicationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LandlordCommunicationApplication.class, args);
+    }
+
+    @PostConstruct
+    public void configure() {
+        TimeZone.setDefault(TimeZone.getTimeZone(Constants.TIME_ZONE_CONFIGURATION_VALUE));
     }
 
     @Bean
@@ -38,17 +49,17 @@ public class LandlordCommunicationApplication {
     }
 
     @Bean
-    public TemplateMessageMapper getTemplateMessageMapper() {
+    public TemplateMessageMapper provideTemplateMessageMapper() {
         return new TemplateMessageMapperImpl();
     }
 
     @Bean
-    public UserMapper getUserMapper() {
+    public UserMapper provideUserMapper() {
         return new UserMapperImpl();
     }
 
     @Bean
-    public DateFormatter getDateFormatter() {
+    public DateFormatter provideDateFormatter() {
         return new DateFromatterImpl();
     }
 }

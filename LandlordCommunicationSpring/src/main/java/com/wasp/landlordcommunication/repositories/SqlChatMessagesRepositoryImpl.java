@@ -15,7 +15,8 @@ import java.util.List;
 @Repository
 public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
 
-    private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY = "FROM ChatMessage WHERE chatSessionId = :chatSessionId";
+    private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY = "FROM ChatMessage WHERE chatSessionId = :chatSessionId AND dateSent >= \'";
+    private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_SECOND_PART_QUERY = "\' AND dateSent<= NOW()";
     private static final String GET_UNDELIVERED_MESSAGES_FIRST_PART_QUERY = "FROM ChatMessage WHERE dateSent >= \'";
     private static final String GET_TENANTS_UNDELIVERED_MESSAGES_SECOND_PART_QUERY = "\' AND dateSent<= NOW() AND chatSessionId = :chatSessionId  AND isDeliveredToTenant = :isDeliveredToTenant";
     private static final String GET_LANDLORDS_UNDELIVERED_MESSAGES_SECOND_PART_QUERY = "\' AND dateSent<= NOW() AND chatSessionId = :chatSessionId  AND isDeliveredToLandlord = :isDeliveredToLandlord";
@@ -38,12 +39,16 @@ public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
     public List<ChatMessage> getMessagesByChatSessionId(int id) {
         List<ChatMessage> messages = new ArrayList<>();
 
+        String dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
+
         try (Session session = sessionFactory.openSession()) {
 
             Transaction transaction = session.beginTransaction();
 
             messages = session
-                    .createQuery(GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY, ChatMessage.class)
+                    .createQuery(GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY +
+                             dateThreeMonthsBackFromNow +
+                            GET_MESSAGES_BY_CHAT_SESSION_ID_SECOND_PART_QUERY, ChatMessage.class)
                     .setParameter(CHAT_SESSION_ID_PARAMETER, id)
                     .list();
 

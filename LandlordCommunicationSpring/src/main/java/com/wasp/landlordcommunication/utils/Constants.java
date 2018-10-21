@@ -1,7 +1,10 @@
 package com.wasp.landlordcommunication.utils;
 
 public class Constants {
+
+
     public static final String HIBERNATE_CONFIGURATION_FILE_NAME = "hibernate.cfg.xml";
+    public static final String TIME_ZONE_CONFIGURATION_VALUE = "UTC";
 
     public static final String TEMPLATE_MESSAGES_ROOT_MAPPING = "/api/templates";
     public static final String TEMPLATE_MESSAGES_TABLE_NAME = "template_messages";
