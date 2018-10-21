@@ -8,6 +8,7 @@ import com.wasp.landlordcommunication.utils.mappers.base.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class UsersApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    User createUser(@RequestBody User userToCreate) {
+    User createUser(@RequestBody @Valid User userToCreate) {
 
         return usersService.createUser(userToCreate);
 
@@ -50,7 +51,7 @@ public class UsersApiController {
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    User updateUser(@RequestBody User userToUpdate, @PathVariable int userId) {
+    User updateUser(@RequestBody @Valid User userToUpdate, @PathVariable int userId) {
 
         return usersService.updateUser(userToUpdate, userId);
 

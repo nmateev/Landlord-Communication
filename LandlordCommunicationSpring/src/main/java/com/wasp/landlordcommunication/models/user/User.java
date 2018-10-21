@@ -3,6 +3,8 @@ package com.wasp.landlordcommunication.models.user;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = Constants.USERS_TABLE_NAME)
@@ -13,21 +15,31 @@ public class User {
     @Column(name = Constants.USERS_TABLE_ID_COLUMN_NAME)
     private int userId;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.STRING_VALIDATION_MAX_TEXT)
     @Column(name = Constants.USERS_TABLE_USER_NAME_COLUMN)
     private String userName;
 
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.STRING_VALIDATION_MAX_TEXT)
     @Column(name = Constants.USERS_TABLE_USER_PASSWORD_COLUMN)
     private String userPassword;
 
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_PASSWORD_SALT_COLUMN)
     private String userPasswordSalt;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_FIRST_NAME_COLUMN)
     private String firstName;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_LAST_NAME_COLUMN)
     private String lastName;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_TYPE_COLUMN)
     private String userType;
 

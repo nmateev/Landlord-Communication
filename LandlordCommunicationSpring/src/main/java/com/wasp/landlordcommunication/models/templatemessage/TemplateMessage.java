@@ -3,6 +3,8 @@ package com.wasp.landlordcommunication.models.templatemessage;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = Constants.TEMPLATE_MESSAGES_TABLE_NAME)
@@ -13,10 +15,13 @@ public class TemplateMessage {
     @Column(name = Constants.TEMPLATE_MESSAGES_ID_COLUMN_NAME)
     private int templateMessageId;
 
+    @NotNull
+    @Size(min = Constants.STRING_VALIDATION_MIN_TEXT, max = Constants.STRING_VALIDATION_MAX_TEXT)
     @Column(name = Constants.TEMPLATE_MESSAGES_TEXT_COLUMN_NAME)
     private String templateText;
 
-
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.TEMPLATE_MESSAGES_TYPE_COLUMN_NAME)
     private String templateType;
 

@@ -3,6 +3,8 @@ package com.wasp.landlordcommunication.models;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -14,28 +16,36 @@ public class ChatMessage {
     @Column(name = Constants.CHAT_MESSAGES_ID_COLUMN)
     private int messageId;
 
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_TENANT_COLUMN)
     private int tenantId;
 
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_LANDLORD_COLUMN)
     private int landlordId;
 
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_CHAT_SESSION_ID_COLUMN)
     private int chatSessionId;
 
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = Constants.CHAT_MESSAGES_DATE_SENT_COLUMN)
     private Date dateSent;
 
+    @NotNull
+    @Size(min = Constants.TEXT_MESSAGE_MIN_LENGTH, max = Constants.TEXT_MESSAGE_MAX_LENGTH)
     @Column(name = Constants.CHAT_MESSAGES_TEXT_COLUMN)
     private String messageText;
 
     @Column(name = Constants.CHAT_MESSAGES_IMAGE_COLUMN)
     private byte[] imageMessage;
 
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_TENANT_COLUMN)
     private boolean isDeliveredToTenant;
 
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_LANDLORD_COLUMN)
     private boolean isDeliveredToLandlord;
 

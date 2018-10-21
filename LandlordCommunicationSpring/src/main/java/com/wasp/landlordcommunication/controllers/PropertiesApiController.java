@@ -6,6 +6,7 @@ import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,12 +38,12 @@ public class PropertiesApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Property addNewProperty(@RequestBody Property newProperty) {
+    public Property addNewProperty(@RequestBody @Valid Property newProperty) {
         return propertiesService.addNewProperty(newProperty);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Property updateProperty(@RequestBody Property propertyToUpdate, @PathVariable int id) {
+    public Property updateProperty(@RequestBody @Valid Property propertyToUpdate, @PathVariable int id) {
 
         return propertiesService.updateProperty(propertyToUpdate, id);
     }

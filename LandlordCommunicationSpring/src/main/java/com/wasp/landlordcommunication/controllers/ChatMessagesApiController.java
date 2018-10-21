@@ -7,6 +7,7 @@ import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ChatMessagesApiController {
 
     @RequestMapping(value = "/tenant/{id}", method = RequestMethod.GET)
     public List<ChatMessage> getTenantsUndeliveredMessagesByChatSessionId(@PathVariable int id) {
-        System.out.println(new Date());
+
         return chatMessagesService.getTenantsUndeliveredMessagesByChatSessionId(id);
     }
 
@@ -38,12 +39,12 @@ public class ChatMessagesApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ChatMessage postChatMessage(@RequestBody ChatMessage newMessage) {
+    public ChatMessage postChatMessage(@RequestBody @Valid ChatMessage newMessage) {
         return chatMessagesService.postChatMessage(newMessage);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ChatMessage updateChatMessage(@RequestBody ChatMessage messageToUpdate) {
+    public ChatMessage updateChatMessage(@RequestBody @Valid ChatMessage messageToUpdate) {
         return chatMessagesService.updateChatMessage(messageToUpdate);
     }
 

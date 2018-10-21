@@ -55,7 +55,7 @@ public class Constants {
     public static final String PAYMENTS_DATE_PAID_COLUMN = "date_paid";
     public static final String PAYMENTS_CARD_NUMBER_COLUMN = "card_number";
 
-    public static final String CHAT_MESSAGES_ROOT_MAPPING ="/api/messages" ;
+    public static final String CHAT_MESSAGES_ROOT_MAPPING = "/api/messages";
     public static final String CHAT_MESSAGES_TABLE_NAME = "chat_messages";
     public static final String CHAT_MESSAGES_ID_COLUMN = "message_id";
     public static final String CHAT_MESSAGES_TENANT_COLUMN = "tenant_id";
@@ -67,6 +67,20 @@ public class Constants {
     public static final String CHAT_MESSAGES_IS_DELIVERED_TO_TENANT_COLUMN = "is_delivered_to_tenant";
     public static final String CHAT_MESSAGES_IS_DELIVERED_TO_LANDLORD_COLUMN = "is_delivered_to_landlord";
 
+
+    public static final int STRING_VALIDATION_MIN_TEXT = 5;
+    public static final int STRING_VALIDATION_MAX_TEXT = 100;
+
+    public static final int TEXT_VALIDATION_MIN_VALUE = 3;
+    public static final int TEXT_VALIDATION_MAX_VALUE = 45;
+
+    public static final int CARD_NUMBER_VALIDATION_MIN_VALUE = 10;
+    public static final int CARD_NUMBER_VALIDATION_MAX_VALUE = 45;
+
+
+    public static final int TEXT_MESSAGE_MIN_LENGTH = 1;
+    public static final int TEXT_MESSAGE_MAX_LENGTH = 200;
+    public static final int PAYMENT_AMOUNT_VALIDATION_MIN_VALUE = 1;
 
 
 }

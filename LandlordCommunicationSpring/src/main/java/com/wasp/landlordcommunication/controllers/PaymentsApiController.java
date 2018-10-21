@@ -6,6 +6,7 @@ import com.wasp.landlordcommunication.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class PaymentsApiController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    Payment makePayment(@RequestBody Payment newPayment) {
+    Payment makePayment(@RequestBody @Valid Payment newPayment) {
 
         return paymentsService.makePayment(newPayment);
     }

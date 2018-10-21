@@ -4,6 +4,7 @@ import com.wasp.landlordcommunication.models.user.User;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,12 +16,15 @@ public class ChatSession {
     @Column(name = Constants.CHAT_SESSIONS_TABLE_ID_FIELD)
     private int chatSessionId;
 
+    @NotNull
     @Column(name = Constants.CHAT_SESSIONS_TABLE_DATE_CREATED_FIELD)
     private Date dateCreated;
 
+    @NotNull
     @Column(name = Constants.CHAT_SESSIONS_TABLE_TENANT_ID_FIELD)
     private int tenantId;
 
+    @NotNull
     @Column(name = Constants.CHAT_SESSIONS_TABLE_LANDLORD_ID_FIELD)
     private int landlordId;
 

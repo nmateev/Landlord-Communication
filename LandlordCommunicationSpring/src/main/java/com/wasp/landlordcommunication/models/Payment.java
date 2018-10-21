@@ -3,6 +3,9 @@ package com.wasp.landlordcommunication.models;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -14,21 +17,29 @@ public class Payment {
     @Column(name = Constants.PAYMENTS_ID_COLUMN)
     private int paymentId;
 
+    @NotNull
     @Column(name = Constants.PAYMENTS_TENANT_ID_COLUMN)
     private int tenantId;
 
+    @NotNull
     @Column(name = Constants.PAYMENTS_LANDLORD_ID_COLUMN)
     private int landlordId;
 
+    @NotNull
     @Column(name = Constants.PAYMENTS_PROPERTY_ID_COLUMN)
     private int propertyId;
 
+    @NotNull
+    @Min(value = Constants.PAYMENT_AMOUNT_VALIDATION_MIN_VALUE)
     @Column(name = Constants.PAYMENTS_AMOUNT_COLUMN)
     private double paymentAmount;
 
+    @NotNull
     @Column(name = Constants.PAYMENTS_DATE_PAID_COLUMN)
     private Date datePaid;
 
+    @NotNull
+    @Size(min = Constants.CARD_NUMBER_VALIDATION_MIN_VALUE, max = Constants.CARD_NUMBER_VALIDATION_MAX_VALUE)
     @Column(name = Constants.PAYMENTS_CARD_NUMBER_COLUMN)
     private String cardNumber;
 
