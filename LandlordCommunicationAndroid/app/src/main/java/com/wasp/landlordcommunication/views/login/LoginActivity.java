@@ -1,15 +1,18 @@
 package com.wasp.landlordcommunication.views.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.wasp.landlordcommunication.R;
+import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.views.signup.SignUpActivity;
 
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-//TODO: Extend base drawer activity after the drawer activity is implemented
-public class LoginActivity extends DaggerAppCompatActivity {
+
+public class LoginActivity extends DaggerAppCompatActivity implements LoginContracts.Navigator {
 
     @Inject
     LoginFragment mLoginFragment;
@@ -21,6 +24,7 @@ public class LoginActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mLoginFragment.setNavigator(this);
         mLoginFragment.setPresenter(mPresenter);
 
         getSupportFragmentManager()
@@ -33,5 +37,17 @@ public class LoginActivity extends DaggerAppCompatActivity {
     public void onDestroy() {
         mPresenter = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void navigateToSignUpActivity() {
+
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void navigateToHomeWithUser(User user) {
+
     }
 }

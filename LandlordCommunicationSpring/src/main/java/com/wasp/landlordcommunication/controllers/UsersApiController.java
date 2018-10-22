@@ -6,6 +6,7 @@ import com.wasp.landlordcommunication.services.base.UsersService;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.mappers.base.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,6 +37,12 @@ public class UsersApiController {
     public User getUserByUserName(@PathVariable String userName) {
 
         return usersService.getUserByUserName(userName);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public User loginUser(@RequestBody User user) {
+
+        return usersService.loginUser(user);
     }
 
     @RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)

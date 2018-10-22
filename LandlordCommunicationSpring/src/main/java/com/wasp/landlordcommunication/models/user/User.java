@@ -134,6 +134,10 @@ public class User {
         this.userRating = userRating;
     }
 
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
     private void setUserId(int userId) {
         this.userId = userId;
     }
@@ -142,9 +146,6 @@ public class User {
         this.userName = userName;
     }
 
-    private void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
 
     private void setUserPasswordSalt(String userPasswordSalt) {
         this.userPasswordSalt = userPasswordSalt;
@@ -161,7 +162,5 @@ public class User {
     private void setUserType(String userType) {
         this.userType = userType;
     }
-
-
 
 }

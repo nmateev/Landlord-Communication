@@ -77,7 +77,6 @@ public class Constants {
     public static final int CARD_NUMBER_VALIDATION_MIN_VALUE = 10;
     public static final int CARD_NUMBER_VALIDATION_MAX_VALUE = 45;
 
-
     public static final int TEXT_MESSAGE_MIN_LENGTH = 1;
     public static final int TEXT_MESSAGE_MAX_LENGTH = 200;
     public static final int PAYMENT_AMOUNT_VALIDATION_MIN_VALUE = 1;

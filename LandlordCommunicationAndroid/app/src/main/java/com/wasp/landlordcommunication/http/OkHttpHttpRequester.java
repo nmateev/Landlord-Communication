@@ -1,6 +1,7 @@
 package com.wasp.landlordcommunication.http;
 
 import com.wasp.landlordcommunication.http.base.HttpRequester;
+import com.wasp.landlordcommunication.utils.Constants;
 
 import java.io.IOException;
 
@@ -39,7 +40,7 @@ public class OkHttpHttpRequester implements HttpRequester {
     public String post(String url, String body) throws IOException {
 
         RequestBody requestBody = RequestBody
-                .create(MediaType.parse("application/json"), body);
+                .create(MediaType.parse(Constants.JSON_MEDIA_TYPE), body);
 
         Request request = new Request.Builder()
                 .url(url)
@@ -57,7 +58,7 @@ public class OkHttpHttpRequester implements HttpRequester {
     @Override
     public String update(String url, String body) throws IOException {
         RequestBody requestBody = RequestBody
-                .create(MediaType.parse("application/json"), body);
+                .create(MediaType.parse(Constants.JSON_MEDIA_TYPE), body);
 
         Request request = new Request.Builder()
                 .url(url)

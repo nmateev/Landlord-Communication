@@ -1,4 +1,4 @@
-package com.wasp.landlordcommunication;
+package com.wasp.landlordcommunication.configuration;
 
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.models.Payment;
@@ -16,6 +16,8 @@ import com.wasp.landlordcommunication.utils.mappers.base.UserMapper;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -54,5 +56,10 @@ public class AppConfiguration {
     @Bean
     public DateFormatter provideDateFormatter() {
         return new DateFormatterImpl();
+    }
+
+    @Bean
+    public PasswordEncoder providePasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
