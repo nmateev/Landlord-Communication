@@ -7,6 +7,7 @@ import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.views.signup.SignUpActivity;
 
+
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
@@ -26,6 +27,7 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
 
         mLoginFragment.setNavigator(this);
         mLoginFragment.setPresenter(mPresenter);
+
 
         getSupportFragmentManager()
                 .beginTransaction()

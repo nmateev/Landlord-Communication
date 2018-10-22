@@ -1,11 +1,11 @@
 package com.wasp.landlordcommunication.views.login;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.utils.Constants;
+
 
 import javax.inject.Inject;
 
