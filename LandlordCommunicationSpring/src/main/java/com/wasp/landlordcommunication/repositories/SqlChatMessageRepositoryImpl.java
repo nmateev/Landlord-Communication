@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.repositories;
 
 import com.wasp.landlordcommunication.models.ChatMessage;
-import com.wasp.landlordcommunication.models.Property;
+
 import com.wasp.landlordcommunication.repositories.base.ChatMessageRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
