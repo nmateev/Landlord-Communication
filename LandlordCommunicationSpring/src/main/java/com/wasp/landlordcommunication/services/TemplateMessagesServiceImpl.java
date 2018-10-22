@@ -1,6 +1,6 @@
 package com.wasp.landlordcommunication.services;
 
-import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
+import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
 import com.wasp.landlordcommunication.repositories.base.TemplateMessagesRepository;
 import com.wasp.landlordcommunication.services.base.TemplateMessagesService;
 import org.springframework.beans.factory.annotation.Autowired;

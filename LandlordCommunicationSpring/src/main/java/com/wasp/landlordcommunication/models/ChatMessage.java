@@ -3,6 +3,8 @@ package com.wasp.landlordcommunication.models;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -14,52 +16,66 @@ public class ChatMessage {
     @Column(name = Constants.CHAT_MESSAGES_ID_COLUMN)
     private int messageId;
 
-    @Column(name = Constants.CHAT_MESSAGES_SENDER_COLUMN)
-    private int messageSender;
+    @NotNull
+    @Column(name = Constants.CHAT_MESSAGES_TENANT_COLUMN)
+    private int tenantId;
 
-    @Column(name = Constants.CHAT_MESSAGES_RECIPIENT_COLUMN)
-    private int messageRecipient;
+    @NotNull
+    @Column(name = Constants.CHAT_MESSAGES_LANDLORD_COLUMN)
+    private int landlordId;
 
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_CHAT_SESSION_ID_COLUMN)
     private int chatSessionId;
 
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = Constants.CHAT_MESSAGES_DATE_SENT_COLUMN)
     private Date dateSent;
 
+    @NotNull
+    @Size(min = Constants.TEXT_MESSAGE_MIN_LENGTH, max = Constants.TEXT_MESSAGE_MAX_LENGTH)
     @Column(name = Constants.CHAT_MESSAGES_TEXT_COLUMN)
     private String messageText;
 
     @Column(name = Constants.CHAT_MESSAGES_IMAGE_COLUMN)
     private byte[] imageMessage;
 
-    @ManyToOne
-    @JoinColumn(name = Constants.CHAT_SESSIONS_TABLE_ID_FIELD, insertable = false, updatable = false)
-    private ChatSession chatSession;
+    @NotNull
+    @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_TENANT_COLUMN)
+    private boolean isDeliveredToTenant;
+
+    @NotNull
+    @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_LANDLORD_COLUMN)
+    private boolean isDeliveredToLandlord;
 
 
     public ChatMessage() {
 
     }
 
-    public ChatMessage(int messageSender, int messageRecipient, int chatSessionId, Date dateSent, String messageText, byte[] imageMessage) {
-        setMessageSender(messageSender);
-        setMessageRecipient(messageRecipient);
+    public ChatMessage(int tenantId, int landlordId, int chatSessionId, Date dateSent, String messageText, byte[] imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+        setTenantId(tenantId);
+        setLandlordId(landlordId);
         setChatSessionId(chatSessionId);
         setDateSent(dateSent);
         setMessageText(messageText);
         setImageMessage(imageMessage);
+        setDeliveredToTenant(isDeliveredToTenant);
+        setDeliveredToLandlord(isDeliveredToLandlord);
     }
+
 
     public int getMessageId() {
         return messageId;
     }
 
-    public int getMessageSender() {
-        return messageSender;
+    public int getTenantId() {
+        return tenantId;
     }
 
-    public int getMessageRecipient() {
-        return messageRecipient;
+    public int getLandlordId() {
+        return landlordId;
     }
 
     public int getChatSessionId() {
@@ -78,20 +94,32 @@ public class ChatMessage {
         return imageMessage;
     }
 
-    public ChatSession getChatSession() {
-        return chatSession;
+    public boolean isDeliveredToTenant() {
+        return isDeliveredToTenant;
+    }
+
+    public boolean isDeliveredToLandlord() {
+        return isDeliveredToLandlord;
+    }
+
+    public void setDeliveredToTenant(boolean deliveredToTenant) {
+        isDeliveredToTenant = deliveredToTenant;
+    }
+
+    public void setDeliveredToLandlord(boolean deliveredToLandlord) {
+        isDeliveredToLandlord = deliveredToLandlord;
     }
 
     private void setMessageId(int messageId) {
         this.messageId = messageId;
     }
 
-    private void setMessageSender(int messageSender) {
-        this.messageSender = messageSender;
+    private void setTenantId(int tenantId) {
+        this.tenantId = tenantId;
     }
 
-    private void setMessageRecipient(int messageRecipient) {
-        this.messageRecipient = messageRecipient;
+    private void setLandlordId(int landlordId) {
+        this.landlordId = landlordId;
     }
 
     private void setChatSessionId(int chatSessionId) {
@@ -106,8 +134,8 @@ public class ChatMessage {
         this.messageText = messageText;
     }
 
-
     private void setImageMessage(byte[] imageMessage) {
         this.imageMessage = imageMessage;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.wasp.landlordcommunication.models.templatemessages;
+package com.wasp.landlordcommunication.models.templatemessage;
 
 public class TemplateMessageDTO {
     private String templateText;

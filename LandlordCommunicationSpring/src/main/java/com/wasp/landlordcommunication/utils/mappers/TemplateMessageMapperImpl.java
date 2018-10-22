@@ -1,8 +1,8 @@
 package com.wasp.landlordcommunication.utils.mappers;
 
 import com.wasp.landlordcommunication.utils.mappers.base.TemplateMessageMapper;
-import com.wasp.landlordcommunication.models.templatemessages.TemplateMessage;
-import com.wasp.landlordcommunication.models.templatemessages.TemplateMessageDTO;
+import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
+import com.wasp.landlordcommunication.models.templatemessage.TemplateMessageDTO;
 
 import java.util.Objects;
 

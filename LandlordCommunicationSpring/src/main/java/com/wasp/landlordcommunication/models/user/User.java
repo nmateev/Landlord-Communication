@@ -1,9 +1,10 @@
-package com.wasp.landlordcommunication.models;
+package com.wasp.landlordcommunication.models.user;
 
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = Constants.USERS_TABLE_NAME)
@@ -14,21 +15,31 @@ public class User {
     @Column(name = Constants.USERS_TABLE_ID_COLUMN_NAME)
     private int userId;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.STRING_VALIDATION_MAX_TEXT)
     @Column(name = Constants.USERS_TABLE_USER_NAME_COLUMN)
     private String userName;
 
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.STRING_VALIDATION_MAX_TEXT)
     @Column(name = Constants.USERS_TABLE_USER_PASSWORD_COLUMN)
     private String userPassword;
 
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_PASSWORD_SALT_COLUMN)
     private String userPasswordSalt;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_FIRST_NAME_COLUMN)
     private String firstName;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_LAST_NAME_COLUMN)
     private String lastName;
 
+    @NotNull
+    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_TYPE_COLUMN)
     private String userType;
 
@@ -43,28 +54,6 @@ public class User {
 
     @Column(name = Constants.USERS_TABLE_USER_RATING_COLUMN)
     private double userRating;
-
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = Constants.USERS_PROPERTIES_TABLE,
-            joinColumns = @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME),
-            inverseJoinColumns = @JoinColumn(name = Constants.PROPERTY_TABLE_ID_FIELD)
-    )
-    private Set<Property> properties;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = Constants.USERS_CHAT_SESSIONS_TABLE,
-            joinColumns = @JoinColumn(name = Constants.USERS_TABLE_ID_COLUMN_NAME),
-            inverseJoinColumns = @JoinColumn(name = Constants.CHAT_SESSIONS_TABLE_ID_FIELD)
-    )
-    private Set<ChatSession> chatSessions;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<IssueReport> issueReports;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Payment> payments;
-
 
 
     public User() {
@@ -117,7 +106,6 @@ public class User {
         return userPicture;
     }
 
-
     public long getUserVoteCount() {
         return userVoteCount;
     }
@@ -130,20 +118,20 @@ public class User {
         return userRating;
     }
 
-    public Set<Property> getProperties() {
-        return properties;
+    public void setUserPicture(byte[] userPicture) {
+        this.userPicture = userPicture;
     }
 
-    public Set<ChatSession> getChatSessions() {
-        return chatSessions;
+    public void setUserVoteCount(long userVoteCount) {
+        this.userVoteCount = userVoteCount;
     }
 
-    public Set<IssueReport> getIssueReports() {
-        return issueReports;
+    public void setUserVoteSum(double userVoteSum) {
+        this.userVoteSum = userVoteSum;
     }
 
-    public Set<Payment> getPayments() {
-        return payments;
+    public void setUserRating(double userRating) {
+        this.userRating = userRating;
     }
 
     private void setUserId(int userId) {
@@ -174,20 +162,6 @@ public class User {
         this.userType = userType;
     }
 
-    private void setUserPicture(byte[] userPicture) {
-        this.userPicture = userPicture;
-    }
 
-    private void setUserVoteCount(long userVoteCount) {
-        this.userVoteCount = userVoteCount;
-    }
-
-    private void setUserVoteSum(double userVoteSum) {
-        this.userVoteSum = userVoteSum;
-    }
-
-    private void setUserRating(double userRating) {
-        this.userRating = userRating;
-    }
 
 }
