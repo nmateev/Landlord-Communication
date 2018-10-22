@@ -1,6 +1,5 @@
 package com.wasp.landlordcommunication.views.camera;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -25,7 +24,7 @@ public class CameraActivity extends AppCompatActivity {
 
         mCameraFragment.setPresenter(mCameraPresenter);
 
-        Intent intent=getIntent();
+
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, mCameraFragment)

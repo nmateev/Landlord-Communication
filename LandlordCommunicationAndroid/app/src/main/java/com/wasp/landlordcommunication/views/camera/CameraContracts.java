@@ -1,7 +1,6 @@
 package com.wasp.landlordcommunication.views.camera;
 
 import android.hardware.Camera;
-import android.os.Bundle;
 import android.widget.ImageView;
 
 public interface CameraContracts {

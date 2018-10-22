@@ -1,25 +1,18 @@
 package com.wasp.landlordcommunication.views.camera;
 
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
-
-import java.io.File;
 
 import javax.inject.Inject;
 
