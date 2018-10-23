@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,10 +20,8 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CameraFragment extends Fragment implements CameraContracts.View{
+
     private CameraContracts.Presenter mPresenter;
 
 
@@ -37,6 +37,17 @@ public class CameraFragment extends Fragment implements CameraContracts.View{
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_camera, container, false);
         ButterKnife.bind(this, view);
+
+
+        Camera deviceCamera = Camera.open();
+
+        ImageSurfaceView imageSurfaceView = new ImageSurfaceView(getContext(), deviceCamera);
+        FrameLayout cameraPreviewLayout = getView().findViewById(R.id.camera_preview);
+        cameraPreviewLayout.addView(imageSurfaceView);
+
+        Button captureButton = getView().findViewById(R.id.capture_button);
+        captureButton.setOnClickListener(v -> captureImage(deviceCamera));
+
         return view;
     }
 

@@ -1,13 +1,8 @@
 package com.wasp.landlordcommunication.views.login;
 
-import android.content.Intent;
-import android.graphics.Camera;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.wasp.landlordcommunication.R;
-import com.wasp.landlordcommunication.views.camera.CameraActivity;
 
 import javax.inject.Inject;
 
@@ -27,7 +22,6 @@ public class LoginActivity extends DaggerAppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mLoginFragment.setPresenter(mPresenter);
-
 
         getSupportFragmentManager()
                 .beginTransaction()
