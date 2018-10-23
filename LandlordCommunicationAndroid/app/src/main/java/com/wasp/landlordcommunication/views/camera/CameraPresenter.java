@@ -12,11 +12,11 @@ public class CameraPresenter implements CameraContracts.Presenter {
 
     @Override
     public void subscribe(CameraContracts.View view) {
-        mView=view;
+        mView = view;
     }
 
     @Override
     public void unsubscribe() {
-        mView=null;
+        mView = null;
     }
 }

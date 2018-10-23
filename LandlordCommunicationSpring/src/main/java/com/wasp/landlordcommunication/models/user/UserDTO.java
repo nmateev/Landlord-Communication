@@ -7,19 +7,17 @@ public class UserDTO {
     private String lastName;
     private String userType;
     private byte[] userPicture;
-    private double userRating;
 
     public UserDTO() {
 
     }
 
-    public UserDTO(int userId, String firstName, String lastName, String userType, byte[] userPicture, double userRating) {
+    public UserDTO(int userId, String firstName, String lastName, String userType, byte[] userPicture) {
         setUserId(userId);
         setFirstName(firstName);
         setLastName(lastName);
         setUserType(userType);
         setUserPicture(userPicture);
-        setUserRating(userRating);
     }
 
     public int getUserId() {
@@ -42,10 +40,6 @@ public class UserDTO {
         return userPicture;
     }
 
-    public double getUserRating() {
-        return userRating;
-    }
-
     private void setUserId(int userId) {
         this.userId = userId;
     }
@@ -66,7 +60,4 @@ public class UserDTO {
         this.userPicture = userPicture;
     }
 
-    private void setUserRating(double userRating) {
-        this.userRating = userRating;
-    }
 }

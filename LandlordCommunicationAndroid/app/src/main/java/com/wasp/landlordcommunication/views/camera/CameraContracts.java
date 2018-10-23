@@ -5,14 +5,17 @@ import android.widget.ImageView;
 
 public interface CameraContracts {
 
-    interface View{
+    interface View {
         void captureImage(Camera deviceCamera);
+
         void sendImage(ImageView image);
+
         void setPresenter(Presenter presenter);
     }
 
-    interface Presenter{
+    interface Presenter {
         void subscribe(View view);
+
         void unsubscribe();
     }
 }

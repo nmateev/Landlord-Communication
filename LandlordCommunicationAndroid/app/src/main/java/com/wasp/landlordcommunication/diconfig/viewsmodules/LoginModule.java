@@ -21,5 +21,4 @@ public abstract class LoginModule {
     @Binds
     abstract LoginContracts.Presenter loginPresenter(LoginPresenter loginPresenter);
 
-
 }

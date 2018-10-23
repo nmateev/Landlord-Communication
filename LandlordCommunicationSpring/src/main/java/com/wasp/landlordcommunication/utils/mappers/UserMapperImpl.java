@@ -18,8 +18,7 @@ public class UserMapperImpl implements UserMapper {
                     user.getFirstName(),
                     user.getLastName(),
                     user.getUserType(),
-                    user.getUserPicture(),
-                    user.getUserRating());
+                    user.getUserPicture());
         }
         return userDTO;
     }

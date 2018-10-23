@@ -24,10 +24,6 @@ public class User {
     @Column(name = Constants.USERS_TABLE_USER_PASSWORD_COLUMN)
     private String userPassword;
 
-    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
-    @Column(name = Constants.USERS_TABLE_USER_PASSWORD_SALT_COLUMN)
-    private String userPasswordSalt;
-
     @NotNull
     @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_FIRST_NAME_COLUMN)
@@ -46,32 +42,18 @@ public class User {
     @Column(name = Constants.USERS_TABLE_USER_PICTURE_COLUMN)
     private byte[] userPicture;
 
-    @Column(name = Constants.USERS_TABLE_USER_VOTE_COUNT_COLUMN)
-    private long userVoteCount;
-
-    @Column(name = Constants.USERS_TABLE_USER_VOTE_SUM_COLUMN)
-    private double userVoteSum;
-
-    @Column(name = Constants.USERS_TABLE_USER_RATING_COLUMN)
-    private double userRating;
-
 
     public User() {
 
     }
 
-    public User(String userName, String userPassword, String userPasswordSalt, String firstName, String lastName, String userType, byte[] userPicture,
-                long userVoteCount, double userVoteSum, double userRating) {
+    public User(String userName, String userPassword, String firstName, String lastName, String userType, byte[] userPicture) {
         setUserName(userName);
         setUserPassword(userPassword);
-        setUserPasswordSalt(userPasswordSalt);
         setFirstName(firstName);
         setLastName(lastName);
         setUserType(userType);
         setUserPicture(userPicture);
-        setUserVoteCount(userVoteCount);
-        setUserVoteSum(userVoteSum);
-        setUserRating(userRating);
     }
 
     public int getUserId() {
@@ -84,10 +66,6 @@ public class User {
 
     public String getUserPassword() {
         return userPassword;
-    }
-
-    public String getUserPasswordSalt() {
-        return userPasswordSalt;
     }
 
     public String getFirstName() {
@@ -106,32 +84,12 @@ public class User {
         return userPicture;
     }
 
-    public long getUserVoteCount() {
-        return userVoteCount;
-    }
-
-    public double getUserVoteSum() {
-        return userVoteSum;
-    }
-
-    public double getUserRating() {
-        return userRating;
-    }
-
     public void setUserPicture(byte[] userPicture) {
         this.userPicture = userPicture;
     }
 
-    public void setUserVoteCount(long userVoteCount) {
-        this.userVoteCount = userVoteCount;
-    }
-
-    public void setUserVoteSum(double userVoteSum) {
-        this.userVoteSum = userVoteSum;
-    }
-
-    public void setUserRating(double userRating) {
-        this.userRating = userRating;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     private void setUserId(int userId) {
@@ -140,14 +98,6 @@ public class User {
 
     private void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    private void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    private void setUserPasswordSalt(String userPasswordSalt) {
-        this.userPasswordSalt = userPasswordSalt;
     }
 
     private void setFirstName(String firstName) {
@@ -161,7 +111,5 @@ public class User {
     private void setUserType(String userType) {
         this.userType = userType;
     }
-
-
 
 }

@@ -9,12 +9,12 @@ import java.util.List;
 public class GsonJsonParser<T> implements JsonParser<T> {
 
 
-    private final Class<T> mklass;
+    private final Class<T> mKlass;
     private final Class<T[]> mArrayKlass;
     private final Gson mGson;
 
     public GsonJsonParser(Class<T> klass, Class<T[]> arrayKlass) {
-        mklass = klass;
+        mKlass = klass;
         mArrayKlass = arrayKlass;
         mGson = new Gson();
     }
@@ -22,7 +22,7 @@ public class GsonJsonParser<T> implements JsonParser<T> {
 
     @Override
     public T fromJson(String jsonString) {
-        return mGson.fromJson(jsonString, mklass);
+        return mGson.fromJson(jsonString, mKlass);
     }
 
     @Override

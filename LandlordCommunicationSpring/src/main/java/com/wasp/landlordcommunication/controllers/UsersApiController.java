@@ -38,6 +38,12 @@ public class UsersApiController {
         return usersService.getUserByUserName(userName);
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public User loginUser(@RequestBody User user) {
+
+        return usersService.loginUser(user);
+    }
+
     @RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)
     public User getUserById(@PathVariable int userId) {
         return usersService.getUserById(userId);

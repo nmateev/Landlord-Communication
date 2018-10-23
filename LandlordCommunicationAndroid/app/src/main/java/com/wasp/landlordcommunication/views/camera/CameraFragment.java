@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.views.camera;
 
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -20,7 +20,9 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
+
 public class CameraFragment extends Fragment implements CameraContracts.View{
+
 
     private CameraContracts.Presenter mPresenter;
 
@@ -35,7 +37,7 @@ public class CameraFragment extends Fragment implements CameraContracts.View{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_camera, container, false);
+        View view = inflater.inflate(R.layout.fragment_camera, container, false);
         ButterKnife.bind(this, view);
 
 
@@ -75,6 +77,7 @@ public class CameraFragment extends Fragment implements CameraContracts.View{
 
     @Override
     public void setPresenter(CameraContracts.Presenter presenter) {
-        mPresenter=presenter;
+        mPresenter = presenter;
     }
+
 }

@@ -1,9 +1,10 @@
-package com.wasp.landlordcommunication;
+package com.wasp.landlordcommunication.configuration;
 
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.chatsession.ChatSession;
+import com.wasp.landlordcommunication.models.rating.Rating;
 import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
 import com.wasp.landlordcommunication.models.user.User;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -16,6 +17,8 @@ import com.wasp.landlordcommunication.utils.mappers.base.UserMapper;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -38,6 +41,7 @@ public class AppConfiguration {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Property.class)
                 .addAnnotatedClass(Payment.class)
+                .addAnnotatedClass(Rating.class)
                 .buildSessionFactory();
     }
 
@@ -54,5 +58,10 @@ public class AppConfiguration {
     @Bean
     public DateFormatter provideDateFormatter() {
         return new DateFormatterImpl();
+    }
+
+    @Bean
+    public PasswordEncoder providePasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
