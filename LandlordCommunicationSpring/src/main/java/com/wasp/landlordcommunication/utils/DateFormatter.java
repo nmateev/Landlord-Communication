@@ -1,6 +1,8 @@
 package com.wasp.landlordcommunication.utils;
 
+import java.util.Date;
+
 public interface DateFormatter {
 
-    String getDateThreeMonthsBackFromNow();
+    Date getDateThreeMonthsBackFromNow();
 }

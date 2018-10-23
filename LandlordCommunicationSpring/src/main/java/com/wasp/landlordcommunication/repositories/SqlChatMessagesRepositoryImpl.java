@@ -10,17 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
 
-    private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY = "FROM ChatMessage WHERE chatSessionId = :chatSessionId AND dateSent >= \'";
-    private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_SECOND_PART_QUERY = "\' AND dateSent<= NOW()";
-    private static final String GET_UNDELIVERED_MESSAGES_FIRST_PART_QUERY = "FROM ChatMessage WHERE dateSent >= \'";
-    private static final String GET_TENANTS_UNDELIVERED_MESSAGES_SECOND_PART_QUERY = "\' AND dateSent<= NOW() AND chatSessionId = :chatSessionId  AND isDeliveredToTenant = :isDeliveredToTenant";
-    private static final String GET_LANDLORDS_UNDELIVERED_MESSAGES_SECOND_PART_QUERY = "\' AND dateSent<= NOW() AND chatSessionId = :chatSessionId  AND isDeliveredToLandlord = :isDeliveredToLandlord";
-
+    private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY = "FROM ChatMessage WHERE chatSessionId = :chatSessionId AND dateSent >= :dateSearched";
+    private static final String GET_TENANTS_UNDELIVERED_MESSAGES_QUERY = "FROM ChatMessage WHERE dateSent >= :dateSearched AND chatSessionId = :chatSessionId  AND isDeliveredToTenant = :isDeliveredToTenant";
+    private static final String GET_LANDLORDS_UNDELIVERED_MESSAGES_QUERY = "FROM ChatMessage WHERE dateSent >= :dateSearched AND chatSessionId = :chatSessionId  AND isDeliveredToLandlord = :isDeliveredToLandlord";
+    private static final String DATE_SEARCHED_PARAMETER = "dateSearched";
     private static final String CHAT_SESSION_ID_PARAMETER = "chatSessionId";
     private static final String IS_MESSAGE_DELIVERED_TO_TENANT_PARAMETER = "isDeliveredToTenant";
     private static final String IS_MESSAGE_DELIVERED_TO_LANDLORD_PARAMETER = "isDeliveredToLandlord";
@@ -39,17 +38,16 @@ public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
     public List<ChatMessage> getMessagesByChatSessionId(int id) {
         List<ChatMessage> messages = new ArrayList<>();
 
-        String dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
+        Date dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
 
         try (Session session = sessionFactory.openSession()) {
 
             Transaction transaction = session.beginTransaction();
 
             messages = session
-                    .createQuery(GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY +
-                             dateThreeMonthsBackFromNow +
-                            GET_MESSAGES_BY_CHAT_SESSION_ID_SECOND_PART_QUERY, ChatMessage.class)
+                    .createQuery(GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY, ChatMessage.class)
                     .setParameter(CHAT_SESSION_ID_PARAMETER, id)
+                    .setParameter(DATE_SEARCHED_PARAMETER, dateThreeMonthsBackFromNow)
                     .list();
 
             transaction.commit();
@@ -64,17 +62,15 @@ public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
     public List<ChatMessage> getTenantsUndeliveredMessagesByChatSessionId(int id) {
         List<ChatMessage> undeliveredMessages = new ArrayList<>();
 
-        String dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
+        Date dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
 
         try (Session session = sessionFactory.openSession()) {
 
             Transaction transaction = session.beginTransaction();
 
             undeliveredMessages = session
-                    .createQuery(GET_UNDELIVERED_MESSAGES_FIRST_PART_QUERY +
-                                    dateThreeMonthsBackFromNow +
-                                    GET_TENANTS_UNDELIVERED_MESSAGES_SECOND_PART_QUERY
-                            , ChatMessage.class)
+                    .createQuery(GET_TENANTS_UNDELIVERED_MESSAGES_QUERY, ChatMessage.class)
+                    .setParameter(DATE_SEARCHED_PARAMETER, dateThreeMonthsBackFromNow)
                     .setParameter(CHAT_SESSION_ID_PARAMETER, id)
                     .setParameter(IS_MESSAGE_DELIVERED_TO_TENANT_PARAMETER, false)
                     .list();
@@ -91,17 +87,15 @@ public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
     public List<ChatMessage> getLandlordsUndeliveredMessagesByChatSessionId(int id) {
         List<ChatMessage> undeliveredMessages = new ArrayList<>();
 
-        String dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
+        Date dateThreeMonthsBackFromNow = dateFormatter.getDateThreeMonthsBackFromNow();
 
         try (Session session = sessionFactory.openSession()) {
 
             Transaction transaction = session.beginTransaction();
 
             undeliveredMessages = session
-                    .createQuery(GET_UNDELIVERED_MESSAGES_FIRST_PART_QUERY +
-                                    dateThreeMonthsBackFromNow +
-                                    GET_LANDLORDS_UNDELIVERED_MESSAGES_SECOND_PART_QUERY
-                            , ChatMessage.class)
+                    .createQuery(GET_LANDLORDS_UNDELIVERED_MESSAGES_QUERY, ChatMessage.class)
+                    .setParameter(DATE_SEARCHED_PARAMETER, dateThreeMonthsBackFromNow)
                     .setParameter(CHAT_SESSION_ID_PARAMETER, id)
                     .setParameter(IS_MESSAGE_DELIVERED_TO_LANDLORD_PARAMETER, false)
                     .list();

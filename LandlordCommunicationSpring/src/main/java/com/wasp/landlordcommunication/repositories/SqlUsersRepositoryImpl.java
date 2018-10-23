@@ -106,9 +106,6 @@ public class SqlUsersRepositoryImpl implements UsersRepository {
             user = session.get(User.class, userId);
 
             user.setUserPicture(userToUpdate.getUserPicture());
-            user.setUserVoteCount(userToUpdate.getUserVoteCount());
-            user.setUserVoteSum(userToUpdate.getUserVoteSum());
-            user.setUserRating(userToUpdate.getUserRating());
 
             transaction.commit();
 

@@ -29,14 +29,10 @@ public class Constants {
     public static final String USERS_TABLE_ID_COLUMN_NAME = "user_id";
     public static final String USERS_TABLE_USER_NAME_COLUMN = "user_name";
     public static final String USERS_TABLE_USER_PASSWORD_COLUMN = "user_password";
-    public static final String USERS_TABLE_USER_PASSWORD_SALT_COLUMN = "user_password_salt";
     public static final String USERS_TABLE_USER_TYPE_COLUMN = "user_type";
     public static final String USERS_TABLE_USER_FIRST_NAME_COLUMN = "first_name";
     public static final String USERS_TABLE_USER_LAST_NAME_COLUMN = "last_name";
     public static final String USERS_TABLE_USER_PICTURE_COLUMN = "user_picture";
-    public static final String USERS_TABLE_USER_VOTE_COUNT_COLUMN = "user_vote_count";
-    public static final String USERS_TABLE_USER_VOTE_SUM_COLUMN = "user_vote_sum";
-    public static final String USERS_TABLE_USER_RATING_COLUMN = "user_rating";
 
     public static final String CHAT_SESSIONS_ROOT_MAPPING = "api/chatsessions";
     public static final String CHAT_SESSIONS_TABLE_NAME = "chat_sessions";
@@ -67,6 +63,15 @@ public class Constants {
     public static final String CHAT_MESSAGES_IS_DELIVERED_TO_TENANT_COLUMN = "is_delivered_to_tenant";
     public static final String CHAT_MESSAGES_IS_DELIVERED_TO_LANDLORD_COLUMN = "is_delivered_to_landlord";
 
+
+    public static final String RATINGS_ROOT_MAPPING = "api/ratings";
+    public static final String RATINGS_TABLE_NAME = "ratings";
+    public static final String RATINGS_TABLE_ID_COLUMN_NAME = "rating_id";
+    public static final String RATINGS_TABLE_VOTER_ID_COLUMN = "voter_id";
+    public static final String RATINGS_TABLE_VOTED_FOR_ID_COLUMN = "voted_for_id";
+    public static final String RATINGS_TABLE_RATING_COLUMN = "rating";
+    public static final String RATINGS_TABLE_MIN_RATING_VALUE = "0.0";
+    public static final String RATINGS_TABLE_MAX_RATING_VALUE = "5.0";
 
     public static final int STRING_VALIDATION_MIN_TEXT = 5;
     public static final int STRING_VALIDATION_MAX_TEXT = 100;

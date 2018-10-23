@@ -4,6 +4,7 @@ import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.chatsession.ChatSession;
+import com.wasp.landlordcommunication.models.rating.Rating;
 import com.wasp.landlordcommunication.models.templatemessage.TemplateMessage;
 import com.wasp.landlordcommunication.models.user.User;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -40,6 +41,7 @@ public class AppConfiguration {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Property.class)
                 .addAnnotatedClass(Payment.class)
+                .addAnnotatedClass(Rating.class)
                 .buildSessionFactory();
     }
 

@@ -48,7 +48,6 @@ public class LoginPresenter implements LoginContracts.Presenter {
             mView.showProgressBar();
             Disposable observable = Observable
                     .create((ObservableOnSubscribe<User>) emitter -> {
-
                         User user = mUsersService.loginUser(new User(username, password));
                         emitter.onNext(user);
                         emitter.onComplete();
@@ -71,7 +70,6 @@ public class LoginPresenter implements LoginContracts.Presenter {
 
     @Override
     public void handleLoginFieldFocusChange(int errorVisibilityCode) {
-
         if (errorVisibilityCode == Constants.VISIBLE_CODE_VALUE) {
             mView.hideLoginProblemMessage();
         }
@@ -79,7 +77,6 @@ public class LoginPresenter implements LoginContracts.Presenter {
 
     @Override
     public void handleSignUpButtonClick() {
-
         mView.showSignUpActivity();
     }
 }
