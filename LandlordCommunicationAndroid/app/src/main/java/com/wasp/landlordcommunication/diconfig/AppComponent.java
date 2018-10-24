@@ -3,6 +3,7 @@ package com.wasp.landlordcommunication.diconfig;
 import android.app.Application;
 
 import com.wasp.landlordcommunication.AndroidApplication;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.CameraModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LoginModule;
 
 import javax.inject.Singleton;
@@ -22,7 +23,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ParsersModule.class,
         ServicesModule.class,
         RepositoriesModule.class,
-        LoginModule.class
+        LoginModule.class,
+        CameraModule.class
 })
 
 public interface AppComponent extends AndroidInjector<AndroidApplication> {

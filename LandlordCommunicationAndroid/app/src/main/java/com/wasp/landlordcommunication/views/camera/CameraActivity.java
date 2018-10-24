@@ -22,8 +22,7 @@ public class CameraActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mCameraFragment.setPresenter(mCameraPresenter);
-
+       mCameraFragment.setPresenter(mCameraPresenter);
 
         getSupportFragmentManager()
                 .beginTransaction()

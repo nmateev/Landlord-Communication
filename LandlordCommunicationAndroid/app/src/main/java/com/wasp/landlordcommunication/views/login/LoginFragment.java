@@ -29,7 +29,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.utils.Constants;
-
 import java.util.Objects;
 
 import javax.inject.Inject;
