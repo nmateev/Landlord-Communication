@@ -1,31 +1,36 @@
 package com.wasp.landlordcommunication.views.camera;
 
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.hardware.Camera;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class CameraFragment extends Fragment implements CameraContracts.View{
 
 
+    private static final int CAMERA_REQUEST = 111;
     private CameraContracts.Presenter mPresenter;
 
+    @BindView(R.id.captured_image)
+    ImageView mPhoto;
+    @BindView(R.id.btn_send)
+    Button buttonSend;
 
     @Inject
     public CameraFragment() {
@@ -36,39 +41,36 @@ public class CameraFragment extends Fragment implements CameraContracts.View{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
         ButterKnife.bind(this, view);
-
-
-        Camera deviceCamera = Camera.open();
-
-        ImageSurfaceView imageSurfaceView = new ImageSurfaceView(getContext(), deviceCamera);
-        FrameLayout cameraPreviewLayout = getView().findViewById(R.id.camera_preview);
-        cameraPreviewLayout.addView(imageSurfaceView);
-
-        Button captureButton = getView().findViewById(R.id.capture_button);
-        captureButton.setOnClickListener(v -> captureImage(deviceCamera));
 
         return view;
     }
 
-    @Override
-    public void captureImage(Camera deviceCamera) {
-        deviceCamera.takePicture(
-                null,
-                null,
-                (data, camera) -> {
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                    if (bitmap == null) {
-                        Toast.makeText(getActivity(), "Captured image is empty", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    ImageView capturedImageHolder = getView().findViewById(R.id.captured_image);
-                    capturedImageHolder.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 500, 300, true));
-                });
+
+    @OnClick(R.id.btn_open_camera)
+    public void onCameraButtonClick(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA_REQUEST);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (data!=null) {
+            if (data.getExtras() != null) {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                mPhoto.setImageBitmap(photo);
+                buttonSend.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @OnClick(R.id.btn_send)
+    public void onSendButtonClick(View view) {
+
+    }
     @Override
     public void sendImage(ImageView image) {
 

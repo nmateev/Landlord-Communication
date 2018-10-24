@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.camera.CameraFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
 
     <Button
+        android:id="@+id/btn_open_camera"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open camera"
+        android:background="@color/colorPrimary"
+        android:foreground="?attr/selectableItemBackground"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="700dp"
+        />
+
+    <Button
+        android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Capture image from camera"
-        android:id="@+id/capture_button"
+        android:text="Send"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="620dp"
         android:paddingHorizontal="16dp"
         android:background="@color/colorPrimary"
         android:foreground="?attr/selectableItemBackground"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:visibility="invisible"/>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/captured_image"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:contentDescription="capture image place holder" />
-
-    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/camera_preview"
-        android:layout_alignParentLeft="true"
+        android:layout_height="fill_parent"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:contentDescription="camera preview" />
+        android:layout_alignParentTop="true"
+        android:contentDescription="capture image place holder"
+        android:text="Capture image here" />
+
+
 
 
 </RelativeLayout>

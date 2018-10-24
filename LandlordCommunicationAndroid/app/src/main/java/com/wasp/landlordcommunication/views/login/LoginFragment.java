@@ -1,7 +1,9 @@
 package com.wasp.landlordcommunication.views.login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.Login;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.utils.Constants;
+import com.wasp.landlordcommunication.views.camera.CameraActivity;
 
 import javax.inject.Inject;
 
@@ -87,6 +91,7 @@ public class LoginFragment extends Fragment implements LoginContracts.View {
     public void hideLoginProblemMessage() {
         mLoginProblemTextView.setVisibility(View.GONE);
     }
+
 
     @OnClick(R.id.btn_custom_login)
     public void onLoginButtonClick() {
