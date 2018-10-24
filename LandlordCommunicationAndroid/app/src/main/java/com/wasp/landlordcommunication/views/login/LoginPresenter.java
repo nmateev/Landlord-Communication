@@ -18,6 +18,7 @@ public class LoginPresenter implements LoginContracts.Presenter {
     private final UsersService mUsersService;
     private final SchedulerProvider mSchedulerProvider;
     private LoginContracts.View mView;
+    private User mUser;
 
     @Inject
     public LoginPresenter(UsersService usersService, SchedulerProvider schedulerProvider) {
@@ -55,7 +56,10 @@ public class LoginPresenter implements LoginContracts.Presenter {
                     .subscribeOn(mSchedulerProvider.backgroundThread())
                     .observeOn(mSchedulerProvider.uiThread())
                     .doFinally(mView::hideProgressBar)
-                    .subscribe(user -> mView.showHomeActivityWithUser(user),
+                    .subscribe(user -> {
+                                mView.showMessage(Constants.SUCCESSFUL_LOGIN);
+                                mView.showHomeActivityWithUser(user);
+                            },
                             error -> {
                                 if (error instanceof NullPointerException) {
                                     /*  if the user passes invalid login credentials the result is null and onNext() is called with
@@ -78,5 +82,92 @@ public class LoginPresenter implements LoginContracts.Presenter {
     @Override
     public void handleSignUpButtonClick() {
         mView.showSignUpActivity();
+    }
+
+    @Override
+    public void handleUnsuccessfulLogin() {
+        mView.showMessage(Constants.UNSUCCESSFUL_LOGIN);
+    }
+
+    @Override
+    public void handleCanceledLogin() {
+        mView.showMessage(Constants.LOGIN_CANCELED_MESSAGE);
+    }
+
+    @Override
+    public void handleSignWithGoogleButtonClick() {
+        mView.showGoogleLoginActivity();
+    }
+
+    @Override
+    public void handleFacebookLogin(boolean isLoggedIn, User user) {
+        if (!isLoggedIn) {
+            mView.showMessage(Constants.UNSUCCESSFUL_LOGIN);
+        } else {
+            checkAndHandleSocialLogin(user);
+        }
+    }
+
+    @Override
+    public void handleGoogleLogin(boolean isLoggedIn, User user) {
+        if (!isLoggedIn) {
+            mView.showMessage(Constants.UNSUCCESSFUL_LOGIN);
+        } else {
+
+            checkAndHandleSocialLogin(user);
+        }
+    }
+
+    @Override
+    public void handleUnselectedUserTypeOption() {
+        mView.showMessage(Constants.UNSUCCESSFUL_LOGIN);
+    }
+
+    @Override
+    public void handleChosenUserTypeOption(String userTypeOption) {
+        mView.showProgressBar();
+        User userToCreate = mUser;
+        userToCreate.setUserType(userTypeOption);
+
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<User>) emitter -> {
+                    User user = mUsersService.createUser(userToCreate);
+                    emitter.onNext(user);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideProgressBar)
+                .subscribe(userResult -> {
+                            mView.showMessage(Constants.SUCCESSFUL_LOGIN);
+                            mView.showHomeActivityWithUser(userResult);
+                        },
+                        error -> mView.showError(error));
+    }
+
+    @Override
+    public void checkAndHandleSocialLogin(User user) {
+        mView.showProgressBar();
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<User>) emitter -> {
+                    User userToCheck = mUsersService.getUserByUserName(user.getUserName());
+                    emitter.onNext(userToCheck);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideProgressBar)
+                .subscribe(userResult -> {
+                            mView.showMessage(Constants.SUCCESSFUL_LOGIN);
+                            mView.showHomeActivityWithUser(userResult);
+                        },
+                        error -> {
+                            if (error instanceof NullPointerException) {
+                                mUser = user;
+                                mView.showUserTypeSelectionDialog();
+                            } else {
+                                mView.showError(error);
+                            }
+                        });
     }
 }

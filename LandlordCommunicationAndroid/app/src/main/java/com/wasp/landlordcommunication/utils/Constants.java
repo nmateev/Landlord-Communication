@@ -18,5 +18,12 @@ public class Constants {
     public static final int MIN_LENGTH_VALUE = 3;
     public static final int VISIBLE_CODE_VALUE = 0;
 
-
+    public static final String EMAIL_AND_PUBLIC_PROFILE = "public_profile";
+    public static final String UNSUCCESSFUL_LOGIN = "Unsuccessful login!";
+    public static final String SUCCESSFUL_LOGIN = "Login successful!";
+    public static final String LOGIN_CANCELED_MESSAGE = "Login canceled";
+    public static final String SELECT_USER_TYPE_TITLE = "Choose user type";
+    public static final String CONFIRMATION = "OK";
+    public static final String DISAGREEMENT = "Cancel";
+    public static final int INITIAL_SELECTION = 0;
 }

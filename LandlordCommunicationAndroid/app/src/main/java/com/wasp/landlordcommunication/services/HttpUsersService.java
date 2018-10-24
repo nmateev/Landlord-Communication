@@ -23,4 +23,9 @@ public class HttpUsersService implements UsersService {
     public User loginUser(User user) throws IOException {
         return mUsersRepository.post(user);
     }
+
+    @Override
+    public User createUser(User userToCreate) throws IOException {
+        return mUsersRepository.add(userToCreate);
+    }
 }

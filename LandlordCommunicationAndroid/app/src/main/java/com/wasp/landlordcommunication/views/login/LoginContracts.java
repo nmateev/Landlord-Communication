@@ -21,6 +21,12 @@ public interface LoginContracts {
         void showError(Throwable error);
 
         void showHomeActivityWithUser(User user);
+
+        void showMessage(String message);
+
+        void showGoogleLoginActivity();
+
+        void showUserTypeSelectionDialog();
     }
 
     interface Presenter {
@@ -34,6 +40,22 @@ public interface LoginContracts {
         void handleLoginFieldFocusChange(int errorVisibilityCode);
 
         void handleSignUpButtonClick();
+
+        void handleUnsuccessfulLogin();
+
+        void handleCanceledLogin();
+
+        void handleFacebookLogin(boolean isLoggedIn, User user);
+
+        void handleSignWithGoogleButtonClick();
+
+        void handleGoogleLogin(boolean isLoggedIn, User user);
+
+        void handleUnselectedUserTypeOption();
+
+        void handleChosenUserTypeOption(String userTypeOption);
+
+        void checkAndHandleSocialLogin(User user);
     }
 
     interface Navigator {

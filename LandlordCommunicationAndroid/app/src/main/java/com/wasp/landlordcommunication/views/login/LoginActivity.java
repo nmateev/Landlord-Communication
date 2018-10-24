@@ -10,6 +10,7 @@ import com.wasp.landlordcommunication.views.signup.SignUpActivity;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 
@@ -24,7 +25,7 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        ButterKnife.bind(this);
         mLoginFragment.setNavigator(this);
         mLoginFragment.setPresenter(mPresenter);
 
