@@ -1,16 +1,15 @@
 package com.wasp.landlordcommunication.views.login;
 
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,6 +116,7 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
         mLoginProblemTextView.setVisibility(View.GONE);
     }
 
+
     @Override
     public void showProgressBar() {
         mProgressBarView.setVisibility(View.VISIBLE);
@@ -126,6 +126,7 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
     public void hideProgressBar() {
         mProgressBarView.setVisibility(View.GONE);
     }
+
 
     @OnClick(R.id.btn_custom_login)
     public void onLoginButtonClick() {
