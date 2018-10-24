@@ -4,6 +4,8 @@
     package="com.wasp.landlordcommunication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <uses-feature
         android:name="android.hardware.camera.any"
@@ -31,6 +33,14 @@
         </activity>
         <activity android:name=".views.signup.SignUpActivity" />
         <activity android:name=".views.camera.CameraActivity" />
+
+
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="false" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
     </application>
 

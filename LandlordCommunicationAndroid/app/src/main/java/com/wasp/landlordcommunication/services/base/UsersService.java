@@ -9,4 +9,6 @@ public interface UsersService {
     User getUserByUserName(String name) throws IOException;
 
     User loginUser(User user) throws IOException;
+
+    User createUser(User userToCreate) throws IOException;
 }

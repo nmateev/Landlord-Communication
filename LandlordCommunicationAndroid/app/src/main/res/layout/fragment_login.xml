@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -64,6 +65,7 @@
 
     <Button
         android:id="@+id/btn_custom_login"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_password_field"
@@ -74,6 +76,7 @@
 
     <Button
         android:id="@+id/btn_custom_signup"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_password_field"
@@ -93,23 +96,38 @@
         android:textColor="@color/colorAccent"
         android:textSize="18sp" />
 
-    <Button
+
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/btn_fb_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_google_login"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="35dp" />
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginBottom="35dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textAlignment="viewEnd"
+        android:textSize="14sp" />
 
-    <Button
+
+
+
+
+    <com.shobhitpuri.custombuttons.GoogleSignInButton
         android:id="@+id/btn_google_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="40dp" />
-
-
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/continue_with_google_btn"
+        android:textAlignment="textEnd"
+        android:textSize="15sp"
+        app:isDarkTheme="false" />
 
 
 

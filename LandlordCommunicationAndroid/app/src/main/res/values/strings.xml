@@ -4,6 +4,14 @@
     <string name="username_hint">Username</string>
     <string name="login_button_text">LOGIN</string>
     <string name="register_button_text">SIGN UP</string>
-    <string name="login_social_media_question">Don\'t want to register?\n\t\t\t\t\tContinue with</string>
+    <string name="login_social_media_question">Don\'t want to register?</string>
+    <string name="facebook_app_id">339125773506304</string>
+    <string name="fb_login_protocol_scheme">fb339125773506304</string>
+    <string name="continue_with_google_btn">Continue with Google</string>
+
+    <string-array name="user_types">
+    <item>Tenant</item>
+    <item>Landlord</item>
+</string-array>
 
 </resources>

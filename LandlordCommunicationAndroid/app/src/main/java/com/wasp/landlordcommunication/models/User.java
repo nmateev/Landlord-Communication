@@ -20,6 +20,12 @@ public class User {
         setUserPassword(userPassword);
     }
 
+    public User(String userName, String firstName, String lastName) {
+        setUserName(userName);
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+
     public User(String userName, String userPassword, String firstName, String lastName, String userType, byte[] userPicture) {
         this(userName, userPassword);
         setFirstName(firstName);
@@ -60,6 +66,10 @@ public class User {
         this.userPicture = userPicture;
     }
 
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     private void setUserId(int userId) {
         this.userId = userId;
     }
@@ -80,8 +90,5 @@ public class User {
         this.lastName = lastName;
     }
 
-    private void setUserType(String userType) {
-        this.userType = userType;
-    }
 
 }
