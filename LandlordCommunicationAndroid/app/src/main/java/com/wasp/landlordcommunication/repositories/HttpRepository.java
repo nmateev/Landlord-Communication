@@ -87,4 +87,12 @@ public class HttpRepository<T> implements Repository<T> {
         String itemsJson = mHttpRequester.get(mServerUrl);
         return mJsonParser.fromJsonArray(itemsJson);
     }
+
+    @Override
+    public List<T> getAllByParameter(int id) throws IOException {
+
+        String itemsJson = mHttpRequester.get(mServerUrl + SLASH_STRING_VALUE + id);
+
+        return mJsonParser.fromJsonArray(itemsJson);
+    }
 }

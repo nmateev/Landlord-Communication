@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.home.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_home_user_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:contentDescription="@string/user_picture"
+                android:scaleType="fitXY"
+                android:src="@drawable/loginpicture" />
+
+            <TextView
+                android:id="@+id/tv_user_rating_value"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_below="@+id/iv_home_user_image"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="-65dp"
+                android:background="@drawable/ic_star_rating"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/tv_user_names"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_user_rating_value"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="80dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/small_text" />
+
+            <TextView
+                android:id="@+id/tv_user_places_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_user_names"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/small_text" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fb_change_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:src="@drawable/ic_camera" />
+
+</FrameLayout>

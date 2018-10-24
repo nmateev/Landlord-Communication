@@ -25,5 +25,16 @@ public class Constants {
     public static final String SELECT_USER_TYPE_TITLE = "Choose user type";
     public static final String CONFIRMATION = "OK";
     public static final String DISAGREEMENT = "Cancel";
+    public static final String USER_EXTRA = "user";
     public static final int INITIAL_SELECTION = 0;
+    public static final String MY_PAYMENTS_DRAWER_ITEM_NAME = "My payments";
+    public static final String CHAT_DRAWER_ITEM_NAME = "Chat";
+    public static final String SETTINGS_DRAWER_ITEM_NAME = "Settings";
+    public static final String HOME_DRAWER_ITEM_NAME = "Home";
+    public static final String TENANT = "Tenant";
+    public static final String MY_PLACES_DRAWER_ITEM_NAME = "My places";
+    public static final String MY_PROPERTIES_DRAWER_ITEM_NAME = "My properties";
+    public static final String RATINGS_URL_SUFFIX = "ratings";
+    public static final String RATINGS_CHECK_URL_SUFFIX = "/check";
+    public static final String RATINGS_GET_BY_USERNAME_URL_SUFFIX = "/";
 }

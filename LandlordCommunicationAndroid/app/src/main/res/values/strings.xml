@@ -10,8 +10,10 @@
     <string name="continue_with_google_btn">Continue with Google</string>
 
     <string-array name="user_types">
-    <item>Tenant</item>
-    <item>Landlord</item>
-</string-array>
+        <item>Tenant</item>
+        <item>Landlord</item>
+    </string-array>
+
+    <string name="user_picture">User picture</string>
 
 </resources>

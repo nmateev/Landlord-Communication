@@ -1,5 +1,6 @@
 package com.wasp.landlordcommunication.diconfig;
 
+import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.parsers.GsonJsonParser;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
@@ -12,5 +13,10 @@ public class ParsersModule {
     @Provides
     public JsonParser<User> songsJsonParser() {
         return new GsonJsonParser<>(User.class, User[].class);
+    }
+
+    @Provides
+    public JsonParser<Rating> ratingsJsonParser() {
+        return new GsonJsonParser<>(Rating.class, Rating[].class);
     }
 }

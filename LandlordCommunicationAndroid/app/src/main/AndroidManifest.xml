@@ -26,7 +26,6 @@
         <activity android:name=".views.signup.SignUpActivity" />
         <activity android:name=".views.camera.CameraActivity" />
 
-
         <meta-data
             android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
             android:value="false" />
@@ -34,6 +33,11 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+        <activity android:name=".views.home.HomeActivity" />
+        <activity android:name=".views.payments.PaymentsActivity" />
+        <activity android:name=".views.properties.PropertiesActivity" />
+        <activity android:name=".views.chat.ChatActivity" />
+        <activity android:name=".views.settings.SettingsActivity"></activity>
     </application>
 
 </manifest>

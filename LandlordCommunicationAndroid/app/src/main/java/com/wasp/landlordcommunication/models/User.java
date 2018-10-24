@@ -1,6 +1,8 @@
 package com.wasp.landlordcommunication.models;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private int userId;
     private String userName;

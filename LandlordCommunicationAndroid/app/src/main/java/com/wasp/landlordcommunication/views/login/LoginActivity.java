@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.signup.SignUpActivity;
 
 import javax.inject.Inject;
@@ -12,13 +13,15 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
+import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
+
 
 public class LoginActivity extends DaggerAppCompatActivity implements LoginContracts.Navigator {
 
     @Inject
     LoginFragment mLoginFragment;
     @Inject
-    LoginPresenter mPresenter;
+    LoginContracts.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
 
     @Override
     public void navigateToHomeWithUser(User user) {
-
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(USER_EXTRA, user);
+        startActivity(intent);
+        finish();
     }
 }
