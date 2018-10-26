@@ -4,8 +4,10 @@ import com.wasp.landlordcommunication.diconfig.ActivityScoped;
 import com.wasp.landlordcommunication.diconfig.FragmentScoped;
 import com.wasp.landlordcommunication.views.signup.SignUpContracts;
 import com.wasp.landlordcommunication.views.signup.SignUpFragment;
-import com.wasp.landlordcommunication.views.signup.SignUpSecondFormFragment;
+import com.wasp.landlordcommunication.views.signup.secondform.SignUpSecondFormFragment;
 import com.wasp.landlordcommunication.views.signup.SignUpPresenter;
+import com.wasp.landlordcommunication.views.signup.secondform.SignUpSecondFromContracts;
+import com.wasp.landlordcommunication.views.signup.secondform.SignUpSecondFromPresenter;
 
 import dagger.Binds;
 import dagger.Module;
@@ -25,5 +27,9 @@ public abstract class SignUpModule {
     @ActivityScoped
     @Binds
     abstract SignUpContracts.Presenter signUpPresenter(SignUpPresenter signUpPresenter);
+
+    @ActivityScoped
+    @Binds
+    abstract SignUpSecondFromContracts.Presenter signUpSecondFormPresenter(SignUpSecondFromPresenter signUpSecondFromPresenter);
 
 }

@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.github.florent37.materialtextfield.MaterialTextField;
 import com.wasp.landlordcommunication.R;
-import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -21,9 +20,6 @@ import butterknife.OnClick;
 
 
 public class SignUpFragment extends Fragment implements SignUpContracts.View {
-
-    @BindView(R.id.prb_loading_view)
-    ProgressBar mProgressBarView;
 
     @BindView(R.id.met_username)
     MaterialTextField mUsernameEditText;
@@ -81,22 +77,6 @@ public class SignUpFragment extends Fragment implements SignUpContracts.View {
 
     public void setNavigator(SignUpContracts.Navigator navigator) {
         mNavigator = navigator;
-    }
-
-    @Override
-    public void showProgressBar() {
-        mProgressBarView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideProgressBar() {
-        mProgressBarView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void showError(Throwable error) {
-        String errorMessage = Constants.ERROR_MESSAGE + error.getMessage();
-        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
     }
 
     @Override

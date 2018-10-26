@@ -9,12 +9,6 @@ public interface SignUpContracts {
 
         void setPresenter(Presenter presenter);
 
-        void showProgressBar();
-
-        void hideProgressBar();
-
-        void showError(Throwable error);
-
         void showMessage(String message);
 
         void continueToNextRegistrationForm(String userName, String userPassword);
@@ -30,8 +24,6 @@ public interface SignUpContracts {
     }
 
     interface Navigator {
-
-        void navigateToHomeWithUser(User user);
 
         void navigateToNextRegistrationForm(String userName, String userPassword);
     }

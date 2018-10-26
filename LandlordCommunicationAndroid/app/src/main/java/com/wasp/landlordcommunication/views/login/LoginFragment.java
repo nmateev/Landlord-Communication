@@ -277,6 +277,7 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
             String email = googleSignInResult.getSignInAccount().getEmail();
             String displayName = googleSignInResult.getSignInAccount().getDisplayName();
             String familyName = googleSignInResult.getSignInAccount().getFamilyName();
+
             user = new User(email, displayName, familyName);
         }
         mPresenter.handleGoogleLogin(isGoogleLoginSuccessful, user);
