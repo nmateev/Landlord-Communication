@@ -45,4 +45,8 @@ public class Constants {
     public static final String PREFERENCES_USER_TYPE_KEY = "userType";
 
     public static final String PASSWORDS_MATCH_ERROR_MESSAGE = "Passwords do not match!";
+    public static final String USERNAME_ALREADY_TAKEN_MESSAGE = "Username is already taken!";
+    public static final int MIN_NAME_LENGTH = 2;
+    public static final String NAME_FIELDS_ERROR_MESSAGE = "First and last name must contain at least 2 symbols!";
+    public static final String UNSUCCESSFUL_REGISTRATION = "Registration failed!";
 }

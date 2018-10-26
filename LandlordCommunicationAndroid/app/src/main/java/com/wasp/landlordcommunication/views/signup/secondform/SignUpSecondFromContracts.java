@@ -16,6 +16,8 @@ public interface SignUpSecondFromContracts {
 
         void showMessage(String message);
 
+        void showHomeActivityWithUser(User user);
+
     }
 
     interface Presenter {
@@ -25,6 +27,9 @@ public interface SignUpSecondFromContracts {
         void unsubscribe();
 
         void setRegistrationInformation(String userName, String userPassword);
+
+        void finishRegistration(String userTypeOption, String firstName, String lastName);
+
     }
 
     interface Navigator {

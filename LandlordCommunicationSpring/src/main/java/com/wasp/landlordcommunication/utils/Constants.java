@@ -84,6 +84,8 @@ public class Constants {
 
     public static final int TEXT_MESSAGE_MIN_LENGTH = 1;
     public static final int TEXT_MESSAGE_MAX_LENGTH = 200;
+    public static final int FIRST_LAST_NAME_MIN_LENGTH = 2;
+
     public static final int PAYMENT_AMOUNT_VALIDATION_MIN_VALUE = 1;
 
 

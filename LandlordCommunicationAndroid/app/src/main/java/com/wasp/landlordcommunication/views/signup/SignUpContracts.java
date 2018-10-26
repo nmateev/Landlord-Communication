@@ -12,6 +12,16 @@ public interface SignUpContracts {
         void showMessage(String message);
 
         void continueToNextRegistrationForm(String userName, String userPassword);
+
+        void showProgressBar();
+
+        void hideProgressBar();
+
+        void showError(Throwable error);
+
+        void showUserNameIsTaken();
+
+        void hideUserNameIsTakenMessage();
     }
 
     interface Presenter {
@@ -20,7 +30,10 @@ public interface SignUpContracts {
 
         void unsubscribe();
 
-        void continueRegistration(String userName, String userPassword, String userPasswordRepeat);
+        void continueRegistration(String userName, String userPassword, String userPasswordRepeat,boolean isUserNameTaken);
+
+        void checkIfUsernameIsAvailable(String userName);
+
     }
 
     interface Navigator {

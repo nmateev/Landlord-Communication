@@ -17,8 +17,12 @@
     <string name="user_picture">User picture</string>
     <string name="password_hint_repeat">Repeat password</string>
     <string name="sign_up">Sign up</string>
+    <string name="first_name_hint">First name</string>
+    <string name="last_name_hint">Last name</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="user_type_options">
+        <item>Tenant</item>
+        <item>Landlord</item>
+    </string-array>
 
 </resources>

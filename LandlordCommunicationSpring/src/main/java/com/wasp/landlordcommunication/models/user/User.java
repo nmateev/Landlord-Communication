@@ -25,12 +25,12 @@ public class User {
     private String userPassword;
 
     @NotNull
-    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
+    @Size(min = Constants.FIRST_LAST_NAME_MIN_LENGTH, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_FIRST_NAME_COLUMN)
     private String firstName;
 
     @NotNull
-    @Size(min = Constants.TEXT_VALIDATION_MIN_VALUE, max = Constants.TEXT_VALIDATION_MAX_VALUE)
+    @Size(min = Constants.FIRST_LAST_NAME_MIN_LENGTH, max = Constants.TEXT_VALIDATION_MAX_VALUE)
     @Column(name = Constants.USERS_TABLE_USER_LAST_NAME_COLUMN)
     private String lastName;
 

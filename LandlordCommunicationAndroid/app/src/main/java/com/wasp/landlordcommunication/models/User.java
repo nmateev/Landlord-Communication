@@ -28,12 +28,10 @@ public class User implements Serializable {
         setLastName(lastName);
     }
 
-    public User(String userName, String userPassword, String firstName, String lastName, String userType, byte[] userPicture) {
-        this(userName, userPassword);
-        setFirstName(firstName);
-        setLastName(lastName);
+    public User(String userName, String userPassword, String firstName, String lastName, String userType) {
+        this(userName, firstName,lastName);
+        setUserPassword(userPassword);
         setUserType(userType);
-        setUserPicture(userPicture);
     }
 
     public int getUserId() {

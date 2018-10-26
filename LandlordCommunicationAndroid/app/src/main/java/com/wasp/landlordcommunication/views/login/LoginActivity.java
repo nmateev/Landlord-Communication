@@ -50,6 +50,7 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
 
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
