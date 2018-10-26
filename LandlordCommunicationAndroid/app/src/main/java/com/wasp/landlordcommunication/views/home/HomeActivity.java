@@ -1,6 +1,7 @@
 package com.wasp.landlordcommunication.views.home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.wasp.landlordcommunication.R;
@@ -11,6 +12,10 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_FULL_NAME_KEY;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_ID_KEY;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_NAME_KEY;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_TYPE_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
 
 public class HomeActivity extends BaseDrawerActivity implements HomeActivityContracts.Navigator {
@@ -33,12 +38,10 @@ public class HomeActivity extends BaseDrawerActivity implements HomeActivityCont
 
         Intent incomingIntent = getIntent();
         User user = (User) incomingIntent.getSerializableExtra(USER_EXTRA);
-        mUserType = user.getUserType();
-        mUserName = user.getFirstName() + " " + user.getLastName();
 
+        persistUserSessionData(user);
         mHomeActivityPresenter.setUserName(user.getUserName());
         mHomeActivityPresenter.setUserId(user.getUserId());
-
 
         mHomeFragment.setNavigator(this);
         mHomeFragment.setPresenter(mHomeActivityPresenter);
@@ -54,13 +57,13 @@ public class HomeActivity extends BaseDrawerActivity implements HomeActivityCont
         return DRAWER_IDENTIFIER;
     }
 
-    @Override
-    protected String getUserType() {
-        return mUserType;
-    }
+    private void persistUserSessionData(User user) {
+        SharedPreferences.Editor preferencesEditor = getPreferences(MODE_PRIVATE).edit();
 
-    @Override
-    protected String getUserDrawerName() {
-        return mUserName;
+        preferencesEditor.putInt(PREFERENCES_USER_ID_KEY, user.getUserId());
+        preferencesEditor.putString(PREFERENCES_USER_NAME_KEY, user.getUserName());
+        preferencesEditor.putString(PREFERENCES_USER_FULL_NAME_KEY, user.getFirstName() + " " + user.getLastName());
+        preferencesEditor.putString(PREFERENCES_USER_TYPE_KEY, user.getUserType());
+        preferencesEditor.apply();
     }
 }

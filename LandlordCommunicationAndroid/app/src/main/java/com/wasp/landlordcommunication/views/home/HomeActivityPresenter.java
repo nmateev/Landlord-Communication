@@ -1,12 +1,9 @@
 package com.wasp.landlordcommunication.views.home;
 
 import com.wasp.landlordcommunication.async.base.SchedulerProvider;
-import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.services.base.RatingsService;
 import com.wasp.landlordcommunication.services.base.UsersService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -56,8 +53,8 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
         mUserId = userId;
     }
 
-
-    private void loadUserPictureAndName() {
+    @Override
+    public void loadUserPictureAndName() {
         mView.showProgressBar();
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<User>) emitter -> {
@@ -78,39 +75,19 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
                         error -> mView.showError(error));
     }
 
-    private void loadUserRating() {
+    @Override
+    public void loadUserRating() {
         mView.showProgressBar();
         Disposable observable = Observable
-                .create((ObservableOnSubscribe<List<Rating>>) emitter -> {
-                    List<Rating> userRatings = mRatingsService.getUserRatingById(mUserId);
-                    emitter.onNext(userRatings);
+                .create((ObservableOnSubscribe<Double>) emitter -> {
+                    double userRating = mRatingsService.getUserRatingById(mUserId);
+                    emitter.onNext(userRating);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBar)
-                .subscribe(userRatingsResult -> {
-
-                            double rating = calculateRating(userRatingsResult);
-                            mView.showUserRating(rating);
-
-                        },
+                .subscribe(userRatingResult -> mView.showUserRating(userRatingResult),
                         error -> mView.showError(error));
-    }
-
-
-    private double calculateRating(List<Rating> userRatings) {
-
-        //TODO Replace with streams when sdk is set to 24
-        double rating = 0;
-        int size = userRatings.size();
-        if (size == 0) {
-            return rating;
-        } else {
-            for (int i = 0; i < userRatings.size(); i++) {
-                rating += userRatings.get(i).getRating();
-            }
-        }
-        return rating / size;
     }
 }

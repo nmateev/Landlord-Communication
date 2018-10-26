@@ -17,7 +17,18 @@ public class HttpRatingsService implements RatingsService {
     }
 
     @Override
-    public List<Rating> getUserRatingById(int id) throws IOException {
-        return mRatingsRepository.getAllByParameter(id);
+    public double getUserRatingById(int id) throws IOException {
+        List<Rating> userRatings = mRatingsRepository.getAllByParameter(id);
+
+        double rating = 0;
+        int size = userRatings.size();
+        if (size == 0) {
+            return rating;
+        } else {
+            for (int i = 0; i < userRatings.size(); i++) {
+                rating += userRatings.get(i).getRating();
+            }
+        }
+        return rating / size;
     }
 }

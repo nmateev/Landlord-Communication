@@ -113,7 +113,6 @@ public class LoginPresenter implements LoginContracts.Presenter {
         if (!isLoggedIn) {
             mView.showMessage(Constants.UNSUCCESSFUL_LOGIN);
         } else {
-
             checkAndHandleSocialLogin(user);
         }
     }

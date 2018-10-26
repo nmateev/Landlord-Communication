@@ -25,13 +25,4 @@ public class PropertiesActivity extends BaseDrawerActivity {
         return DRAWER_IDENTIFIER;
     }
 
-    @Override
-    protected String getUserType() {
-        return mUserType;
-    }
-
-    @Override
-    protected String getUserDrawerName() {
-        return null;
-    }
 }

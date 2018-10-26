@@ -37,4 +37,12 @@ public class Constants {
     public static final String RATINGS_URL_SUFFIX = "ratings";
     public static final String RATINGS_CHECK_URL_SUFFIX = "/check";
     public static final String RATINGS_GET_BY_USERNAME_URL_SUFFIX = "/";
+
+
+    public static final String PREFERENCES_USER_ID_KEY = "userId";
+    public static final String PREFERENCES_USER_NAME_KEY = "userName";
+    public static final String PREFERENCES_USER_FULL_NAME_KEY = "fullName";
+    public static final String PREFERENCES_USER_TYPE_KEY = "userType";
+
+    public static final String PASSWORDS_MATCH_ERROR_MESSAGE = "Passwords do not match!";
 }

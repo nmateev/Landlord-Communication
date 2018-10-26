@@ -31,6 +31,23 @@
         <item name="android:alpha">0.6</item>
     </style>
 
+    <style name="MaterialEditTextStyle">
+        <item name="android:textColor">#641D79</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">#641D79</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
+        <item name="mtf_cardCollapsedHeight">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="mtf_labelColor">#641D79</item>
+        <item name="mtf_openKeyboardOnFocus">true</item>
+    </style>
+
+
+
+
     <style name="ButtonStyle">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">#641D79</item>

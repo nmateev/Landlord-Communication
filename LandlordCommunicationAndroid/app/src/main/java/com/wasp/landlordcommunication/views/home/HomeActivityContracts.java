@@ -27,6 +27,10 @@ public interface HomeActivityContracts {
 
         void loadUserInformation();
 
+        void loadUserPictureAndName();
+
+        void loadUserRating();
+
         void setUserName(String userName);
 
         void setUserId(int userId);

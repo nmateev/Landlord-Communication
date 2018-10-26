@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
+import com.wasp.landlordcommunication.utils.Constants;
 
 import java.util.Locale;
 
@@ -34,6 +37,9 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
 
     @BindView(R.id.tv_user_places_count)
     TextView mUserPlacesCountTextView;
+
+    @BindView(R.id.prb_loading_view)
+    ProgressBar mProgressBarView;
 
 
     private HomeActivityContracts.Navigator mNavigator;
@@ -77,22 +83,25 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
 
     @Override
     public void showProgressBar() {
-
+        mProgressBarView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        mProgressBarView.setVisibility(View.GONE);
     }
 
     @Override
     public void showError(Throwable error) {
-
+        String errorMessage = Constants.ERROR_MESSAGE + error.getMessage();
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showMessage(String message) {
 
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT)
+                .show();
     }
 
     @Override

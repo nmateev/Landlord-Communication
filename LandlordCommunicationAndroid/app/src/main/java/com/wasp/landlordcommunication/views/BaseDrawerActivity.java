@@ -2,6 +2,7 @@ package com.wasp.landlordcommunication.views;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.Toolbar;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -26,7 +27,10 @@ import dagger.android.support.DaggerAppCompatActivity;
 import static com.wasp.landlordcommunication.utils.Constants.CHAT_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.HOME_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.MY_PAYMENTS_DRAWER_ITEM_NAME;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_FULL_NAME_KEY;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_TYPE_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.SETTINGS_DRAWER_ITEM_NAME;
+import static com.wasp.landlordcommunication.utils.Constants.TENANT;
 
 public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
@@ -112,10 +116,6 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
     protected abstract long getIdentifier();
 
-    protected abstract String getUserType();
-
-    protected abstract String getUserDrawerName();
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -144,6 +144,9 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         } else if (identifier == HomeActivity.DRAWER_IDENTIFIER) {
             nextIntent = new Intent(this, HomeActivity.class);
             return nextIntent;
+        } else if (identifier == SettingsActivity.DRAWER_IDENTIFIER) {
+            nextIntent = new Intent(this, SettingsActivity.class);
+            return nextIntent;
         } else {
             return null;
         }
@@ -157,5 +160,15 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         } else {
             return Constants.MY_PROPERTIES_DRAWER_ITEM_NAME;
         }
+    }
+
+    private String getUserType() {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        return preferences.getString(PREFERENCES_USER_TYPE_KEY, TENANT);
+    }
+
+    private String getUserDrawerName() {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        return preferences.getString(PREFERENCES_USER_FULL_NAME_KEY, "");
     }
 }

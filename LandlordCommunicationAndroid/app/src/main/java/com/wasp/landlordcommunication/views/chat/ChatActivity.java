@@ -10,7 +10,6 @@ import butterknife.ButterKnife;
 public class ChatActivity extends BaseDrawerActivity {
 
     public static final long DRAWER_IDENTIFIER = 652;
-    private String mUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +24,4 @@ public class ChatActivity extends BaseDrawerActivity {
         return DRAWER_IDENTIFIER;
     }
 
-    @Override
-    protected String getUserType() {
-        return mUserType;
-    }
-
-    @Override
-    protected String getUserDrawerName() {
-        return null;
-    }
 }

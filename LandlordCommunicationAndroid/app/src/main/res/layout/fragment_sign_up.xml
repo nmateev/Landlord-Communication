@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.signup.SignUpFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/prb_loading_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:fontFamily="cursive"
+            android:text="@string/sign_up"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="35sp" />
+
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:id="@+id/met_username"
+            style="@style/MaterialEditTextStyle"
+            app:mtf_hasFocus="true"
+            app:mtf_image="@drawable/ic_person"
+            android:layout_below="@+id/tv_sign_up">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/username_hint"
+                android:inputType="text"
+                android:textColor="@color/colorAccent" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:id="@+id/met_password_field"
+            style="@style/MaterialEditTextStyle"
+            android:layout_below="@+id/met_username"
+            app:mtf_image="@drawable/ic_lock_open">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/colorAccent" />
+
+        </com.github.florent37.materialtextfield.MaterialTextField>
+
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:id="@+id/met_password_field_repeat"
+            style="@style/MaterialEditTextStyle"
+            android:layout_below="@+id/met_password_field"
+            app:mtf_image="@drawable/ic_lock">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint_repeat"
+                android:inputType="textPassword"
+                android:textColor="@color/colorAccent" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_continue_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:src="@drawable/ic_arrow_forward" />
+
+    </RelativeLayout>
+
 
 </FrameLayout>
