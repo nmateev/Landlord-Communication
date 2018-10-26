@@ -45,4 +45,5 @@ public class Constants {
     public static final String PREFERENCES_USER_TYPE_KEY = "userType";
 
     public static final String PASSWORDS_MATCH_ERROR_MESSAGE = "Passwords do not match!";
+    public static final String NO_PAYMENTS_AVAILABLE_MESSAGE = "The payments list is empty";
 }
