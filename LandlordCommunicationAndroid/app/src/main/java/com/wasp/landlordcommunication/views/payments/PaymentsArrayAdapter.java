@@ -28,5 +28,5 @@ public class PaymentsArrayAdapter extends ArrayAdapter<Payment> {
     public PaymentsArrayAdapter(@NonNull Context context) {
         super(context, -1);
     }
-    
+
 }
