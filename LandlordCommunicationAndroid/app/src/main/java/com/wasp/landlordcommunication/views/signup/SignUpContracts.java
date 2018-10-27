@@ -1,7 +1,5 @@
 package com.wasp.landlordcommunication.views.signup;
 
-import com.wasp.landlordcommunication.models.User;
-
 public interface SignUpContracts {
 
 

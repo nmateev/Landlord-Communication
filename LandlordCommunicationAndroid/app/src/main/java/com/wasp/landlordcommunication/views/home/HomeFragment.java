@@ -1,30 +1,41 @@
 package com.wasp.landlordcommunication.views.home;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.utils.Constants;
 
+import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class HomeFragment extends Fragment implements HomeActivityContracts.View {
+
 
     @BindView(R.id.tv_user_rating_value)
     TextView mUserRatingTextView;
@@ -41,8 +52,19 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
     @BindView(R.id.prb_loading_view)
     ProgressBar mProgressBarView;
 
+    @BindView(R.id.fab_change_picture)
+    FloatingActionButton mChangePictureFloatingActionButton;
 
-    private HomeActivityContracts.Navigator mNavigator;
+    @BindView(R.id.fab_take_picture)
+    FloatingActionButton mTakePictureFloatingActionButton;
+
+    @BindView(R.id.fam_image_options_menu)
+    FloatingActionsMenu mImageChangeFloatingMenu;
+
+
+    private static final int GALLERY_IMAGE_CHOOSER_REQUEST_CODE = 5;
+    private static final int TAKE_PICTURE_REQUEST_CODE = 10;
+
     private HomeActivityContracts.Presenter mPresenter;
 
     @Inject
@@ -59,7 +81,6 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
-
         return view;
     }
 
@@ -71,8 +92,8 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
         mPresenter.unsubscribe();
     }
 
@@ -115,7 +136,72 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
         mUserRatingTextView.setText(textRating);
     }
 
-    public void setNavigator(HomeActivityContracts.Navigator navigator) {
-        mNavigator = navigator;
+    @OnClick(R.id.fab_change_picture)
+    public void onSelectPictureFromGalleryButtonClick() {
+        mImageChangeFloatingMenu.collapse();
+        mPresenter.selectPictureFromGalleryButtonClickIsClicked();
+    }
+
+    @OnClick(R.id.fab_take_picture)
+    public void onTakePictureButtonClick() {
+        mImageChangeFloatingMenu.collapse();
+        mPresenter.takePictureButtonIsClicked();
+    }
+
+    @Override
+    public void presentOptionToTakePicture() {
+        Intent intentToTakePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intentToTakePicture, TAKE_PICTURE_REQUEST_CODE);
+    }
+
+    @Override
+    public void showOptionToChooseImage() {
+        Intent intentToChooseImage = new Intent(Intent.ACTION_GET_CONTENT);
+        intentToChooseImage.setType(Constants.IMAGE_FILE_TYPE);
+        startActivityForResult(intentToChooseImage, GALLERY_IMAGE_CHOOSER_REQUEST_CODE);
+
+    }
+
+    @Override
+    public void showUserImage(Bitmap userImage) {
+        mUserPictureImageView.setImageBitmap(userImage);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if (!Objects.equals(data.getData(), null)) {
+                Uri uri = data.getData();
+                Bitmap image;
+                try {
+                    image = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(), uri);
+                    mPresenter.newImageIsChosen(image);
+                } catch (IOException e) {
+                    mPresenter.errorOccurredOnChangingPicture();
+                }
+            } else {
+                mPresenter.errorOccurredOnChangingPicture();
+            }
+        } else {
+            mPresenter.errorOccurredOnChangingPicture();
+        }
+
+
+        if (requestCode == TAKE_PICTURE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if ((!Objects.equals(data, null)) && (!Objects.equals(data.getExtras(), null))) {
+                Bitmap image;
+                try {
+                    image = (Bitmap) Objects.requireNonNull(data.getExtras()).get(Constants.DATA_EXTRA);
+                    mPresenter.newImageIsChosen(image);
+                } catch (NullPointerException npe) {
+                    mPresenter.errorOccurredOnChangingPicture();
+                }
+            } else {
+                mPresenter.errorOccurredOnChangingPicture();
+            }
+        } else {
+            mPresenter.errorOccurredOnChangingPicture();
+        }
     }
 }

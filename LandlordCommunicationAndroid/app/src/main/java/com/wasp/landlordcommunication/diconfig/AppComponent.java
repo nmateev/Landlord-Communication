@@ -25,6 +25,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ParsersModule.class,
         ServicesModule.class,
         RepositoriesModule.class,
+        UtilitiesModule.class,
         LoginModule.class,
         SignUpModule.class,
         CameraModule.class,

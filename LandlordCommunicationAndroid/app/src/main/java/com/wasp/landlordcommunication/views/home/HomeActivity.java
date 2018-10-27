@@ -18,7 +18,7 @@ import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_NA
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_TYPE_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
 
-public class HomeActivity extends BaseDrawerActivity implements HomeActivityContracts.Navigator {
+public class HomeActivity extends BaseDrawerActivity {
 
     public static final long DRAWER_IDENTIFIER = 739;
 
@@ -26,8 +26,7 @@ public class HomeActivity extends BaseDrawerActivity implements HomeActivityCont
     HomeFragment mHomeFragment;
     @Inject
     HomeActivityContracts.Presenter mHomeActivityPresenter;
-
-    private String mUserType;
+    private int mUserId;
     private String mUserName;
 
     @Override
@@ -37,13 +36,16 @@ public class HomeActivity extends BaseDrawerActivity implements HomeActivityCont
         ButterKnife.bind(this);
 
         Intent incomingIntent = getIntent();
-        User user = (User) incomingIntent.getSerializableExtra(USER_EXTRA);
 
-        persistUserSessionData(user);
-        mHomeActivityPresenter.setUserName(user.getUserName());
-        mHomeActivityPresenter.setUserId(user.getUserId());
+        if (incomingIntent.hasExtra(USER_EXTRA)) {
+            User user = (User) incomingIntent.getSerializableExtra(USER_EXTRA);
+            persistUserSessionData(user);
 
-        mHomeFragment.setNavigator(this);
+        }
+        assignUserDataFromPreferences();
+        mHomeActivityPresenter.setUserId(mUserId);
+        mHomeActivityPresenter.setUserName(mUserName);
+
         mHomeFragment.setPresenter(mHomeActivityPresenter);
 
         getSupportFragmentManager()
@@ -65,5 +67,12 @@ public class HomeActivity extends BaseDrawerActivity implements HomeActivityCont
         preferencesEditor.putString(PREFERENCES_USER_FULL_NAME_KEY, user.getFirstName() + " " + user.getLastName());
         preferencesEditor.putString(PREFERENCES_USER_TYPE_KEY, user.getUserType());
         preferencesEditor.apply();
+    }
+
+    private void assignUserDataFromPreferences() {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+        mUserId = preferences.getInt(PREFERENCES_USER_ID_KEY, 0);
+        mUserName = preferences.getString(PREFERENCES_USER_NAME_KEY, "");
     }
 }

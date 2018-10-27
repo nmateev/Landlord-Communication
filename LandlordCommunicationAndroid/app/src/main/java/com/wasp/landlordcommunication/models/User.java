@@ -10,7 +10,7 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String userType;
-    private byte[] userPicture;
+    private String userPicture;
 
 
     public User() {
@@ -58,11 +58,11 @@ public class User implements Serializable {
         return userType;
     }
 
-    public byte[] getUserPicture() {
+    public String getUserPicture() {
         return userPicture;
     }
 
-    public void setUserPicture(byte[] userPicture) {
+    public void setUserPicture(String userPicture) {
         this.userPicture = userPicture;
     }
 

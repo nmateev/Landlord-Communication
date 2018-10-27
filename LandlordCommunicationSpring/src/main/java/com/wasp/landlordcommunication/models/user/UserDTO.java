@@ -6,13 +6,13 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String userType;
-    private byte[] userPicture;
+    private String userPicture;
 
     public UserDTO() {
 
     }
 
-    public UserDTO(int userId, String firstName, String lastName, String userType, byte[] userPicture) {
+    public UserDTO(int userId, String firstName, String lastName, String userType, String userPicture) {
         setUserId(userId);
         setFirstName(firstName);
         setLastName(lastName);
@@ -36,7 +36,7 @@ public class UserDTO {
         return userType;
     }
 
-    public byte[] getUserPicture() {
+    public String getUserPicture() {
         return userPicture;
     }
 
@@ -56,7 +56,7 @@ public class UserDTO {
         this.userType = userType;
     }
 
-    private void setUserPicture(byte[] userPicture) {
+    private void setUserPicture(String userPicture) {
         this.userPicture = userPicture;
     }
 

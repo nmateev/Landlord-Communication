@@ -11,4 +11,6 @@ public interface UsersService {
     User loginUser(User user) throws IOException;
 
     User createUser(User userToCreate) throws IOException;
+
+    User updateUser(User user, int userId) throws IOException;
 }

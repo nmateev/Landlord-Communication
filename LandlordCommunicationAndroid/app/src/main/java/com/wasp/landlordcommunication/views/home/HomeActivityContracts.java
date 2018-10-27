@@ -1,5 +1,9 @@
 package com.wasp.landlordcommunication.views.home;
 
+import android.graphics.Bitmap;
+
+import com.wasp.landlordcommunication.models.User;
+
 public interface HomeActivityContracts {
 
     interface View {
@@ -17,6 +21,12 @@ public interface HomeActivityContracts {
         void showUserName(String name);
 
         void showUserRating(double rating);
+
+        void showOptionToChooseImage();
+
+        void presentOptionToTakePicture();
+
+        void showUserImage(Bitmap userImage);
     }
 
     interface Presenter {
@@ -34,10 +44,17 @@ public interface HomeActivityContracts {
         void setUserName(String userName);
 
         void setUserId(int userId);
-    }
 
-    interface Navigator {
+        void selectPictureFromGalleryButtonClickIsClicked();
 
+        void takePictureButtonIsClicked();
 
+        void newImageIsChosen(Bitmap image);
+
+        void updateUserPicture(User user, String imageString);
+
+        void errorOccurredOnChangingPicture();
+
+       void decodeImageAndPresentToView(String userPicture, String errorMessage);
     }
 }

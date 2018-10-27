@@ -1,11 +1,13 @@
 package com.wasp.landlordcommunication.views.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.signup.SignUpActivity;
 
@@ -56,6 +58,8 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
     @Override
     public void navigateToHomeWithUser(User user) {
         Intent intent = new Intent(this, HomeActivity.class);
+        user.setUserPicture(null);
+
         intent.putExtra(USER_EXTRA, user);
         startActivity(intent);
         finish();

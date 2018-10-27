@@ -40,14 +40,14 @@ public class User {
     private String userType;
 
     @Column(name = Constants.USERS_TABLE_USER_PICTURE_COLUMN)
-    private byte[] userPicture;
+    private String userPicture;
 
 
     public User() {
 
     }
 
-    public User(String userName, String userPassword, String firstName, String lastName, String userType, byte[] userPicture) {
+    public User(String userName, String userPassword, String firstName, String lastName, String userType,String userPicture) {
         setUserName(userName);
         setUserPassword(userPassword);
         setFirstName(firstName);
@@ -80,11 +80,11 @@ public class User {
         return userType;
     }
 
-    public byte[] getUserPicture() {
+    public String getUserPicture() {
         return userPicture;
     }
 
-    public void setUserPicture(byte[] userPicture) {
+    public void setUserPicture(String userPicture) {
         this.userPicture = userPicture;
     }
 

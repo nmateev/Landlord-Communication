@@ -5,8 +5,6 @@ import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.services.base.UsersService;
 import com.wasp.landlordcommunication.utils.Constants;
 
-import java.util.Objects;
-
 import javax.inject.Inject;
 
 import io.reactivex.Observable;

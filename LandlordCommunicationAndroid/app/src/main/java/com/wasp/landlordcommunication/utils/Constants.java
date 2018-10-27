@@ -50,4 +50,9 @@ public class Constants {
     public static final String NAME_FIELDS_ERROR_MESSAGE = "First and last name must contain at least 2 symbols!";
     public static final String UNSUCCESSFUL_REGISTRATION = "Registration failed!";
     public static final String NO_PAYMENTS_AVAILABLE_MESSAGE = "The payments list is empty";
+    public static final String IMAGE_FILE_TYPE = "image/*";
+    public static final String DATA_EXTRA = "data";
+    public static final String IMAGE_CHANGE_ERROR_MESSAGE = "Profile image update failed!";
+    public static final int IMAGE_QUALITY = 5;
+    public static final String ERROR_LOADING_USER_IMAGE = "Unsuccessful profile image loading!";
 }
