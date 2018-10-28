@@ -18,6 +18,7 @@ import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.chat.ChatActivity;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
+import com.wasp.landlordcommunication.views.landlordslist.LandlordsListActivity;
 import com.wasp.landlordcommunication.views.payments.PaymentsActivity;
 import com.wasp.landlordcommunication.views.properties.PropertiesActivity;
 import com.wasp.landlordcommunication.views.settings.SettingsActivity;
@@ -27,6 +28,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 import static com.wasp.landlordcommunication.utils.Constants.CHAT_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.HOME_DRAWER_ITEM_NAME;
+import static com.wasp.landlordcommunication.utils.Constants.LANDLORDS_LIST_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.MY_PAYMENTS_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_FULL_NAME_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_TYPE_KEY;
@@ -70,6 +72,9 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         SecondaryDrawerItem myPayments = new SecondaryDrawerItem()
                 .withIdentifier(PaymentsActivity.DRAWER_IDENTIFIER)
                 .withName(MY_PAYMENTS_DRAWER_ITEM_NAME);
+        SecondaryDrawerItem landlordsList = new SecondaryDrawerItem()
+                .withIdentifier(LandlordsListActivity.DRAWER_IDENTIFIER)
+                .withName(LANDLORDS_LIST_DRAWER_ITEM_NAME);
         SecondaryDrawerItem chat = new SecondaryDrawerItem()
                 .withIdentifier(ChatActivity.DRAWER_IDENTIFIER)
                 .withName(CHAT_DRAWER_ITEM_NAME);
@@ -89,6 +94,8 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                         myProperties.withIcon(R.drawable.propertiesicon),
                         new DividerDrawerItem(),
                         myPayments.withIcon(R.drawable.paymentsicon),
+                        new DividerDrawerItem(),
+                        landlordsList.withIcon(R.drawable.ic_landlords_list),
                         new DividerDrawerItem(),
                         chat.withIcon(R.drawable.chaticon),
                         new DividerDrawerItem(),
@@ -131,23 +138,19 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
     private Intent getNextIntent(long identifier) {
 
-        Intent nextIntent;
 
-        if (identifier == PropertiesActivity.DRAWER_IDENTIFIER) {
-            nextIntent = new Intent(this, PropertiesActivity.class);
-            return nextIntent;
+        if (identifier == HomeActivity.DRAWER_IDENTIFIER) {
+            return new Intent(this, HomeActivity.class);
+        } else if (identifier == PropertiesActivity.DRAWER_IDENTIFIER) {
+            return new Intent(this, PropertiesActivity.class);
         } else if (identifier == PaymentsActivity.DRAWER_IDENTIFIER) {
-            nextIntent = new Intent(this, PaymentsActivity.class);
-            return nextIntent;
+            return new Intent(this, PaymentsActivity.class);
+        } else if (identifier == LandlordsListActivity.DRAWER_IDENTIFIER) {
+            return new Intent(this, LandlordsListActivity.class);
         } else if (identifier == ChatActivity.DRAWER_IDENTIFIER) {
-            nextIntent = new Intent(this, ChatActivity.class);
-            return nextIntent;
-        } else if (identifier == HomeActivity.DRAWER_IDENTIFIER) {
-            nextIntent = new Intent(this, HomeActivity.class);
-            return nextIntent;
+            return new Intent(this, ChatActivity.class);
         } else if (identifier == SettingsActivity.DRAWER_IDENTIFIER) {
-            nextIntent = new Intent(this, SettingsActivity.class);
-            return nextIntent;
+            return new Intent(this, SettingsActivity.class);
         } else {
             return null;
         }

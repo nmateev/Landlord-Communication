@@ -28,6 +28,7 @@ public class Constants {
     public static final String USER_EXTRA = "user";
     public static final int INITIAL_SELECTION = 0;
     public static final String MY_PAYMENTS_DRAWER_ITEM_NAME = "My payments";
+    public static final String  LANDLORDS_LIST_DRAWER_ITEM_NAME = "All landlords";
     public static final String CHAT_DRAWER_ITEM_NAME = "Chat";
     public static final String SETTINGS_DRAWER_ITEM_NAME = "Settings";
     public static final String HOME_DRAWER_ITEM_NAME = "Home";
