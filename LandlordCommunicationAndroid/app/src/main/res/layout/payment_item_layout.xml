@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -15,7 +15,7 @@
             android:drawableStart="@drawable/ic_location"
             android:drawablePadding="4dp"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/tv_payment_date_paid"
@@ -24,7 +24,7 @@
             android:drawableStart="@drawable/ic_date"
             android:drawablePadding="4dp"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/tv_payment_amount"
@@ -33,7 +33,7 @@
             android:drawableEnd="@drawable/ic_money"
             android:drawablePadding="4dp"
             android:textAlignment="viewEnd"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/tv_payment_card_number"
@@ -42,12 +42,13 @@
             android:drawableEnd="@drawable/ic_credit_card"
             android:drawablePadding="4dp"
             android:textAlignment="viewEnd"
-            android:textColor="@color/colorAccent" />
+            android:layout_marginBottom="2dp"
+            android:textColor="@color/colorPrimaryDark" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="-3dp"
             android:background="@color/colorAccent" />
     </LinearLayout>
 

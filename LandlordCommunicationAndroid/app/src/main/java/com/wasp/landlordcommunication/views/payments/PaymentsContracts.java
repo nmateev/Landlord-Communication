@@ -20,6 +20,8 @@ public interface PaymentsContracts {
         void showMessage(String message);
 
         void showNoPaymentsMessage(String message);
+
+        void setIndividualisedPaymentsTitleText(String titleText);
     }
 
     interface Presenter {
@@ -34,5 +36,7 @@ public interface PaymentsContracts {
         void setUserType(String userType);
 
         void setUserId(int userId);
+
+        void showIndividualisedText();
     }
 }

@@ -13,6 +13,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
+import static com.wasp.landlordcommunication.utils.Constants.TENANT;
+
 public class PaymentsPresenter implements PaymentsContracts.Presenter {
 
     private final PaymentsService mPaymentsService;
@@ -72,5 +74,16 @@ public class PaymentsPresenter implements PaymentsContracts.Presenter {
     @Override
     public void setUserId(int userId) {
         mUserId = userId;
+    }
+
+    @Override
+    public void showIndividualisedText() {
+        String titleText;
+        if (mUserType.equals(TENANT)) {
+            titleText = Constants.PAYMENTS_SENT_TITLE;
+        } else {
+            titleText = Constants.PAYMENTS_RECEIVED_TITLE;
+        }
+        mView.setIndividualisedPaymentsTitleText(titleText);
     }
 }

@@ -65,11 +65,6 @@ public class SignUpFragment extends Fragment implements SignUpContracts.View {
         return view;
     }
 
-   /* @Override
-    public void onStop() {
-        super.onStop();
-        mPresenter.unsubscribe();
-    }*/
 
     @Override
     public void onResume() {

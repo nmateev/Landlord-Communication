@@ -3,7 +3,6 @@ package com.wasp.landlordcommunication.views.payments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,6 +36,9 @@ public class PaymentsFragment extends Fragment implements PaymentsContracts.View
     @BindView(R.id.tv_no_payments_message)
     TextView mNoPaymentsAvailableTextView;
 
+    @BindView(R.id.tv_payments_individualised_title)
+    TextView mIndividualisedTitleTextView;
+
     @Inject
     PaymentsAdapter mPaymentsAdapter;
 
@@ -69,6 +71,7 @@ public class PaymentsFragment extends Fragment implements PaymentsContracts.View
     public void onResume() {
         super.onResume();
         mPresenter.subscribe(this);
+        mPresenter.showIndividualisedText();
         mPresenter.showPaymentsList();
     }
 
@@ -122,5 +125,10 @@ public class PaymentsFragment extends Fragment implements PaymentsContracts.View
     public void showNoPaymentsMessage(String message) {
         mNoPaymentsAvailableTextView.setVisibility(View.VISIBLE);
         mNoPaymentsAvailableTextView.setText(message);
+    }
+
+    @Override
+    public void setIndividualisedPaymentsTitleText(String titleText) {
+        mIndividualisedTitleTextView.setText(titleText);
     }
 }

@@ -58,4 +58,6 @@ public class Constants {
     public static final String PAYMENTS_URL_SUFFIX = "payments";
     public static final String PAYMENTS_GET_BY_ID_URL_SUFFIX = "/";
     public static final String EMPTY_STRING = "";
+    public static final String PAYMENTS_SENT_TITLE = "Sent payments";
+    public static final String PAYMENTS_RECEIVED_TITLE = "Received payments";
 }
