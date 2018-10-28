@@ -1,54 +1,18 @@
 package com.wasp.landlordcommunication.models;
 
-
-import com.wasp.landlordcommunication.utils.Constants;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity
-@Table(name = Constants.PROPERTIES_TABLE_NAME)
 public class Property {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = Constants.PROPERTIES_ID_COLUMN_NAME)
     private int propertyId;
-
-    @Column(name = Constants.PROPERTIES_TENANT_COLUMN_NAME)
     private int tenantId;
-
-    @NotNull
-    @Column(name = Constants.PROPERTIES_LANDLORD_COLUMN_NAME)
     private int landlordId;
-
-    @NotNull
-    @Column(name = Constants.PROPERTIES_RENT_PRICE_COLUMN_NAME)
     private double rentPrice;
-
-    @NotNull
-    @Column(name = Constants.PROPERTIES_DUE_DATE_COLUMN_NAME)
     private Date dueDate;
-
-    @NotNull
-    @Column(name = Constants.PROPERTIES_IS_RENT_PAID_COLUMN_NAME)
     private boolean isRentPaid;
-
-    @NotNull
-    @Size(min = Constants.STRING_VALIDATION_MIN_TEXT, max = Constants.STRING_VALIDATION_MAX_TEXT)
-    @Column(name = Constants.PROPERTIES_ADDRESS_COLUMN_NAME)
     private String propertyAddress;
-
-    @Column(name = Constants.PROPERTIES_PICTURE_COLUMN_NAME)
     private String propertyPicture;
-
-    @NotNull
-    @Size(min = Constants.STRING_VALIDATION_MIN_TEXT, max = Constants.STRING_VALIDATION_MAX_TEXT)
-    @Column(name = Constants.PROPERTIES_DESCRIPTION_COLUMN_NAME)
     private String description;
-
 
     public Property() {
 
@@ -136,5 +100,4 @@ public class Property {
     private void setPropertyAddress(String propertyAddress) {
         this.propertyAddress = propertyAddress;
     }
-
 }

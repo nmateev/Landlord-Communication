@@ -3,6 +3,7 @@ package com.wasp.landlordcommunication.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -163,12 +164,12 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
     }
 
     private String getUserType() {
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         return preferences.getString(PREFERENCES_USER_TYPE_KEY, TENANT);
     }
 
     private String getUserDrawerName() {
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         return preferences.getString(PREFERENCES_USER_FULL_NAME_KEY, "");
     }
 }

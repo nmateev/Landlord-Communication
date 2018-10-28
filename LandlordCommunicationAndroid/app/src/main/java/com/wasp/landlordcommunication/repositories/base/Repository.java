@@ -19,5 +19,5 @@ public interface Repository<T> {
 
     List<T> getAll() throws IOException;
 
-    List<T> getAllByParameter(int id) throws IOException;
+    List<T> getAllByParameter(String parameter) throws IOException;
 }

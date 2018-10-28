@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_payment_for_property_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="4dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_payment_date_paid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_date"
+            android:drawablePadding="4dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_payment_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_money"
+            android:drawablePadding="4dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_payment_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_credit_card"
+            android:drawablePadding="4dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorAccent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/colorAccent" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

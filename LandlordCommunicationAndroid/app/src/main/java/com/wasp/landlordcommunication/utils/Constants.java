@@ -49,10 +49,13 @@ public class Constants {
     public static final int MIN_NAME_LENGTH = 2;
     public static final String NAME_FIELDS_ERROR_MESSAGE = "First and last name must contain at least 2 symbols!";
     public static final String UNSUCCESSFUL_REGISTRATION = "Registration failed!";
-    public static final String NO_PAYMENTS_AVAILABLE_MESSAGE = "The payments list is empty";
+    public static final String NO_PAYMENTS_AVAILABLE_MESSAGE = "Currently you don't have any payments";
     public static final String IMAGE_FILE_TYPE = "image/*";
     public static final String DATA_EXTRA = "data";
     public static final String IMAGE_CHANGE_ERROR_MESSAGE = "Profile image update failed!";
     public static final int IMAGE_QUALITY = 5;
     public static final String ERROR_LOADING_USER_IMAGE = "Unsuccessful profile image loading!";
+    public static final String PAYMENTS_URL_SUFFIX = "payments";
+    public static final String PAYMENTS_GET_BY_ID_URL_SUFFIX = "/";
+    public static final String EMPTY_STRING = "";
 }

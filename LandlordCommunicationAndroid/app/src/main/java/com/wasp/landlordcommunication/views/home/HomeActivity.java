@@ -3,6 +3,8 @@ package com.wasp.landlordcommunication.views.home;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
@@ -60,17 +62,18 @@ public class HomeActivity extends BaseDrawerActivity {
     }
 
     private void persistUserSessionData(User user) {
-        SharedPreferences.Editor preferencesEditor = getPreferences(MODE_PRIVATE).edit();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        preferencesEditor.putInt(PREFERENCES_USER_ID_KEY, user.getUserId());
-        preferencesEditor.putString(PREFERENCES_USER_NAME_KEY, user.getUserName());
-        preferencesEditor.putString(PREFERENCES_USER_FULL_NAME_KEY, user.getFirstName() + " " + user.getLastName());
-        preferencesEditor.putString(PREFERENCES_USER_TYPE_KEY, user.getUserType());
-        preferencesEditor.apply();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(PREFERENCES_USER_ID_KEY, user.getUserId());
+        editor.putString(PREFERENCES_USER_NAME_KEY, user.getUserName());
+        editor.putString(PREFERENCES_USER_FULL_NAME_KEY, user.getFirstName() + " " + user.getLastName());
+        editor.putString(PREFERENCES_USER_TYPE_KEY, user.getUserType());
+        editor.commit();
     }
 
     private void assignUserDataFromPreferences() {
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mUserId = preferences.getInt(PREFERENCES_USER_ID_KEY, 0);
         mUserName = preferences.getString(PREFERENCES_USER_NAME_KEY, "");

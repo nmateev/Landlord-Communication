@@ -15,49 +15,62 @@ import io.reactivex.disposables.Disposable;
 
 public class PaymentsPresenter implements PaymentsContracts.Presenter {
 
-    private PaymentsContracts.View mView;
     private final PaymentsService mPaymentsService;
     private final SchedulerProvider mSchedulerProvider;
+    private PaymentsContracts.View mView;
+    private String mUserType;
+    private int mUserId;
 
     @Inject
-    PaymentsPresenter(PaymentsService paymentsService, SchedulerProvider schedulerProvider) {
-
+    public PaymentsPresenter(PaymentsService paymentsService, SchedulerProvider schedulerProvider) {
         mPaymentsService = paymentsService;
         mSchedulerProvider = schedulerProvider;
-
     }
+
     @Override
     public void subscribe(PaymentsContracts.View view) {
-        mView=view;
+        mView = view;
     }
 
     @Override
     public void unsubscribe() {
-        mView=null;
+        mView = null;
     }
 
     @Override
     public void showPaymentsList() {
         mView.showProgressBarLoading();
 
+
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<Payment>>) emitter -> {
-                    List<Payment> payments = mPaymentsService.getAllPayments();
+                    List<Payment> payments = mPaymentsService.getAllPayments(mUserType, mUserId);
                     emitter.onNext(payments);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBarLoading)
-                .subscribe(allPayments -> presentPaymentsToView(allPayments, Constants.NO_PAYMENTS_AVAILABLE_MESSAGE), mView::showError);
+                .subscribe(this::presentPaymentsToView,
+                        mView::showError);
     }
 
     @Override
-    public void presentPaymentsToView(List<Payment> allPayments, String message) {
+    public void presentPaymentsToView(List<Payment> allPayments) {
         if (allPayments.isEmpty()) {
-            mView.showMessage(message);
+            mView.showNoPaymentsMessage(Constants.NO_PAYMENTS_AVAILABLE_MESSAGE);
         } else {
             mView.showAllPayments(allPayments);
         }
+    }
+
+    @Override
+    public void setUserType(String userType) {
+        mUserType = userType;
+    }
+
+    @Override
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 }

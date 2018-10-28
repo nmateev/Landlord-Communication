@@ -8,82 +8,88 @@ public class Payment {
     private int tenantId;
     private int landlordId;
     private int propertyId;
-    private double amount;
-    private Date date_paid;
-    private String card_number;
+    private double paymentAmount;
+    private Date datePaid;
+    private String cardNumber;
+    private Property property;
 
-    public Payment(){
+    public Payment() {
 
     }
 
-
-    public Payment(int paymentId, int tenantId, int landlordId, int propertyId, double amount, Date date_paid, String card_number) {
-        this.paymentId = paymentId;
-        this.tenantId = tenantId;
-        this.landlordId = landlordId;
-        this.propertyId = propertyId;
-        this.amount = amount;
-        this.date_paid = date_paid;
-        this.card_number = card_number;
+    public Payment(int paymentId, int tenantId, int landlordId, int propertyId, double paymentAmount, Date datePaid, String cardNumber, Property property) {
+        setPaymentId(paymentId);
+        setTenantId(tenantId);
+        setLandlordId(landlordId);
+        setPropertyId(propertyId);
+        setPaymentAmount(paymentAmount);
+        setDatePaid(datePaid);
+        setCardNumber(cardNumber);
+        setProperty(property);
     }
-
-
 
     public int getPaymentId() {
         return paymentId;
-    }
-
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
     }
 
     public int getTenantId() {
         return tenantId;
     }
 
-    public void setTenantId(int tenantId) {
-        this.tenantId = tenantId;
-    }
-
     public int getLandlordId() {
         return landlordId;
-    }
-
-    public void setLandlordId(int landlordId) {
-        this.landlordId = landlordId;
     }
 
     public int getPropertyId() {
         return propertyId;
     }
 
-    public void setPropertyId(int propertyId) {
+    public double getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public Date getDatePaid() {
+        return datePaid;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    private void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    private void setTenantId(int tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    private void setLandlordId(int landlordId) {
+        this.landlordId = landlordId;
+    }
+
+    private void setPropertyId(int propertyId) {
         this.propertyId = propertyId;
     }
 
-    public double getAmount() {
-        return amount;
+    private void setPaymentAmount(double paymentAmount) {
+        this.paymentAmount = paymentAmount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    private void setDatePaid(Date datePaid) {
+        this.datePaid = datePaid;
     }
 
-    public Date getDate_paid() {
-        return date_paid;
+    public Property getProperty() {
+        return property;
     }
 
-    public void setDate_paid(Date date_paid) {
-        this.date_paid = date_paid;
+    private void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
-    public String getCard_number() {
-        return card_number;
+    private void setProperty(Property property) {
+        this.property = property;
     }
-
-    public void setCard_number(String card_number) {
-        this.card_number = card_number;
-    }
-
 
 }

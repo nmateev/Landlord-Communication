@@ -39,7 +39,7 @@ public class ChatMessage {
     private String messageText;
 
     @Column(name = Constants.CHAT_MESSAGES_IMAGE_COLUMN)
-    private byte[] imageMessage;
+    private String imageMessage;
 
     @NotNull
     @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_TENANT_COLUMN)
@@ -54,7 +54,7 @@ public class ChatMessage {
 
     }
 
-    public ChatMessage(int tenantId, int landlordId, int chatSessionId, Date dateSent, String messageText, byte[] imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+    public ChatMessage(int tenantId, int landlordId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setChatSessionId(chatSessionId);
@@ -90,7 +90,7 @@ public class ChatMessage {
         return messageText;
     }
 
-    public byte[] getImageMessage() {
+    public String getImageMessage() {
         return imageMessage;
     }
 
@@ -134,7 +134,7 @@ public class ChatMessage {
         this.messageText = messageText;
     }
 
-    private void setImageMessage(byte[] imageMessage) {
+    private void setImageMessage(String imageMessage) {
         this.imageMessage = imageMessage;
     }
 

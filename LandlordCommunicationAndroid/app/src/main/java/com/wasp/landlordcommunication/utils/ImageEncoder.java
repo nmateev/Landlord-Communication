@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Objects;
 
 public class ImageEncoder implements com.wasp.landlordcommunication.utils.base.ImageEncoder {
 
@@ -22,6 +24,13 @@ public class ImageEncoder implements com.wasp.landlordcommunication.utils.base.I
 
         } catch (Exception e) {
             return null;
+        } finally {
+            if (!Objects.equals(byteArrayOutputStream, null)) {
+                try {
+                    byteArrayOutputStream.close();
+                } catch (IOException ignored) {
+                }
+            }
         }
     }
 

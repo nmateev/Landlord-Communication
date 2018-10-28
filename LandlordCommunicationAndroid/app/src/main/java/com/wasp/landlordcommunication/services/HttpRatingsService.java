@@ -18,7 +18,7 @@ public class HttpRatingsService implements RatingsService {
 
     @Override
     public double getUserRatingById(int id) throws IOException {
-        List<Rating> userRatings = mRatingsRepository.getAllByParameter(id);
+        List<Rating> userRatings = mRatingsRepository.getAllByParameter(String.valueOf(id));
 
         double rating = 0;
         int size = userRatings.size();

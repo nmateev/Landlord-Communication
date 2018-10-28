@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PaymentsService {
 
-    List<Payment> getAllPayments() throws IOException;
+    List<Payment> getAllPayments(String userType, int id) throws IOException;
 }

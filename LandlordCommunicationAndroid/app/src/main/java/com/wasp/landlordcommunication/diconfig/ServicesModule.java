@@ -1,10 +1,13 @@
 package com.wasp.landlordcommunication.diconfig;
 
+import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.repositories.base.Repository;
+import com.wasp.landlordcommunication.services.HttpPaymentsService;
 import com.wasp.landlordcommunication.services.HttpRatingsService;
 import com.wasp.landlordcommunication.services.HttpUsersService;
+import com.wasp.landlordcommunication.services.base.PaymentsService;
 import com.wasp.landlordcommunication.services.base.RatingsService;
 import com.wasp.landlordcommunication.services.base.UsersService;
 
@@ -21,5 +24,10 @@ public class ServicesModule {
     @Provides
     public RatingsService ratingsService(Repository<Rating> ratingsRepository) {
         return new HttpRatingsService(ratingsRepository);
+    }
+
+    @Provides
+    public PaymentsService paymentsService(Repository<Payment> paymentRepository) {
+        return new HttpPaymentsService(paymentRepository);
     }
 }

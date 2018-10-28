@@ -6,7 +6,9 @@ import com.wasp.landlordcommunication.AndroidApplication;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.CameraModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.HomeModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LoginModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.PaymentsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.SignUpModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.ViewsModule;
 
 import javax.inject.Singleton;
 
@@ -26,8 +28,10 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ServicesModule.class,
         RepositoriesModule.class,
         UtilitiesModule.class,
+        ViewsModule.class,
         LoginModule.class,
         SignUpModule.class,
+        PaymentsModule.class,
         CameraModule.class,
         HomeModule.class
 })
