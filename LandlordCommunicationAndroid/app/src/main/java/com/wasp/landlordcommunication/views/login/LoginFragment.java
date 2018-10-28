@@ -39,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+import es.dmoral.toasty.Toasty;
 
 import static com.wasp.landlordcommunication.utils.Constants.INITIAL_SELECTION;
 import static com.wasp.landlordcommunication.utils.Constants.SELECT_USER_TYPE_TITLE;

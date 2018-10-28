@@ -9,12 +9,10 @@ import android.widget.TextView;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.Payment;
+import com.wasp.landlordcommunication.utils.base.DateFormatter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import javax.inject.Inject;
 
@@ -22,15 +20,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.PaymentViewHolder> {
-    private static final String DATE_REPRESENTATION = "dd.MM.yyyy  HH:mm:ss";
+    private final DateFormatter mDateFormatter;
     private List<Payment> mPayments;
-    private SimpleDateFormat mDateFormatter;
 
     @Inject
-    public PaymentsAdapter() {
+    public PaymentsAdapter(DateFormatter dateFormatter) {
+        mDateFormatter = dateFormatter;
         mPayments = new ArrayList<>();
-        mDateFormatter = new SimpleDateFormat(DATE_REPRESENTATION, Locale.UK);
-        mDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
     }
 
     @NonNull
@@ -94,7 +91,7 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.Paymen
         }
 
         private void bind(Payment payment) {
-            String paymentDateAndTime = mDateFormatter.format(payment.getDatePaid());
+            String paymentDateAndTime = mDateFormatter.formatDateToString(payment.getDatePaid());
 
             mPaymentForPropertyAddressTextView.setText(payment.getProperty().getPropertyAddress());
             mPaymentDateTextView.setText(paymentDateAndTime);

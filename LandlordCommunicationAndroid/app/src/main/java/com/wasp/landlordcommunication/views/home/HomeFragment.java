@@ -32,6 +32,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 
 public class HomeFragment extends Fragment implements HomeActivityContracts.View {

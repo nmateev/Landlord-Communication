@@ -60,4 +60,8 @@ public class Constants {
     public static final String EMPTY_STRING = "";
     public static final String PAYMENTS_SENT_TITLE = "Sent payments";
     public static final String PAYMENTS_RECEIVED_TITLE = "Received payments";
+    public static final String TIME_ZONE_NAME = "timeZone";
+    public static final String DATE_REPRESENTATION_NAME = "dateRepresentation";
+    public static final String TIME_ZONE = "UTC";
+    public static final String PAYMENTS_DATE_REPRESENTATION = "dd.MM.yyyy  HH:mm:ss";
 }
