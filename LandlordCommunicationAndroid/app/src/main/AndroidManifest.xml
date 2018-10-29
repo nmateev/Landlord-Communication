@@ -48,7 +48,7 @@
         <activity
             android:name=".views.landlordslist.LandlordsListActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".views.landlordspropertieslist.PropertiesListActivity"></activity>
+        <activity android:name=".views.landlordspropertieslist.LandlordsPropertiesListActivity"></activity>
     </application>
 
 </manifest>

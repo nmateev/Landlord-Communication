@@ -2,12 +2,11 @@ package com.wasp.landlordcommunication.views.landlordslist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
-import com.wasp.landlordcommunication.views.landlordspropertieslist.PropertiesListActivity;
+import com.wasp.landlordcommunication.views.landlordspropertieslist.LandlordsPropertiesListActivity;
 
 import javax.inject.Inject;
 
@@ -59,7 +58,7 @@ public class LandlordsListActivity extends BaseDrawerActivity implements Landlor
     public void navigateToUsersProperties(User user) {
         user.setUserPicture(null);
 
-        Intent intentToUsersProperties = new Intent(this, PropertiesListActivity.class);
+        Intent intentToUsersProperties = new Intent(this, LandlordsPropertiesListActivity.class);
         intentToUsersProperties.putExtra(USER_EXTRA, user);
         startActivity(intentToUsersProperties);
     }

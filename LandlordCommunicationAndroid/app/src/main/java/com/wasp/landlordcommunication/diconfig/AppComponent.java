@@ -6,6 +6,7 @@ import com.wasp.landlordcommunication.AndroidApplication;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.CameraModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.HomeModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsListModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsPropertiesListModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LoginModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.PaymentsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.SignUpModule;
@@ -32,10 +33,12 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ViewsModule.class,
         LoginModule.class,
         SignUpModule.class,
+        HomeModule.class,
         LandlordsListModule.class,
+        LandlordsPropertiesListModule.class,
         PaymentsModule.class,
-        CameraModule.class,
-        HomeModule.class
+        CameraModule.class
+
 })
 
 public interface AppComponent extends AndroidInjector<AndroidApplication> {
