@@ -19,6 +19,7 @@
     <string name="sign_up">Sign up</string>
     <string name="first_name_hint">First name</string>
     <string name="last_name_hint">Last name</string>
+    <string name="search_by_name">Search by name</string>
 
     <string-array name="user_type_options">
         <item>Tenant</item>

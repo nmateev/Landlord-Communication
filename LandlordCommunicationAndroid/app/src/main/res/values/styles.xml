@@ -68,6 +68,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">#641D79</item>
         <item name="android:alpha">0.8</item>
+
     </style>
 
     <style name="MaterialDrawer.DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">

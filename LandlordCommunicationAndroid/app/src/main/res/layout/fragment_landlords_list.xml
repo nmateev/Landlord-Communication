@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,5 +12,34 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:id="@+id/met_search_landlords"
+            style="@style/MaterialEditTextSearchStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_hasFocus="true"
+            app:mtf_image="@drawable/ic_search">
+
+            <EditText
+                android:id="@+id/et_search_landlords_inner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_by_name"
+                android:inputType="text"
+                android:textColor="@color/colorAccent" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_users_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/met_search_landlords"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 </FrameLayout>

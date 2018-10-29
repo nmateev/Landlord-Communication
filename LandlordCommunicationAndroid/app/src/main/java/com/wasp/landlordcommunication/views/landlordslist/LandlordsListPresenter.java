@@ -1,5 +1,7 @@
 package com.wasp.landlordcommunication.views.landlordslist;
 
+import com.wasp.landlordcommunication.models.User;
+
 import javax.inject.Inject;
 
 public class LandlordsListPresenter implements LandlordsListContracts.Presenter {
@@ -37,6 +39,11 @@ public class LandlordsListPresenter implements LandlordsListContracts.Presenter 
 
     @Override
     public void showAllLandlords() {
+
+    }
+
+    @Override
+    public void landlordIsSelected(User user) {
 
     }
 }

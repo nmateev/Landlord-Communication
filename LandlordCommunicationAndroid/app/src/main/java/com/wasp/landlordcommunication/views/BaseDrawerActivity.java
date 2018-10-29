@@ -3,7 +3,9 @@ package com.wasp.landlordcommunication.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -31,6 +33,8 @@ import static com.wasp.landlordcommunication.utils.Constants.HOME_DRAWER_ITEM_NA
 import static com.wasp.landlordcommunication.utils.Constants.LANDLORDS_LIST_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.MY_PAYMENTS_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_FULL_NAME_KEY;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_ID_KEY;
+import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_NAME_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_TYPE_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.SETTINGS_DRAWER_ITEM_NAME;
 import static com.wasp.landlordcommunication.utils.Constants.TENANT;
@@ -42,9 +46,28 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
     private Drawer mDrawer;
     private AccountHeader mHeader;
+    private SharedPreferences mPreferences;
 
     public BaseDrawerActivity() {
         //empty constructor required
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setupDrawer();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mDrawer.closeDrawer();
     }
 
     public void setupDrawer() {
@@ -124,21 +147,33 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
     protected abstract long getIdentifier();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setupDrawer();
+    protected int getUserId() {
+        return mPreferences.getInt(PREFERENCES_USER_ID_KEY, 0);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mDrawer.closeDrawer();
+    protected String getUserName() {
+        return mPreferences.getString(PREFERENCES_USER_NAME_KEY, "");
+    }
+
+    protected String getUserType() {
+        return mPreferences.getString(PREFERENCES_USER_TYPE_KEY, TENANT);
+    }
+
+    protected String getUserDrawerName() {
+        return mPreferences.getString(PREFERENCES_USER_FULL_NAME_KEY, "");
+    }
+
+    private String getPropertyDrawerItemName() {
+        String userType = getUserType();
+
+        if (userType.equals(Constants.TENANT)) {
+            return Constants.MY_PLACES_DRAWER_ITEM_NAME;
+        } else {
+            return Constants.MY_PROPERTIES_DRAWER_ITEM_NAME;
+        }
     }
 
     private Intent getNextIntent(long identifier) {
-
-
         if (identifier == HomeActivity.DRAWER_IDENTIFIER) {
             return new Intent(this, HomeActivity.class);
         } else if (identifier == PropertiesActivity.DRAWER_IDENTIFIER) {
@@ -154,25 +189,5 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         } else {
             return null;
         }
-    }
-
-    private String getPropertyDrawerItemName() {
-        String userType = getUserType();
-
-        if (userType.equals(Constants.TENANT)) {
-            return Constants.MY_PLACES_DRAWER_ITEM_NAME;
-        } else {
-            return Constants.MY_PROPERTIES_DRAWER_ITEM_NAME;
-        }
-    }
-
-    private String getUserType() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getString(PREFERENCES_USER_TYPE_KEY, TENANT);
-    }
-
-    private String getUserDrawerName() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getString(PREFERENCES_USER_FULL_NAME_KEY, "");
     }
 }

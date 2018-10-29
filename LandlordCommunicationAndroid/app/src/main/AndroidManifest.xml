@@ -44,8 +44,10 @@
         <activity android:name=".views.payments.PaymentsActivity" />
         <activity android:name=".views.properties.PropertiesActivity" />
         <activity android:name=".views.chat.ChatActivity" />
-        <activity android:name=".views.settings.SettingsActivity"></activity>
-        <activity android:name=".views.landlordslist.LandlordsListActivity"></activity>
+        <activity android:name=".views.settings.SettingsActivity" />
+        <activity
+            android:name=".views.landlordslist.LandlordsListActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

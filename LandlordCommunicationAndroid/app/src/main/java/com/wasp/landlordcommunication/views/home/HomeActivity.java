@@ -3,7 +3,6 @@ package com.wasp.landlordcommunication.views.home;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 
 import com.wasp.landlordcommunication.R;
@@ -28,8 +27,6 @@ public class HomeActivity extends BaseDrawerActivity {
     HomeFragment mHomeFragment;
     @Inject
     HomeActivityContracts.Presenter mHomeActivityPresenter;
-    private int mUserId;
-    private String mUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +41,8 @@ public class HomeActivity extends BaseDrawerActivity {
             persistUserSessionData(user);
 
         }
-        assignUserDataFromPreferences();
-        mHomeActivityPresenter.setUserId(mUserId);
-        mHomeActivityPresenter.setUserName(mUserName);
+        mHomeActivityPresenter.setUserId(getUserId());
+        mHomeActivityPresenter.setUserName(getUserName());
 
         mHomeFragment.setPresenter(mHomeActivityPresenter);
 
@@ -70,12 +66,5 @@ public class HomeActivity extends BaseDrawerActivity {
         editor.putString(PREFERENCES_USER_FULL_NAME_KEY, user.getFirstName() + " " + user.getLastName());
         editor.putString(PREFERENCES_USER_TYPE_KEY, user.getUserType());
         editor.commit();
-    }
-
-    private void assignUserDataFromPreferences() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        mUserId = preferences.getInt(PREFERENCES_USER_ID_KEY, 0);
-        mUserName = preferences.getString(PREFERENCES_USER_NAME_KEY, "");
     }
 }

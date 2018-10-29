@@ -1,13 +1,10 @@
 package com.wasp.landlordcommunication.views.login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
-import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.signup.SignUpActivity;
 

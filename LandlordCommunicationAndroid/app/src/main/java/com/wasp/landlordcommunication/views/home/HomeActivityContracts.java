@@ -55,6 +55,6 @@ public interface HomeActivityContracts {
 
         void errorOccurredOnChangingPicture();
 
-       void decodeImageAndPresentToView(String userPicture, String errorMessage);
+        void decodeImageAndPresentToView(String userPicture, String errorMessage);
     }
 }

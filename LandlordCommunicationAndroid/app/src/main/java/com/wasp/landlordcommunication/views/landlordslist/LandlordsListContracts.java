@@ -1,5 +1,7 @@
 package com.wasp.landlordcommunication.views.landlordslist;
 
+import com.wasp.landlordcommunication.models.User;
+
 public interface LandlordsListContracts {
     interface View {
 
@@ -25,6 +27,8 @@ public interface LandlordsListContracts {
         void setUserType(String userType);
 
         void showAllLandlords();
+
+        void landlordIsSelected(User user);
     }
 
     interface Navigator {
