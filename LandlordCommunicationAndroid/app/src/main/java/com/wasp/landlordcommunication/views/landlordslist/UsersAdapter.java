@@ -110,6 +110,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
                     mUserImageView.setImageResource(R.drawable.defaultuserpicture);
                 } else {
                     mUserImageView.setImageBitmap(userImage);
+                    userImage = null;
                 }
             }
             mFirstNameTextView.setText(user.getFirstName());

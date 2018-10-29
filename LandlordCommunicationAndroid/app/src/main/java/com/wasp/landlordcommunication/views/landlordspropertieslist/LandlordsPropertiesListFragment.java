@@ -126,6 +126,12 @@ public class LandlordsPropertiesListFragment extends Fragment implements Landlor
     }
 
     @Override
+    public void showPropertyDetails(int propertyId) {
+        mLandlordsPropertiesRecyclerView.setVisibility(View.GONE);
+        mNavigator.navigateToPropertyDetails(propertyId);
+    }
+
+    @Override
     public void showLandlordsRating(double rating) {
         mLandlordsRatingRatingBar.setRating((float) rating);
     }
@@ -148,6 +154,6 @@ public class LandlordsPropertiesListFragment extends Fragment implements Landlor
 
     @Override
     public void onClick(Property property) {
-        showMessage(property.getPropertyAddress());
+        mPresenter.propertyIsSelected(property);
     }
 }

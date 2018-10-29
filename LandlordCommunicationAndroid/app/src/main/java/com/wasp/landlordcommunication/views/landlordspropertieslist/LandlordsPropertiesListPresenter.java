@@ -93,6 +93,11 @@ public class LandlordsPropertiesListPresenter implements LandlordsPropertiesList
                         error -> mView.showError(error));
     }
 
+    @Override
+    public void propertyIsSelected(Property property) {
+        mView.showPropertyDetails(property.getPropertyId());
+    }
+
     private void presentPropertiesToView(List<Property> properties) {
 
         if (properties.isEmpty()) {

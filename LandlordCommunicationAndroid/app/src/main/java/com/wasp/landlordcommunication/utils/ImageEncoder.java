@@ -16,7 +16,7 @@ public class ImageEncoder implements com.wasp.landlordcommunication.utils.base.I
         String imageString;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            bitmap.compress(Bitmap.CompressFormat.PNG, Constants.IMAGE_QUALITY, byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, Constants.IMAGE_QUALITY, byteArrayOutputStream);
             byte[] imageArray = byteArrayOutputStream.toByteArray();
 
             imageString = Base64.encodeToString(imageArray, Base64.DEFAULT);
@@ -38,8 +38,8 @@ public class ImageEncoder implements com.wasp.landlordcommunication.utils.base.I
     public Bitmap decodeStringToBitmap(String imageString) {
         Bitmap decodedImage;
         try {
-            byte[] encodeByte = Base64.decode(imageString, Base64.DEFAULT);
-            decodedImage = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            byte[] encodedBytes = Base64.decode(imageString, Base64.DEFAULT);
+            decodedImage = BitmapFactory.decodeByteArray(encodedBytes, 0, encodedBytes.length);
 
             return decodedImage;
 

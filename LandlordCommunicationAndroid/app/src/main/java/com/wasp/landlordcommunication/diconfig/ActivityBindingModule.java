@@ -3,6 +3,7 @@ package com.wasp.landlordcommunication.diconfig;
 
 import com.wasp.landlordcommunication.diconfig.viewsmodules.CameraModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.HomeModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordPropertyDetailsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsListModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsPropertiesListModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LoginModule;
@@ -11,6 +12,7 @@ import com.wasp.landlordcommunication.diconfig.viewsmodules.SignUpModule;
 import com.wasp.landlordcommunication.views.camera.CameraActivity;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.home.HomeFragment;
+import com.wasp.landlordcommunication.views.landlordpropertydetails.LandlordPropertyDetailsActivity;
 import com.wasp.landlordcommunication.views.landlordslist.LandlordsListActivity;
 import com.wasp.landlordcommunication.views.landlordspropertieslist.LandlordsPropertiesListActivity;
 import com.wasp.landlordcommunication.views.login.LoginActivity;
@@ -46,6 +48,10 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = LandlordsPropertiesListModule.class)
     abstract LandlordsPropertiesListActivity landlordsPropertiesListActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = LandlordPropertyDetailsModule.class)
+    abstract LandlordPropertyDetailsActivity landlordPropertyDetailsActivity();
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = CameraModule.class)

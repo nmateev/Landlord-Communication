@@ -113,6 +113,7 @@ public class LandlordsPropertiesAdapter extends RecyclerView.Adapter<LandlordsPr
                     mPropertyImageView.setImageResource(R.drawable.defaultpropertypicture);
                 } else {
                     mPropertyImageView.setImageBitmap(propertyImage);
+                    propertyImage = null;
                 }
             }
             mPropertyAddressTextView.setText(property.getPropertyAddress());

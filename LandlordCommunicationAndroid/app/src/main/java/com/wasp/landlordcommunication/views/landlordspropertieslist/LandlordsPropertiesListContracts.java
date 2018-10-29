@@ -26,6 +26,8 @@ public interface LandlordsPropertiesListContracts {
         void showNoPropertiesText(String message);
 
         void showLandlordsName(String name);
+
+        void showPropertyDetails(int propertyId);
     }
 
     interface Presenter {
@@ -45,9 +47,12 @@ public interface LandlordsPropertiesListContracts {
         void loadLandlordsRating(int userId);
 
         void loadLandlordsProperties(int userId, String userType);
+
+        void propertyIsSelected(Property property);
     }
 
     interface Navigator {
 
+        void navigateToPropertyDetails(int propertyId);
     }
 }

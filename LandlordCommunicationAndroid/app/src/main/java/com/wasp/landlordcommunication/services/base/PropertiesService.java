@@ -8,4 +8,6 @@ import java.util.List;
 public interface PropertiesService {
 
     List<Property> getUsersPropertiesByIdAndType(int userId, String userType) throws IOException;
+
+    Property getPropertyById(int propertyId) throws IOException;
 }

@@ -55,7 +55,7 @@ public class Constants {
     public static final String IMAGE_FILE_TYPE = "image/*";
     public static final String DATA_EXTRA = "data";
     public static final String IMAGE_CHANGE_ERROR_MESSAGE = "Profile image update failed!";
-    public static final int IMAGE_QUALITY = 40;
+    public static final int IMAGE_QUALITY = 35;
     public static final String ERROR_LOADING_USER_IMAGE = "Unsuccessful profile image loading!";
     public static final String PAYMENTS_URL_SUFFIX = "payments";
     public static final String PAYMENTS_GET_BY_ID_URL_SUFFIX = "/";
@@ -69,6 +69,7 @@ public class Constants {
     public static final String NO_LANDLORDS_AVAILABLE_MESSAGE = "There are currently no landlords at the moment";
     public static final String NO_RESULT_ON_SEARCH_QUERY_MESSAGE = "Your search returned zero results";
     public static final String PRICE = "Price: ";
+    public static final String PROPERTY_ID_EXTRA = "propertyId";
 
     public static final String PROPERTIES_URL_SUFFIX = "properties";
     public static final String NO_PROPERTIES_MESSAGE = "This landlord currently have no properties for rent";

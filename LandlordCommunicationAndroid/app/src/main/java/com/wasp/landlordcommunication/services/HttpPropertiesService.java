@@ -22,4 +22,9 @@ public class HttpPropertiesService implements PropertiesService {
 
         return mPropertiesRepository.getAllByParameter(parameter);
     }
+
+    @Override
+    public Property getPropertyById(int propertyId) throws IOException {
+        return mPropertiesRepository.getById(propertyId);
+    }
 }

@@ -6,11 +6,13 @@ import android.os.Bundle;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
+import com.wasp.landlordcommunication.views.landlordpropertydetails.LandlordPropertyDetailsActivity;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
+import static com.wasp.landlordcommunication.utils.Constants.PROPERTY_ID_EXTRA;
 import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
 
 public class LandlordsPropertiesListActivity extends BaseDrawerActivity implements LandlordsPropertiesListContracts.Navigator {
@@ -55,5 +57,12 @@ public class LandlordsPropertiesListActivity extends BaseDrawerActivity implemen
     protected long getIdentifier() {
         //should not return valid identifier because this activity is only accessed through LandlordsListActivity
         return DRAWER_IDENTIFIER;
+    }
+
+    @Override
+    public void navigateToPropertyDetails(int propertyId) {
+        Intent intent = new Intent(this, LandlordPropertyDetailsActivity.class);
+        intent.putExtra(PROPERTY_ID_EXTRA, propertyId);
+        startActivity(intent);
     }
 }
