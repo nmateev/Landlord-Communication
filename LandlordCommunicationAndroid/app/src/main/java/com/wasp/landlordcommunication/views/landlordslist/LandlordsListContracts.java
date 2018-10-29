@@ -22,6 +22,8 @@ public interface LandlordsListContracts {
         void showLandlords(List<User> landlordsList);
 
         void showPropertiesForUser(User user);
+
+        void clearLandlordsList();
     }
 
     interface Presenter {

@@ -88,7 +88,7 @@ public class LandlordsListPresenter implements LandlordsListContracts.Presenter 
 
     private void presentFilteredLandlordsToView(List<User> landlordsList) {
         if (landlordsList.isEmpty()) {
-            mView.showMessage(Constants.NO_RESULT_ON_SEARCH_QUERY_MESSAGE);
+            mView.clearLandlordsList();
         } else {
             mView.showLandlords(landlordsList);
         }

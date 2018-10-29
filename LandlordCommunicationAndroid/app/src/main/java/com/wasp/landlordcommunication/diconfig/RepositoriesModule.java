@@ -2,6 +2,7 @@ package com.wasp.landlordcommunication.diconfig;
 
 import com.wasp.landlordcommunication.http.base.HttpRequester;
 import com.wasp.landlordcommunication.models.Payment;
+import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
@@ -61,6 +62,19 @@ public class RepositoriesModule {
         return new HttpRepository<>(serverUrl,
                 Constants.EMPTY_STRING,
                 Constants.PAYMENTS_GET_BY_ID_URL_SUFFIX,
+                httpRequester,
+                jsonParser);
+    }
+
+    @Provides
+    @Singleton
+    public Repository<Property> propertiesRepository(@Named(Constants.BASE_SERVER_URL_VALUE_NAME) String baseServerUrl, HttpRequester httpRequester, JsonParser<Property> jsonParser) {
+
+        String serverUrl = baseServerUrl + Constants.PROPERTIES_URL_SUFFIX;
+
+        return new HttpRepository<>(serverUrl,
+                Constants.EMPTY_STRING,
+                Constants.SLASH_STRING_VALUE,
                 httpRequester,
                 jsonParser);
     }

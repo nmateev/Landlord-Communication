@@ -141,6 +141,12 @@ public class LandlordsListFragment extends Fragment implements LandlordsListCont
         mNavigator.navigateToUsersProperties(user);
     }
 
+    @Override
+    public void clearLandlordsList() {
+        mUsersAdapter.clear();
+        mUsersAdapter.notifyDataSetChanged();
+    }
+
     public void setNavigator(LandlordsListContracts.Navigator navigator) {
         mNavigator = navigator;
     }
