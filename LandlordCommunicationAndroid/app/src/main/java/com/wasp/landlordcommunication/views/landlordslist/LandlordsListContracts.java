@@ -2,6 +2,8 @@ package com.wasp.landlordcommunication.views.landlordslist;
 
 import com.wasp.landlordcommunication.models.User;
 
+import java.util.List;
+
 public interface LandlordsListContracts {
     interface View {
 
@@ -14,6 +16,12 @@ public interface LandlordsListContracts {
         void showError(Throwable error);
 
         void showMessage(String message);
+
+        void showNoLandlordsAvailableMessage(String message);
+
+        void showLandlords(List<User> landlordsList);
+
+        void showPropertiesForUser(User user);
     }
 
     interface Presenter {
@@ -26,13 +34,16 @@ public interface LandlordsListContracts {
 
         void setUserType(String userType);
 
-        void showAllLandlords();
+        void loadAllLandlords();
 
         void landlordIsSelected(User user);
+
+        void filterLandlordsWithPattern(String pattern);
     }
 
     interface Navigator {
 
+        void navigateToUsersProperties(User user);
     }
 
 }

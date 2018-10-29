@@ -6,6 +6,8 @@ import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
 import com.wasp.landlordcommunication.repositories.HttpRepository;
+import com.wasp.landlordcommunication.repositories.UsersCacheRepository;
+import com.wasp.landlordcommunication.repositories.base.CacheRepository;
 import com.wasp.landlordcommunication.repositories.base.Repository;
 import com.wasp.landlordcommunication.utils.Constants;
 
@@ -31,6 +33,11 @@ public class RepositoriesModule {
                 jsonParser);
     }
 
+    @Provides
+    @Singleton
+    public CacheRepository<User> usersCacheRepository() {
+        return new UsersCacheRepository();
+    }
 
     @Provides
     @Singleton
@@ -47,7 +54,7 @@ public class RepositoriesModule {
 
     @Provides
     @Singleton
-    public Repository<Payment>paymentsRepository(@Named(Constants.BASE_SERVER_URL_VALUE_NAME) String baseServerUrl, HttpRequester httpRequester, JsonParser<Payment> jsonParser) {
+    public Repository<Payment> paymentsRepository(@Named(Constants.BASE_SERVER_URL_VALUE_NAME) String baseServerUrl, HttpRequester httpRequester, JsonParser<Payment> jsonParser) {
 
         String serverUrl = baseServerUrl + Constants.PAYMENTS_URL_SUFFIX;
 

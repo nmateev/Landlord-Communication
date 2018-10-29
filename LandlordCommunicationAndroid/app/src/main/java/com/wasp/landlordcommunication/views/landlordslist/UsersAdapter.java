@@ -114,6 +114,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             }
             mFirstNameTextView.setText(user.getFirstName());
             mLastNameTextView.setText(user.getLastName());
+            mUser = user;
         }
 
         @OnClick
@@ -130,6 +131,5 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     interface OnUserItemClickListener {
         void onClick(User user);
     }
-
 }
 

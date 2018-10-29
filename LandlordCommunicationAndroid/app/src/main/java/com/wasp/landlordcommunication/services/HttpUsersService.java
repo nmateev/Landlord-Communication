@@ -1,17 +1,22 @@
 package com.wasp.landlordcommunication.services;
 
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.repositories.base.CacheRepository;
 import com.wasp.landlordcommunication.repositories.base.Repository;
 import com.wasp.landlordcommunication.services.base.UsersService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HttpUsersService implements UsersService {
 
     private final Repository<User> mUsersRepository;
+    private final CacheRepository<User> mUsersCacheRepository;
 
-    public HttpUsersService(Repository<User> userRepository) {
+    public HttpUsersService(Repository<User> userRepository, CacheRepository<User> usersCacheRepository) {
         mUsersRepository = userRepository;
+        mUsersCacheRepository = usersCacheRepository;
     }
 
     @Override
@@ -33,4 +38,38 @@ public class HttpUsersService implements UsersService {
     public User updateUser(User user, int userId) throws IOException {
         return mUsersRepository.update(user, userId);
     }
+
+    @Override
+    public List<User> getAllUsersByType(String type, int excludedIdFromResult) throws IOException {
+        String parameter = "type/" + type;
+        List<User> result = mUsersRepository.getAllByParameter(parameter);
+        //TODO uncomment when api  level is set to 24
+       /* result
+                .stream()
+                .filter(user -> user.getUserId() != excludedIdFromResult)
+                .collect(Collectors.toList());*/
+
+        for (User user : result) {
+            if (user.getUserId() == excludedIdFromResult) {
+                result.remove(user);
+            }
+        }
+        mUsersCacheRepository.cacheData(result);
+        return result;
+    }
+
+    @Override
+    public List<User> getFilteredUsersByName(String pattern) {
+        String lowerCasePattern = pattern.toLowerCase();
+        List<User> cachedLandlordsList = mUsersCacheRepository.getCachedData();
+
+        List<User> filteredResult = new ArrayList<>();
+        for (User user : cachedLandlordsList) {
+            if (user.getFirstName().toLowerCase().contains(lowerCasePattern) || user.getLastName().toLowerCase().contains(lowerCasePattern)) {
+                filteredResult.add(user);
+            }
+        }
+        return filteredResult;
+    }
 }
+

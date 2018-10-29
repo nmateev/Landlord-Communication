@@ -3,6 +3,7 @@ package com.wasp.landlordcommunication.diconfig;
 import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.repositories.base.CacheRepository;
 import com.wasp.landlordcommunication.repositories.base.Repository;
 import com.wasp.landlordcommunication.services.HttpPaymentsService;
 import com.wasp.landlordcommunication.services.HttpRatingsService;
@@ -17,8 +18,8 @@ import dagger.Provides;
 @Module
 public class ServicesModule {
     @Provides
-    public UsersService usersService(Repository<User> usersRepository) {
-        return new HttpUsersService(usersRepository);
+    public UsersService usersService(Repository<User> usersRepository, CacheRepository<User> cacheRepository) {
+        return new HttpUsersService(usersRepository, cacheRepository);
     }
 
     @Provides

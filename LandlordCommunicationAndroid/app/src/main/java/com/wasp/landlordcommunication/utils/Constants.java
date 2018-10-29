@@ -28,11 +28,12 @@ public class Constants {
     public static final String USER_EXTRA = "user";
     public static final int INITIAL_SELECTION = 0;
     public static final String MY_PAYMENTS_DRAWER_ITEM_NAME = "My payments";
-    public static final String  LANDLORDS_LIST_DRAWER_ITEM_NAME = "All landlords";
+    public static final String LANDLORDS_LIST_DRAWER_ITEM_NAME = "All landlords";
     public static final String CHAT_DRAWER_ITEM_NAME = "Chat";
     public static final String SETTINGS_DRAWER_ITEM_NAME = "Settings";
     public static final String HOME_DRAWER_ITEM_NAME = "Home";
     public static final String TENANT = "Tenant";
+    public static final String LANDLORD = "Landlord";
     public static final String MY_PLACES_DRAWER_ITEM_NAME = "My places";
     public static final String MY_PROPERTIES_DRAWER_ITEM_NAME = "My properties";
     public static final String RATINGS_URL_SUFFIX = "ratings";
@@ -54,7 +55,7 @@ public class Constants {
     public static final String IMAGE_FILE_TYPE = "image/*";
     public static final String DATA_EXTRA = "data";
     public static final String IMAGE_CHANGE_ERROR_MESSAGE = "Profile image update failed!";
-    public static final int IMAGE_QUALITY = 5;
+    public static final int IMAGE_QUALITY = 25;
     public static final String ERROR_LOADING_USER_IMAGE = "Unsuccessful profile image loading!";
     public static final String PAYMENTS_URL_SUFFIX = "payments";
     public static final String PAYMENTS_GET_BY_ID_URL_SUFFIX = "/";
@@ -65,4 +66,7 @@ public class Constants {
     public static final String DATE_REPRESENTATION_NAME = "dateRepresentation";
     public static final String TIME_ZONE = "UTC";
     public static final String PAYMENTS_DATE_REPRESENTATION = "dd.MM.yyyy  HH:mm:ss";
+    public static final String NO_LANDLORDS_AVAILABLE_MESSAGE = "There are currently no landlords at the moment";
+    public static final String NO_RESULT_ON_SEARCH_QUERY_MESSAGE = "Your search returned zero results";
+
 }

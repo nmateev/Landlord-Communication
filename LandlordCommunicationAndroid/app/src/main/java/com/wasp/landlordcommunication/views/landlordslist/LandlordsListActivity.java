@@ -1,13 +1,19 @@
 package com.wasp.landlordcommunication.views.landlordslist;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
+import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
+import com.wasp.landlordcommunication.views.landlordspropertieslist.PropertiesListActivity;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+
+import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
 
 public class LandlordsListActivity extends BaseDrawerActivity implements LandlordsListContracts.Navigator {
     public static final int DRAWER_IDENTIFIER = 213;
@@ -49,4 +55,12 @@ public class LandlordsListActivity extends BaseDrawerActivity implements Landlor
         return DRAWER_IDENTIFIER;
     }
 
+    @Override
+    public void navigateToUsersProperties(User user) {
+        user.setUserPicture(null);
+
+        Intent intentToUsersProperties = new Intent(this, PropertiesListActivity.class);
+        intentToUsersProperties.putExtra(USER_EXTRA, user);
+        startActivity(intentToUsersProperties);
+    }
 }
