@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
@@ -18,6 +21,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.wasp.landlordcommunication.utils.Constants.RENT_DUE_TITLE;
 
 public class LandlordPropertyDetailsFragment extends Fragment implements LandlordPropertyDetailsContracts.View {
 
@@ -25,6 +31,25 @@ public class LandlordPropertyDetailsFragment extends Fragment implements Landlor
     private LandlordPropertyDetailsContracts.Presenter mPresenter;
     @BindView(R.id.prb_loading_view)
     ProgressBar mProgressBarView;
+
+    @BindView(R.id.iv_property_image)
+    ImageView mPropertyImageView;
+
+    @BindView(R.id.tv_property_address)
+    TextView mPropertyAddressTextView;
+
+    @BindView(R.id.tv_property_rent_price)
+    TextView mPropertyRentPriceTextView;
+
+    @BindView(R.id.tv_property_rent_due_date)
+    TextView mPropertyRentDueDateTextView;
+
+    @BindView(R.id.tv_property_description)
+    TextView mPropertyDescriptionTextView;
+
+    @BindView(R.id.btn_rent_place)
+    Button mRentPropertyButton;
+
 
     @Inject
     public LandlordPropertyDetailsFragment() {
@@ -37,6 +62,7 @@ public class LandlordPropertyDetailsFragment extends Fragment implements Landlor
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_landlord_property_details, container, false);
         ButterKnife.bind(this, view);
+
         return view;
     }
 
@@ -85,16 +111,39 @@ public class LandlordPropertyDetailsFragment extends Fragment implements Landlor
 
     @Override
     public void showPropertyDetails(Property property) {
+        mPropertyAddressTextView.setVisibility(View.VISIBLE);
+        mPropertyAddressTextView.setText(property.getPropertyAddress());
 
+        mPropertyRentPriceTextView.setVisibility(View.VISIBLE);
+        mPropertyRentPriceTextView.setText(String.valueOf(property.getRentPrice()));
+
+        mPropertyDescriptionTextView.setVisibility(View.VISIBLE);
+        mPropertyDescriptionTextView.setText(property.getDescription());
     }
 
     @Override
     public void showDefaultPropertyPicture() {
-
+        mPropertyImageView.setImageResource(R.drawable.defaultpropertypicture);
     }
 
     @Override
     public void showPropertyPicture(Bitmap propertyImage) {
+        mPropertyImageView.setImageBitmap(propertyImage);
+    }
 
+    @Override
+    public void showRentButtonOption() {
+        mRentPropertyButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showDate(String date) {
+        mPropertyRentDueDateTextView.setVisibility(View.VISIBLE);
+        mPropertyRentDueDateTextView.setText(date);
+    }
+
+    @OnClick(R.id.btn_rent_place)
+    public void onClick() {
+        mPresenter.rentButtonIsClicked();
     }
 }

@@ -7,13 +7,21 @@ import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.services.base.PropertiesService;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
+
+import static com.wasp.landlordcommunication.utils.Constants.RENT_DUE_TITLE;
+import static com.wasp.landlordcommunication.utils.Constants.TENANT;
+import static com.wasp.landlordcommunication.utils.Constants.TIME_ZONE;
 
 public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetailsContracts.Presenter {
     private final PropertiesService mPropertiesService;
@@ -58,7 +66,6 @@ public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetails
 
     @Override
     public void loadPropertyDetails() {
-
         mView.showProgressBar();
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<Property>) emitter -> {
@@ -68,9 +75,20 @@ public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetails
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
-                .doFinally(mView::hideProgressBar)
+                .doFinally(() -> {
+                    mView.hideProgressBar();
+                    if (mUserType.equals(TENANT)) {
+                        mView.showRentButtonOption();
+                    }
+                })
                 .subscribe(this::preparePropertyDetails,
                         error -> mView.showError(error));
+
+    }
+
+    @Override
+    public void rentButtonIsClicked() {
+
     }
 
     private void preparePropertyDetails(Property property) {
@@ -84,6 +102,9 @@ public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetails
                 mView.showPropertyPicture(propertyImage);
             }
         }
+        SimpleDateFormat mDateFormatter = new SimpleDateFormat("d", Locale.UK);
+
+        mView.showDate(RENT_DUE_TITLE + mDateFormatter.format(property.getDueDate()));
         mView.showPropertyDetails(property);
 
     }

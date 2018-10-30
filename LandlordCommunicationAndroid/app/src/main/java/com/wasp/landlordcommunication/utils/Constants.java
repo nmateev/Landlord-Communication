@@ -70,6 +70,7 @@ public class Constants {
     public static final String NO_RESULT_ON_SEARCH_QUERY_MESSAGE = "Your search returned zero results";
     public static final String PRICE = "Price: ";
     public static final String PROPERTY_ID_EXTRA = "propertyId";
+    public static final String RENT_DUE_TITLE = "Rent is due every month on ";
 
     public static final String PROPERTIES_URL_SUFFIX = "properties";
     public static final String NO_PROPERTIES_MESSAGE = "This landlord currently have no properties for rent";

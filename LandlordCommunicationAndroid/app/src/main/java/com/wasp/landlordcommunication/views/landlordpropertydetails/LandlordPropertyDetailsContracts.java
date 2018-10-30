@@ -23,6 +23,10 @@ public interface LandlordPropertyDetailsContracts {
         void showDefaultPropertyPicture();
 
         void showPropertyPicture(Bitmap propertyImage);
+
+        void showRentButtonOption();
+
+        void showDate(String date);
     }
 
     interface Presenter {
@@ -39,6 +43,7 @@ public interface LandlordPropertyDetailsContracts {
 
         void loadPropertyDetails();
 
+        void rentButtonIsClicked();
     }
 
 }

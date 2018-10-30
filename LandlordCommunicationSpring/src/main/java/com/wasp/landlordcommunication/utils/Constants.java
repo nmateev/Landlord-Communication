@@ -89,5 +89,6 @@ public class Constants {
     public static final int PAYMENT_AMOUNT_VALIDATION_MIN_VALUE = 1;
 
 
+    public static final int PROPERTY_DESCRIPTION_MAX_LENGTH = 500;
 }
 

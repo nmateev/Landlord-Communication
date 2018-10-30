@@ -45,7 +45,7 @@ public class Property {
     private String propertyPicture;
 
     @NotNull
-    @Size(min = Constants.STRING_VALIDATION_MIN_TEXT, max = Constants.STRING_VALIDATION_MAX_TEXT)
+    @Size(min = Constants.STRING_VALIDATION_MIN_TEXT, max = Constants.PROPERTY_DESCRIPTION_MAX_LENGTH)
     @Column(name = Constants.PROPERTIES_DESCRIPTION_COLUMN_NAME)
     private String description;
 
