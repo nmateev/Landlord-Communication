@@ -27,6 +27,12 @@ public interface LandlordPropertyDetailsContracts {
         void showRentButtonOption();
 
         void showDate(String date);
+
+        void fadeRentButton();
+
+        void showRentingConfirmationDialog();
+
+        void showSuccessDialog();
     }
 
     interface Presenter {
@@ -44,6 +50,10 @@ public interface LandlordPropertyDetailsContracts {
         void loadPropertyDetails();
 
         void rentButtonIsClicked();
+
+        void rentConfirmationIsCancelled();
+
+        void rentIsConfirmed();
     }
 
 }

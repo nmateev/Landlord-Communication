@@ -2,6 +2,7 @@ package com.wasp.landlordcommunication.views.landlordpropertydetails;
 
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shashank.sony.fancydialoglib.Animation;
+import com.shashank.sony.fancydialoglib.FancyAlertDialog;
+import com.shashank.sony.fancydialoglib.Icon;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -23,11 +27,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.wasp.landlordcommunication.utils.Constants.RENT_DUE_TITLE;
-
 public class LandlordPropertyDetailsFragment extends Fragment implements LandlordPropertyDetailsContracts.View {
 
-
+    private static final float ALPHA_VALUE = 0.2f;
     private LandlordPropertyDetailsContracts.Presenter mPresenter;
     @BindView(R.id.prb_loading_view)
     ProgressBar mProgressBarView;
@@ -50,8 +52,11 @@ public class LandlordPropertyDetailsFragment extends Fragment implements Landlor
     @BindView(R.id.btn_rent_place)
     Button mRentPropertyButton;
 
+    private FancyAlertDialog mRentConfirmationDialog;
+    private FancyAlertDialog mRentSuccessfulDialog;
 
     @Inject
+
     public LandlordPropertyDetailsFragment() {
         // Required empty public constructor
     }
@@ -137,10 +142,51 @@ public class LandlordPropertyDetailsFragment extends Fragment implements Landlor
     }
 
     @Override
+    public void fadeRentButton() {
+        mRentPropertyButton.setAlpha(ALPHA_VALUE);
+    }
+
+    @Override
+    public void showRentingConfirmationDialog() {
+        mRentConfirmationDialog = new FancyAlertDialog.Builder(getActivity())
+                .setTitle(Constants.RENT_CONFIRMATION_DIALOG_TITLE)
+                .setBackgroundColor(Color.parseColor(Constants.RENT_CONFIRMATION_DIALOG_COLOUR_STRING))
+                .setMessage(Constants.RENT_CONFIRMATION_DIALOG_QUESTION_MESSAGE)
+                .setNegativeBtnText(Constants.RENT_CONFIRMATION_DIALOG_CANCEL_OPTION_TEXT)
+                .setPositiveBtnBackground(Color.parseColor(Constants.RENT_CONFIRMATION_DIALOG_COLOUR_STRING))
+                .setPositiveBtnText(Constants.RENT_CONFIRMATION_DIALOG_CONFIRMATION_OPTION_TEXT)
+                .setNegativeBtnBackground(Color.parseColor(Constants.RENT_CONFIRMATION_DIALOG_COLOUR_NEGATIVE_BUTTON_STRING))
+                .setAnimation(Animation.POP)
+                .isCancellable(true)
+                .setIcon(R.drawable.ic_check_box_big, Icon.Visible)
+                .OnPositiveClicked(() -> mPresenter.rentIsConfirmed())
+                .OnNegativeClicked(() -> mPresenter.rentConfirmationIsCancelled())
+                .build();
+
+
+    }
+
+    @Override
+    public void showSuccessDialog() {
+        mRentSuccessfulDialog = new FancyAlertDialog.Builder(getActivity())
+                .setTitle(Constants.SUCCESS)
+                .setBackgroundColor(Color.parseColor(Constants.RENT_CONFIRMATION_DIALOG_COLOUR_STRING))
+                .setMessage(Constants.MANAGE_PLACES_MESSAGE)
+                .setPositiveBtnBackground(Color.parseColor(Constants.RENT_CONFIRMATION_DIALOG_COLOUR_STRING))
+                .setPositiveBtnText(Constants.OK_TEXT)
+                .setNegativeBtnBackground(Color.parseColor(Constants.RENT_CONFIRMATION_DIALOG_COLOUR_GREY_BUTTON_STRING))
+                .setNegativeBtnText(Constants.RENT_CONFIRMATION_DIALOG_CANCEL_OPTION_TEXT)
+                .setAnimation(Animation.POP)
+                .setIcon(R.drawable.ic_check_box_big, Icon.Visible)
+                .build();
+    }
+
+    @Override
     public void showDate(String date) {
         mPropertyRentDueDateTextView.setVisibility(View.VISIBLE);
         mPropertyRentDueDateTextView.setText(date);
     }
+
 
     @OnClick(R.id.btn_rent_place)
     public void onClick() {

@@ -1,14 +1,12 @@
 package com.wasp.landlordcommunication.models;
 
-import java.util.Date;
-
 public class Property {
 
     private int propertyId;
     private int tenantId;
     private int landlordId;
     private double rentPrice;
-    private Date dueDate;
+    private String dueDate;
     private boolean isRentPaid;
     private String propertyAddress;
     private String propertyPicture;
@@ -18,7 +16,7 @@ public class Property {
 
     }
 
-    public Property(int tenantId, int landlordId, double rentPrice, Date dueDate, boolean isRentPaid, String propertyAddress, String propertyPicture, String description) {
+    public Property(int tenantId, int landlordId, double rentPrice, String dueDate, boolean isRentPaid, String propertyAddress, String propertyPicture, String description) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setRentPrice(rentPrice);
@@ -45,7 +43,7 @@ public class Property {
         return rentPrice;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
@@ -81,6 +79,10 @@ public class Property {
         this.tenantId = tenantId;
     }
 
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
     private void setLandlordId(int landlordId) {
         this.landlordId = landlordId;
     }
@@ -91,10 +93,6 @@ public class Property {
 
     private void setPropertyPicture(String propertyPicture) {
         this.propertyPicture = propertyPicture;
-    }
-
-    private void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
     }
 
     private void setPropertyAddress(String propertyAddress) {

@@ -74,4 +74,17 @@ public class Constants {
 
     public static final String PROPERTIES_URL_SUFFIX = "properties";
     public static final String NO_PROPERTIES_MESSAGE = "This landlord currently have no properties for rent";
+    public static final String PROPERTY_ALREADY_RENTED = "This property is already rented";
+    public static final String RENT_CONFIRMATION_DIALOG_TITLE = "Rent confirmation!";
+    public static final String RENT_CONFIRMATION_DIALOG_COLOUR_STRING = "#641D79";
+    public static final String RENT_CONFIRMATION_DIALOG_COLOUR_NEGATIVE_BUTTON_STRING = "#FF0000";
+    public static final String RENT_CONFIRMATION_DIALOG_COLOUR_GREY_BUTTON_STRING = "#D3D3D3";
+    public static final String RENT_CONFIRMATION_DIALOG_QUESTION_MESSAGE = "Do you really want to rent this place?";
+    public static final String RENT_CONFIRMATION_DIALOG_CANCEL_OPTION_TEXT = "Cancel";
+    public static final String RENT_CONFIRMATION_DIALOG_CONFIRMATION_OPTION_TEXT = "Yes, rent it!";
+    public static final String ALREADY_RENTING_PROPERTY_MESSAGE = "You already rent this place!";
+    public static final String CONFIRMATION_NOT_GIVEN = "Confirmation was declined";
+    public static final String SUCCESS = "SUCCESS";
+    public static final String MANAGE_PLACES_MESSAGE = "You can manage your place at My Places section";
+    public static final String OK_TEXT = "OK";
 }

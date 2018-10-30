@@ -6,7 +6,6 @@ import com.wasp.landlordcommunication.utils.Constants;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Entity
 @Table(name = Constants.PROPERTIES_TABLE_NAME)
@@ -30,7 +29,7 @@ public class Property {
 
     @NotNull
     @Column(name = Constants.PROPERTIES_DUE_DATE_COLUMN_NAME)
-    private Date dueDate;
+    private String dueDate;
 
     @NotNull
     @Column(name = Constants.PROPERTIES_IS_RENT_PAID_COLUMN_NAME)
@@ -54,7 +53,7 @@ public class Property {
 
     }
 
-    public Property(int tenantId, int landlordId, double rentPrice, Date dueDate, boolean isRentPaid, String propertyAddress, String propertyPicture, String description) {
+    public Property(int tenantId, int landlordId, double rentPrice, String dueDate, boolean isRentPaid, String propertyAddress, String propertyPicture, String description) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setRentPrice(rentPrice);
@@ -81,7 +80,7 @@ public class Property {
         return rentPrice;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
@@ -129,7 +128,7 @@ public class Property {
         this.propertyPicture = propertyPicture;
     }
 
-    private void setDueDate(Date dueDate) {
+    private void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 

@@ -5,10 +5,9 @@ import android.graphics.Bitmap;
 import com.wasp.landlordcommunication.async.base.SchedulerProvider;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.services.base.PropertiesService;
+import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -28,6 +27,7 @@ public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetails
     private int mUserId;
     private String mUserType;
     private int mSelectedPropertyId;
+    private Property mSelectedProperty;
 
     @Inject
     public LandlordPropertyDetailsPresenter(PropertiesService propertiesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder) {
@@ -85,6 +85,44 @@ public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetails
 
     @Override
     public void rentButtonIsClicked() {
+        if (mSelectedProperty.getTenantId() == mUserId) {
+            mView.showMessage(Constants.ALREADY_RENTING_PROPERTY_MESSAGE);
+        } else if (mSelectedProperty.getTenantId() != 0) {
+            mView.showMessage(Constants.PROPERTY_ALREADY_RENTED);
+        } else {
+            mView.showRentingConfirmationDialog();
+        }
+
+    }
+
+    @Override
+    public void rentConfirmationIsCancelled() {
+        mView.showMessage(Constants.CONFIRMATION_NOT_GIVEN);
+    }
+
+    @Override
+    public void rentIsConfirmed() {
+        mSelectedProperty.setTenantId(mUserId);
+
+        mView.showProgressBar();
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<Property>) emitter -> {
+                    Property updatedProperty = mPropertiesService.updateProperty(mSelectedProperty, mSelectedPropertyId);
+                    emitter.onNext(updatedProperty);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(() -> mView.hideProgressBar())
+                .subscribe(updatedProperty -> {
+                            mView.showSuccessDialog();
+                            mView.fadeRentButton();
+                        },
+                        error -> {
+                            mView.showError(error);
+                            mSelectedProperty.setTenantId(0);
+                        });
+
 
     }
 
@@ -99,11 +137,13 @@ public class LandlordPropertyDetailsPresenter implements LandlordPropertyDetails
                 mView.showPropertyPicture(propertyImage);
             }
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d", Locale.UK);
 
-        mView.showDate(RENT_DUE_TITLE + simpleDateFormat.format(property.getDueDate()));
+        mView.showDate(RENT_DUE_TITLE + property.getDueDate());
         mView.showPropertyDetails(property);
-        simpleDateFormat = null;
 
+        if ((property.getTenantId() != 0) || (property.getTenantId() == mUserId)) {
+            mView.fadeRentButton();
+        }
+        mSelectedProperty = property;
     }
 }

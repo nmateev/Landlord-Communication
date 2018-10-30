@@ -27,4 +27,9 @@ public class HttpPropertiesService implements PropertiesService {
     public Property getPropertyById(int propertyId) throws IOException {
         return mPropertiesRepository.getById(propertyId);
     }
+
+    @Override
+    public Property updateProperty(Property property, int propertyId) throws IOException {
+        return mPropertiesRepository.update(property, propertyId);
+    }
 }
