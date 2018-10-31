@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.PaymentViewHolder> {
+    private static final int HEIGHT_DIVIDER = 5;
     private final DateFormatter mDateFormatter;
     private List<Payment> mPayments;
 
@@ -36,7 +37,7 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.Paymen
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.payment_item_layout, viewGroup, false);
 
-        int height = viewGroup.getMeasuredHeight() / 5;
+        int height = viewGroup.getMeasuredHeight() / HEIGHT_DIVIDER;
 
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         layoutParams.height = height;

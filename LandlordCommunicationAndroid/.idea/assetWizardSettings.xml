@@ -33,12 +33,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="height" value="80" />
-                            <entry key="outputName" value="ic_check_box_big" />
+                            <entry key="color" value="641d79" />
+                            <entry key="outputName" value="ic_check_purple" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\AZ" />
-                            <entry key="width" value="80" />
                           </map>
                         </option>
                       </PersistentState>

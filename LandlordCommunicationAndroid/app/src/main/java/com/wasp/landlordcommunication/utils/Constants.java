@@ -45,6 +45,7 @@ public class Constants {
     public static final String PREFERENCES_USER_NAME_KEY = "userName";
     public static final String PREFERENCES_USER_FULL_NAME_KEY = "fullName";
     public static final String PREFERENCES_USER_TYPE_KEY = "userType";
+    public static final String PREFERENCES_PROPERTY_LISTING_TYPE_KEY = "listingType";
 
     public static final String PASSWORDS_MATCH_ERROR_MESSAGE = "Passwords do not match!";
     public static final String USERNAME_ALREADY_TAKEN_MESSAGE = "Username is already taken!";
@@ -87,4 +88,13 @@ public class Constants {
     public static final String SUCCESS = "SUCCESS";
     public static final String MANAGE_PLACES_MESSAGE = "You can manage your place at My Places section";
     public static final String OK_TEXT = "OK";
+    public static final String NO_RENTED_PLACES_MESSAGE = "No results!\nCurrently you don't rent any place.";
+    public static final String NO_PROPERTIES_FOR_RENT_MESSAGE = "No results!\nCurrently you don't offer any properties for rent.";
+    public static final String RENT_IS_DUE_AT = "Rent is due on: ";
+    public static final String COMPACT_VIEW_STYLE = "Compact";
+    public static final String DETAILED_VIEW_STYLE = "Detailed";
+    public static final String COLOUR_RED_STRING = "#FF0000";
+    public static final String COLOUR_GREEN_STRING = "#51EB17";
+    public static final String PAID = "Paid";
+    public static final String NOT_PAID = "Not Paid";
 }

@@ -7,7 +7,7 @@ public class Property {
     private int landlordId;
     private double rentPrice;
     private String dueDate;
-    private boolean isRentPaid;
+    private boolean rentPaid;
     private String propertyAddress;
     private String propertyPicture;
     private String description;
@@ -16,12 +16,12 @@ public class Property {
 
     }
 
-    public Property(int tenantId, int landlordId, double rentPrice, String dueDate, boolean isRentPaid, String propertyAddress, String propertyPicture, String description) {
+    public Property(int tenantId, int landlordId, double rentPrice, String dueDate, boolean rentPaid, String propertyAddress, String propertyPicture, String description) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setRentPrice(rentPrice);
         setDueDate(dueDate);
-        setRentPaid(isRentPaid);
+        setRentPaid(rentPaid);
         setPropertyAddress(propertyAddress);
         setPropertyPicture(propertyPicture);
         setDescription(description);
@@ -48,7 +48,7 @@ public class Property {
     }
 
     public boolean getRentPaid() {
-        return isRentPaid;
+        return rentPaid;
     }
 
     public String getPropertyAddress() {
@@ -72,7 +72,7 @@ public class Property {
     }
 
     public void setRentPaid(boolean rentPaid) {
-        isRentPaid = rentPaid;
+        this.rentPaid = rentPaid;
     }
 
     public void setTenantId(int tenantId) {

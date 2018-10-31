@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/iv_property_picture"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/iv_property_picture"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_property_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:drawableEnd="@drawable/ic_location"
+            android:drawablePadding="4dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_property_rent_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:drawableEnd="@drawable/ic_money"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_property_rent_due_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:drawableEnd="@drawable/ic_date"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_is_rent_paid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:drawableEnd="@drawable/ic_check_purple"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAlignment="viewEnd"/>
+    </LinearLayout>
+
+</RelativeLayout>

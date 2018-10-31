@@ -1,5 +1,9 @@
 package com.wasp.landlordcommunication.views.properties;
 
+import com.wasp.landlordcommunication.models.Property;
+
+import java.util.List;
+
 public interface PropertiesContracts {
 
     interface View {
@@ -14,6 +18,11 @@ public interface PropertiesContracts {
 
         void showMessage(String message);
 
+        void showTextMessageOnScreen(String message);
+
+        void showCompactPropertiesView(List<Property> propertiesResult);
+
+        void showDetailedPropertiesView(List<Property> propertiesResult);
     }
 
     interface Presenter {
@@ -26,6 +35,9 @@ public interface PropertiesContracts {
 
         void setUserType(String userType);
 
+        void loadUserProperties(String preference);
+
+        void propertyIsSelected(Property selectedProperty);
     }
 
     interface Navigator {

@@ -152,7 +152,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
     }
 
     protected String getUserName() {
-        return mPreferences.getString(PREFERENCES_USER_NAME_KEY, "");
+        return mPreferences.getString(PREFERENCES_USER_NAME_KEY, Constants.EMPTY_STRING);
     }
 
     protected String getUserType() {
@@ -160,7 +160,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
     }
 
     protected String getUserDrawerName() {
-        return mPreferences.getString(PREFERENCES_USER_FULL_NAME_KEY, "");
+        return mPreferences.getString(PREFERENCES_USER_FULL_NAME_KEY, Constants.EMPTY_STRING);
     }
 
     private String getPropertyDrawerItemName() {
