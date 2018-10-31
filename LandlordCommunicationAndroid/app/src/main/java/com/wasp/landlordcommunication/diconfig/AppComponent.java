@@ -10,6 +10,7 @@ import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsListModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsPropertiesListModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LoginModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.PaymentsModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.PropertiesModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.SignUpModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.ViewsModule;
 
@@ -38,6 +39,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         LandlordsListModule.class,
         LandlordsPropertiesListModule.class,
         LandlordPropertyDetailsModule.class,
+        PropertiesModule.class,
         PaymentsModule.class,
         CameraModule.class
 
