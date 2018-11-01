@@ -3,12 +3,16 @@ package com.wasp.landlordcommunication.views.home;
 import android.graphics.Bitmap;
 
 import com.wasp.landlordcommunication.async.base.SchedulerProvider;
+import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.services.base.PropertiesService;
 import com.wasp.landlordcommunication.services.base.RatingsService;
 import com.wasp.landlordcommunication.services.base.UsersService;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -22,15 +26,18 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
     private final UsersService mUsersService;
     private final RatingsService mRatingsService;
     private final SchedulerProvider mSchedulerProvider;
+    private final PropertiesService mPropertiesService;
     private final ImageEncoder mImageEncoder;
     private HomeActivityContracts.View mView;
     private String mUserName;
     private int mUserId;
+    private String mUserType;
 
     @Inject
-    public HomeActivityPresenter(UsersService usersService, RatingsService ratingsService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder) {
+    public HomeActivityPresenter(UsersService usersService, RatingsService ratingsService, PropertiesService propertiesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder) {
         mUsersService = usersService;
         mRatingsService = ratingsService;
+        mPropertiesService = propertiesService;
         mSchedulerProvider = schedulerProvider;
         mImageEncoder = imageEncoder;
     }
@@ -108,7 +115,7 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
                                 if (Objects.equals(userResult.getUserPicture(), null)) {
                                     mView.showMessage(Constants.IMAGE_CHANGE_ERROR_MESSAGE);
                                 } else {
-                                    decodeImageAndPresentToView(userResult.getUserPicture(),Constants.IMAGE_CHANGE_ERROR_MESSAGE);
+                                    decodeImageAndPresentToView(userResult.getUserPicture(), Constants.IMAGE_CHANGE_ERROR_MESSAGE);
                                 }
                             },
                             error -> mView.showError(error));
@@ -126,6 +133,12 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
         } else {
             mView.showUserImage(decodedUserPicture);
         }
+    }
+
+    @Override
+    public void setUserType(String userType) {
+
+        mUserType = userType;
     }
 
     @Override
@@ -153,7 +166,7 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
                 .doFinally(mView::hideProgressBar)
                 .subscribe(userResult -> {
                             if (!Objects.equals(userResult.getUserPicture(), null)) {
-                                decodeImageAndPresentToView(userResult.getUserPicture(),Constants.ERROR_LOADING_USER_IMAGE);
+                                decodeImageAndPresentToView(userResult.getUserPicture(), Constants.ERROR_LOADING_USER_IMAGE);
                             }
                             String fullName = userResult.getFirstName() + " " + userResult.getLastName();
                             mView.showUserName(fullName);
@@ -175,5 +188,51 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
                 .doFinally(mView::hideProgressBar)
                 .subscribe(userRatingResult -> mView.showUserRating(userRatingResult),
                         error -> mView.showError(error));
+    }
+
+    @Override
+    public void updatePropertiesPaidStatus() {
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<List<Property>>) emitter -> {
+                    List<Property> properties = mPropertiesService.getUsersPropertiesByIdAndType(mUserId, mUserType);
+                    emitter.onNext(properties);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .subscribe(this::checkIfPaidStatusShouldBeUpdated,
+                        error -> mView.showError(error));
+
+    }
+
+    private void checkIfPaidStatusShouldBeUpdated(List<Property> propertiesResult) {
+        Calendar now = Calendar.getInstance();
+        int currentDay = now.get(Calendar.DAY_OF_MONTH);
+
+        for (Property property : propertiesResult) {
+            if (property.getRentPaid()) {
+                if (currentDay > property.getDueDate()) {
+                    setPaidStatusFalseForProperty(property);
+                }
+            }
+        }
+    }
+
+    private void setPaidStatusFalseForProperty(Property propertyToUpdate) {
+        propertyToUpdate.setRentPaid(false);
+
+        //setting property picture to null in order to transfer little data to speed up process, picture is not deleted in the database
+        propertyToUpdate.setPropertyPicture(null);
+
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<Property>) emitter -> {
+                    Property property = mPropertiesService.updateProperty(propertyToUpdate, propertyToUpdate.getPropertyId());
+                    emitter.onNext(property);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .subscribe(property -> {
+                }, error -> mView.showError(error));
     }
 }

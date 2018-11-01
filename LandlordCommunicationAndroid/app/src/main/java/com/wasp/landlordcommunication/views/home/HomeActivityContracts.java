@@ -56,5 +56,9 @@ public interface HomeActivityContracts {
         void errorOccurredOnChangingPicture();
 
         void decodeImageAndPresentToView(String userPicture, String errorMessage);
+
+        void updatePropertiesPaidStatus();
+
+        void setUserType(String userType);
     }
 }

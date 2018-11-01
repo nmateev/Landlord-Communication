@@ -87,6 +87,7 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
         super.onResume();
         mPresenter.subscribe(this);
         mPresenter.loadUserInformation();
+        mPresenter.updatePropertiesPaidStatus();
     }
 
     @Override

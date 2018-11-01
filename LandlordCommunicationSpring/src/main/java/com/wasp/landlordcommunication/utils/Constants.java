@@ -90,5 +90,7 @@ public class Constants {
 
 
     public static final int PROPERTY_DESCRIPTION_MAX_LENGTH = 500;
+    public static final int MIN_DAY_VALUE = 1;
+    public static final int MAX_DAY_VALUE = 31;
 }
 

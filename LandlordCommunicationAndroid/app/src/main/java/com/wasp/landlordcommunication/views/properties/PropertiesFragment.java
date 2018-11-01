@@ -174,6 +174,7 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
     @Override
     public void onClick(Property property) {
         mPresenter.propertyIsSelected(property);
+
     }
 
     @OnItemClick(R.id.lv_properties_list_view)

@@ -43,6 +43,7 @@ public class HomeActivity extends BaseDrawerActivity {
         }
         mHomeActivityPresenter.setUserId(getUserId());
         mHomeActivityPresenter.setUserName(getUserName());
+        mHomeActivityPresenter.setUserType(getUserType());
 
         mHomeFragment.setPresenter(mHomeActivityPresenter);
 

@@ -102,6 +102,7 @@ public class PropertiesPresenter implements PropertiesContracts.Presenter {
         }
     }
 
+
     private void presentPropertiesToViewAccordingToPreference(List<Property> propertiesResult, String preference) {
 
         //if there is no preference chosen already or the preference is compact view

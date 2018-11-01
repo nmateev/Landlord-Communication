@@ -29,7 +29,7 @@ public class Property {
 
     @NotNull
     @Column(name = Constants.PROPERTIES_DUE_DATE_COLUMN_NAME)
-    private String dueDate;
+    private int dueDate;
 
     @NotNull
     @Column(name = Constants.PROPERTIES_IS_RENT_PAID_COLUMN_NAME)
@@ -53,7 +53,7 @@ public class Property {
 
     }
 
-    public Property(int tenantId, int landlordId, double rentPrice, String dueDate, boolean rentPaid, String propertyAddress, String propertyPicture, String description) {
+    public Property(int tenantId, int landlordId, double rentPrice, int dueDate, boolean rentPaid, String propertyAddress, String propertyPicture, String description) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setRentPrice(rentPrice);
@@ -80,7 +80,7 @@ public class Property {
         return rentPrice;
     }
 
-    public String getDueDate() {
+    public int getDueDate() {
         return dueDate;
     }
 
@@ -128,7 +128,7 @@ public class Property {
         this.propertyPicture = propertyPicture;
     }
 
-    private void setDueDate(String dueDate) {
+    private void setDueDate(int dueDate) {
         this.dueDate = dueDate;
     }
 
