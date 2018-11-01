@@ -21,8 +21,8 @@ import dagger.Provides;
 @Module
 public class ServicesModule {
     @Provides
-    public UsersService usersService(Repository<User> usersRepository, CacheRepository<User> cacheRepository) {
-        return new HttpUsersService(usersRepository, cacheRepository);
+    public UsersService usersService(Repository<User> usersRepository, CacheRepository<User> usersCacheRepository) {
+        return new HttpUsersService(usersRepository, usersCacheRepository);
     }
 
     @Provides
@@ -36,7 +36,7 @@ public class ServicesModule {
     }
 
     @Provides
-    public PropertiesService propertiesService(Repository<Property> propertiesRepository) {
-        return new HttpPropertiesService(propertiesRepository);
+    public PropertiesService propertiesService(Repository<Property> propertiesRepository, CacheRepository<Property> propertiesCacheRepository) {
+        return new HttpPropertiesService(propertiesRepository, propertiesCacheRepository);
     }
 }

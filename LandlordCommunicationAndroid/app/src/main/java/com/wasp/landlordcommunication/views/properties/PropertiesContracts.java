@@ -23,6 +23,8 @@ public interface PropertiesContracts {
         void showCompactPropertiesView(List<Property> propertiesResult);
 
         void showDetailedPropertiesView(List<Property> propertiesResult);
+
+        void showPropertyManagementOptions(int propertyId);
     }
 
     interface Presenter {
@@ -38,9 +40,12 @@ public interface PropertiesContracts {
         void loadUserProperties(String preference);
 
         void propertyIsSelected(Property selectedProperty);
+
+        void filterPropertiesWithOption(String preference, String selectedOption);
     }
 
     interface Navigator {
 
+        void navigateToPropertyManagementOptions(int propertyId);
     }
 }

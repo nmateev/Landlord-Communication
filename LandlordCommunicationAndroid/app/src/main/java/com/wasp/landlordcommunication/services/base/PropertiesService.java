@@ -12,4 +12,12 @@ public interface PropertiesService {
     Property getPropertyById(int propertyId) throws IOException;
 
     Property updateProperty(Property property, int propertyId) throws IOException;
+
+    List<Property> getPropertiesByIdAndTypeOnlyPaidStatus(int userId, String userType);
+
+    List<Property> getPropertiesByIdAndTypeOnlyNotPaidStatus(int userId, String userType);
+
+    List<Property> getPropertiesByIdAndTypeSortAscending(int userId, String userType);
+
+    List<Property> getPropertiesByIdAndTypeSortDescending(int userId, String userType);
 }

@@ -1,9 +1,12 @@
 package com.wasp.landlordcommunication.views.properties;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.wasp.landlordcommunication.R;
+import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
+import com.wasp.landlordcommunication.views.propertymanagement.PropertyManagementActivity;
 
 import javax.inject.Inject;
 
@@ -41,4 +44,11 @@ public class PropertiesActivity extends BaseDrawerActivity implements Properties
         return DRAWER_IDENTIFIER;
     }
 
+    @Override
+    public void navigateToPropertyManagementOptions(int propertyId) {
+
+        Intent intent = new Intent(this, PropertyManagementActivity.class);
+        intent.putExtra(Constants.PROPERTY_ID_EXTRA, propertyId);
+        startActivity(intent);
+    }
 }

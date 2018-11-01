@@ -5,34 +5,34 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.florent37.materialtextfield.MaterialTextField;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.utils.Constants;
 
+import org.angmarch.views.NiceSpinner;
+
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.OnItemClick;
 
 
-public class PropertiesFragment extends Fragment implements PropertiesContracts.View, PropertiesAdapter.OnPropertyItemClickListener {
+public class PropertiesFragment extends Fragment implements PropertiesContracts.View, PropertiesAdapter.OnPropertyItemClickListener, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.tv_no_properties)
     TextView mNoPropertiesTextView;
@@ -41,10 +41,7 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
     ProgressBar mProgressBarView;
 
     @BindView(R.id.sp_search_options)
-    Spinner mSearchOptionsSpinner;
-
-    @BindView(R.id.met_search_properties)
-    MaterialTextField mSearchBarEditText;
+    NiceSpinner mFilterOptionsSpinner;
 
     @BindView(R.id.lv_properties_list_view)
     ListView mPropertiesListView;
@@ -58,10 +55,12 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
     @Inject
     PropertiesAdapter mPropertiesAdapter;
 
+    private String[] mFilterOptions;
+    private String mSelectedFilterOption;
+    private SharedPreferences mPreferences;
     private PropertiesContracts.Navigator mNavigator;
     private PropertiesContracts.Presenter mPresenter;
     private LinearLayoutManager mPropertiesGridLayoutManager;
-    private SharedPreferences mPreferences;
 
 
     @Inject
@@ -83,7 +82,11 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
         mPropertiesGridLayoutManager = new LinearLayoutManager(getContext());
         mPropertiesRecyclerView.setLayoutManager(mPropertiesGridLayoutManager);
         mPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-       
+
+        mFilterOptions = getResources().getStringArray(R.array.filter_options);
+        mFilterOptionsSpinner.attachDataSource(Arrays.asList(mFilterOptions));
+        mSelectedFilterOption = mFilterOptions[0];
+        mFilterOptionsSpinner.setOnItemSelectedListener(this);
         return view;
     }
 
@@ -140,9 +143,7 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
     @Override
     public void showCompactPropertiesView(List<Property> propertiesResult) {
         mNoPropertiesTextView.setVisibility(View.GONE);
-        mSearchBarEditText.setVisibility(View.VISIBLE);
-        mSearchBarEditText.setHasFocus(true);
-        mSearchOptionsSpinner.setVisibility(View.VISIBLE);
+        mFilterOptionsSpinner.setVisibility(View.VISIBLE);
         mPropertiesListView.setVisibility(View.VISIBLE);
 
         mPropertiesArrayAdapter.clear();
@@ -153,14 +154,17 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
     @Override
     public void showDetailedPropertiesView(List<Property> propertiesResult) {
         mNoPropertiesTextView.setVisibility(View.GONE);
-        mSearchBarEditText.setVisibility(View.VISIBLE);
-        mSearchBarEditText.setHasFocus(true);
-        mSearchOptionsSpinner.setVisibility(View.VISIBLE);
+        mFilterOptionsSpinner.setVisibility(View.VISIBLE);
         mPropertiesRecyclerView.setVisibility(View.VISIBLE);
 
         mPropertiesAdapter.clear();
         mPropertiesAdapter.addAll(propertiesResult);
         mPropertiesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showPropertyManagementOptions(int propertyId) {
+        mNavigator.navigateToPropertyManagementOptions(propertyId);
     }
 
     public void setNavigator(PropertiesContracts.Navigator navigator) {
@@ -176,5 +180,18 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
     public void onListViewClick(int position) {
         Property property = mPropertiesArrayAdapter.getItem(position);
         mPresenter.propertyIsSelected(property);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        mSelectedFilterOption = mFilterOptions[position];
+        String preference = mPreferences.getString(Constants.PREFERENCES_PROPERTY_LISTING_TYPE_KEY, Constants.EMPTY_STRING);
+
+        mPresenter.filterPropertiesWithOption(preference, mSelectedFilterOption);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        mSelectedFilterOption = mFilterOptions[0];
     }
 }

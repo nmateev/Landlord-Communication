@@ -9,21 +9,21 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class UsersCacheRepository implements CacheRepository<User> {
-    private final List<User> userList;
+    private final List<User> mUserList;
 
     @Inject
     public UsersCacheRepository() {
-        userList = new ArrayList<>();
+        mUserList = new ArrayList<>();
     }
 
     @Override
     public void cacheData(List<User> items) {
-        userList.clear();
-        userList.addAll(items);
+        mUserList.clear();
+        mUserList.addAll(items);
     }
 
     @Override
     public List<User> getCachedData() {
-        return userList;
+        return mUserList;
     }
 }

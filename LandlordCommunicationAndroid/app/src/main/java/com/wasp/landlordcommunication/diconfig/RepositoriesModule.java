@@ -7,6 +7,7 @@ import com.wasp.landlordcommunication.models.Rating;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
 import com.wasp.landlordcommunication.repositories.HttpRepository;
+import com.wasp.landlordcommunication.repositories.PropertiesCacheRepository;
 import com.wasp.landlordcommunication.repositories.UsersCacheRepository;
 import com.wasp.landlordcommunication.repositories.base.CacheRepository;
 import com.wasp.landlordcommunication.repositories.base.Repository;
@@ -64,6 +65,13 @@ public class RepositoriesModule {
                 Constants.PAYMENTS_GET_BY_ID_URL_SUFFIX,
                 httpRequester,
                 jsonParser);
+    }
+
+
+    @Provides
+    @Singleton
+    public CacheRepository<Property> propertiesCacheRepository() {
+        return new PropertiesCacheRepository();
     }
 
     @Provides

@@ -97,4 +97,11 @@ public class Constants {
     public static final String COLOUR_GREEN_STRING = "#51EB17";
     public static final String PAID = "Paid";
     public static final String NOT_PAID = "Not Paid";
+
+
+    public static final String FILTER_OPTION_ALL = "All";
+    public static final String FILTER_OPTION_PAID = "Only paid";
+    public static final String FILTER_OPTION_NOT_PAID = "Only not paid";
+    public static final String FILTER_OPTION_ASCENDING_PRICE = "Price ascending";
+    public static final String FILTER_OPTION_DESCENDING_PRICE = "Price descending";
 }
