@@ -35,7 +35,7 @@ import static com.wasp.landlordcommunication.utils.Constants.THREE_STAR_RATING_T
 import static com.wasp.landlordcommunication.utils.Constants.TWO_STAR_RATING_TEXT;
 
 
-public class PropertyManagementFragment extends Fragment implements PropertyManagementContracts.View, RatingDialogListener {
+public class PropertyManagementFragment extends Fragment implements PropertyManagementContracts.View, RatingDialogListener, View.OnClickListener {
 
 
     @BindView(R.id.prb_loading_view)
@@ -85,6 +85,10 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
 
         View view = inflater.inflate(R.layout.fragment_property_management, container, false);
         ButterKnife.bind(this, view);
+
+        mChatWithUserButton.setOnClickListener(this);
+        mRateUserButton.setOnClickListener(this);
+        mPayRentButton.setOnClickListener(this);
 
         return view;
     }
@@ -198,20 +202,14 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         mNavigator.navigateToChatWithUsers(userId, otherUserId);
     }
 
+    @Override
+    public void showPaymentInputOption() {
+
+    }
+
     public void setNavigator(PropertyManagementContracts.Navigator navigator) {
         mNavigator = navigator;
     }
-
-    @OnClick(R.id.btn_rate)
-    public void onClick() {
-        mPresenter.rateButtonIsClicked();
-    }
-
-    @OnClick(R.id.btn_message)
-    public void onClick(View view) {
-        mPresenter.messageButtonIsClicked();
-    }
-
 
     @Override
     public void onNegativeButtonClicked() {
@@ -226,5 +224,22 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
     @Override
     public void onPositiveButtonClicked(int ratingValue, String s) {
         mPresenter.userIsRated(ratingValue);
+    }
+
+    @Override
+    public void onClick(View buttonView) {
+        switch (buttonView.getId()) {
+            case R.id.btn_message:
+                mPresenter.messageButtonIsClicked();
+                break;
+            case R.id.btn_rate:
+                mPresenter.rateButtonIsClicked();
+                break;
+            case R.id.btn_pay_rent:
+                mPresenter.payRentButtonIsClicked();
+                break;
+            default:
+                break;
+        }
     }
 }
