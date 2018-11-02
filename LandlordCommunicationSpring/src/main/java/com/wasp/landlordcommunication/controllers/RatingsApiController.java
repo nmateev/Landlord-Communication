@@ -32,7 +32,7 @@ public class RatingsApiController {
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
-    public boolean isAlreadyRated(@RequestBody RatingDTO ratingDTO) {
+    public Rating isAlreadyRated(@RequestBody RatingDTO ratingDTO) {
         return ratingsService.isAlreadyRated(ratingDTO);
     }
 }

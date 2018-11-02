@@ -31,4 +31,16 @@ public class HttpRatingsService implements RatingsService {
         }
         return rating / size;
     }
+
+    @Override
+    public Rating checkIfUserAlreadyRatedByVoter(Rating rating) throws IOException {
+
+        return mRatingsRepository.post(rating);
+
+    }
+
+    @Override
+    public Rating submitRating(Rating newRating) throws IOException {
+        return mRatingsRepository.add(newRating);
+    }
 }

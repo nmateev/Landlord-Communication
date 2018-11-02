@@ -30,7 +30,7 @@ public class RatingsServiceImpl implements RatingsService {
     }
 
     @Override
-    public boolean isAlreadyRated(RatingDTO ratingDTO) {
+    public Rating isAlreadyRated(RatingDTO ratingDTO) {
         return ratingsRepository.isAlreadyRated(ratingDTO);
     }
 }

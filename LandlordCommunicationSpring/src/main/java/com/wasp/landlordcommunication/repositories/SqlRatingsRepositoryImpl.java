@@ -65,7 +65,7 @@ public class SqlRatingsRepositoryImpl implements RatingsRepository {
     }
 
     @Override
-    public boolean isAlreadyRated(RatingDTO ratingDTO) {
+    public Rating isAlreadyRated(RatingDTO ratingDTO) {
         Rating rating = null;
 
 
@@ -85,10 +85,6 @@ public class SqlRatingsRepositoryImpl implements RatingsRepository {
 
             System.out.println(e.getMessage());
         }
-
-        if (Objects.equals(rating, null)) {
-            return false;
-        }
-        return true;
+        return rating;
     }
 }

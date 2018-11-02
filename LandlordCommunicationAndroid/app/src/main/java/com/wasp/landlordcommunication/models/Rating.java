@@ -11,8 +11,13 @@ public class Rating {
 
     }
 
-    public Rating( int votedForId, double rating) {
+    public Rating(int voterId, int votedForId) {
+        setVoterId(voterId);
         setVotedForId(votedForId);
+    }
+
+    public Rating(int voterId, int votedForId, double rating) {
+        this(voterId, votedForId);
         setRating(rating);
     }
 

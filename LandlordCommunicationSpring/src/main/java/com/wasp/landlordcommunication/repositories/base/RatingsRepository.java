@@ -11,5 +11,5 @@ public interface RatingsRepository {
 
     List<Rating> getRatingsByUserId(int id);
 
-    boolean isAlreadyRated(RatingDTO ratingDTO);
+    Rating isAlreadyRated(RatingDTO ratingDTO);
 }

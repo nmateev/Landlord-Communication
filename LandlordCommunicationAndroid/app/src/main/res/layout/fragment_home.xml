@@ -96,7 +96,6 @@
             app:fab_icon="@drawable/ic_camera"
             app:fab_size="mini" />
 
-
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 
