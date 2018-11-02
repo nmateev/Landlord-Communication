@@ -21,12 +21,10 @@ import butterknife.ButterKnife;
 
 public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.PaymentViewHolder> {
     private static final int HEIGHT_DIVIDER = 5;
-    private final DateFormatter mDateFormatter;
     private List<Payment> mPayments;
 
     @Inject
-    public PaymentsAdapter(DateFormatter dateFormatter) {
-        mDateFormatter = dateFormatter;
+    public PaymentsAdapter() {
         mPayments = new ArrayList<>();
 
     }
@@ -92,10 +90,8 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.Paymen
         }
 
         private void bind(Payment payment) {
-            String paymentDateAndTime = mDateFormatter.formatDateToString(payment.getDatePaid());
-
             mPaymentForPropertyAddressTextView.setText(payment.getProperty().getPropertyAddress());
-            mPaymentDateTextView.setText(paymentDateAndTime);
+            mPaymentDateTextView.setText(payment.getDatePaid());
             mPaymentAmountTextView.setText(String.valueOf(payment.getPaymentAmount()));
             mCardNumberTextView.setText(payment.getCardNumber());
         }

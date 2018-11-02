@@ -2,6 +2,7 @@ package com.wasp.landlordcommunication.diconfig.viewsmodules;
 
 import com.wasp.landlordcommunication.diconfig.ActivityScoped;
 import com.wasp.landlordcommunication.diconfig.FragmentScoped;
+import com.wasp.landlordcommunication.utils.DateFormatter;
 import com.wasp.landlordcommunication.views.propertymanagement.PropertyManagementContracts;
 import com.wasp.landlordcommunication.views.propertymanagement.PropertyManagementFragment;
 import com.wasp.landlordcommunication.views.propertymanagement.PropertyManagementPresenter;
@@ -20,4 +21,6 @@ public abstract class PropertyManagementModule {
     @ActivityScoped
     @Binds
     abstract PropertyManagementContracts.Presenter propertyManagementPresenter(PropertyManagementPresenter propertyManagementPresenter);
+
+
 }

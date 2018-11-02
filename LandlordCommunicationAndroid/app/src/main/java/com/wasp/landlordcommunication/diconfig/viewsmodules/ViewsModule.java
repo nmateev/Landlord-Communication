@@ -21,8 +21,8 @@ import dagger.Provides;
 public class ViewsModule {
 
     @Provides
-    public RecyclerView.Adapter<PaymentsAdapter.PaymentViewHolder> paymentsAdapter(DateFormatter dateFormatter) {
-        return new PaymentsAdapter(dateFormatter);
+    public RecyclerView.Adapter<PaymentsAdapter.PaymentViewHolder> paymentsAdapter() {
+        return new PaymentsAdapter();
     }
 
     @Provides

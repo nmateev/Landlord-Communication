@@ -9,7 +9,7 @@ public class Payment {
     private int landlordId;
     private int propertyId;
     private double paymentAmount;
-    private Date datePaid;
+    private String datePaid;
     private String cardNumber;
     private Property property;
 
@@ -17,14 +17,17 @@ public class Payment {
 
     }
 
-    public Payment(int paymentId, int tenantId, int landlordId, int propertyId, double paymentAmount, Date datePaid, String cardNumber, Property property) {
-        setPaymentId(paymentId);
+    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, String datePaid, String cardNumber) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setPropertyId(propertyId);
         setPaymentAmount(paymentAmount);
         setDatePaid(datePaid);
         setCardNumber(cardNumber);
+    }
+
+    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, String datePaid, String cardNumber, Property property) {
+        this(tenantId, landlordId, propertyId, paymentAmount, datePaid, cardNumber);
         setProperty(property);
     }
 
@@ -48,7 +51,7 @@ public class Payment {
         return paymentAmount;
     }
 
-    public Date getDatePaid() {
+    public String getDatePaid() {
         return datePaid;
     }
 
@@ -76,7 +79,7 @@ public class Payment {
         this.paymentAmount = paymentAmount;
     }
 
-    private void setDatePaid(Date datePaid) {
+    private void setDatePaid(String datePaid) {
         this.datePaid = datePaid;
     }
 

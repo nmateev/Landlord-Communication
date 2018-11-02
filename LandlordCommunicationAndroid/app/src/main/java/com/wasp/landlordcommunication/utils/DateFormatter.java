@@ -11,9 +11,8 @@ public class DateFormatter implements com.wasp.landlordcommunication.utils.base.
     private SimpleDateFormat mDateFormatter;
 
     @Inject
-    public DateFormatter(String dateRepresentation, String timeZone) {
+    public DateFormatter(String dateRepresentation) {
         mDateFormatter = new SimpleDateFormat(dateRepresentation, Locale.UK);
-        mDateFormatter.setTimeZone(TimeZone.getTimeZone(timeZone));
     }
 
     @Override

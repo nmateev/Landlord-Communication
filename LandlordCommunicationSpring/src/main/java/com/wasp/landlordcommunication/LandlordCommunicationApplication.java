@@ -9,6 +9,6 @@ public class LandlordCommunicationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LandlordCommunicationApplication.class, args);
-    }
 
+    }
 }

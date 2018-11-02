@@ -2,8 +2,8 @@ package com.wasp.landlordcommunication.utils;
 
 public class Constants {
 
-    //public static final String BASE_SERVER_URL = "http://192.168.1.77:9999/api/";
-    public static final String BASE_SERVER_URL = "http://10.178.154.95:9999/api/";
+    public static final String BASE_SERVER_URL = "http://192.168.1.77:9999/api/";
+    // public static final String BASE_SERVER_URL = "http://10.178.154.95:9999/api/";
     public static final String SLASH_STRING_VALUE = "/";
     public static final String USERS_URL_SUFFIX = "users";
     public static final String USERS_LOGIN_URL_SUFFIX = "/login";
@@ -124,4 +124,11 @@ public class Constants {
     public static final String UNEXPECTED_ERROR = "Something went wrong. Please try again!";
     public static final String LOGGED_IN_USER_ID_EXTRA = "loggedUser";
     public static final String CONTACTED_USER_ID_EXTRA = "contactedUser";
+    public static final String MONTH_VALIDATION_ERROR = "Month value must be between 1 and 12";
+    public static final String CARD_EXPIRATION_YEAR_ERROR_MESSAGE = "You card is expired";
+    public static final String CARD_NUMBER_ERROR_MESSAGE = "Card number must be a 16 digit sequence found on the front of your credit card!";
+    public static final String CARD_CVV_NUMBER_ERROR_MESSAGE = "Cvv number must be a 3 digit code found on the back of your credit card!";
+    public static final String ALL_FIELDS_MUST_BE_FILLED_IN = "You must fill in al fields!";
+    public static final String SUCCESSFUL_PAYMENT_MESSAGE = "You have successfully paid your rent for this month!";
+    public static final String ALREADY_PAID_RENT_MESSAGE = "You have already paid your rent for this month!";
 }

@@ -237,8 +237,8 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
 
     @Override
     public void showPaymentInputOption() {
-        mFillCreditCardInformationTextView.setVisibility(View.VISIBLE);
         mFirstNameEditText.setVisibility(View.VISIBLE);
+        mFillCreditCardInformationTextView.setVisibility(View.VISIBLE);
         mLastNameEditText.setVisibility(View.VISIBLE);
         mValidThruTextView.setVisibility(View.VISIBLE);
         mValidThruMonthEditText.setVisibility(View.VISIBLE);
@@ -246,9 +246,8 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         mCardNumberEditText.setVisibility(View.VISIBLE);
         mCardCvvEditText.setVisibility(View.VISIBLE);
         mFinishPaymentButton.setVisibility(View.VISIBLE);
-        
-        mPropertyManagementScrollView.post(() -> mPropertyManagementScrollView.fullScroll(View.FOCUS_DOWN));
 
+        mPropertyManagementScrollView.post(() -> mPropertyManagementScrollView.fullScroll(View.FOCUS_DOWN));
     }
 
     public void setNavigator(PropertyManagementContracts.Navigator navigator) {

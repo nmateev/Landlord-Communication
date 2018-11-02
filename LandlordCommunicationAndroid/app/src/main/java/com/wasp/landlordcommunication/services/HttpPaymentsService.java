@@ -22,4 +22,9 @@ public class HttpPaymentsService implements PaymentsService {
         String parameter = userType.toLowerCase() + Constants.SLASH_STRING_VALUE + String.valueOf(id);
         return mPaymentsRepository.getAllByParameter(parameter);
     }
+
+    @Override
+    public Payment makeTransaction(Payment payment) throws IOException {
+        return mPaymentsRepository.add(payment);
+    }
 }

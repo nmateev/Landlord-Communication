@@ -36,7 +36,7 @@ public class Payment {
 
     @NotNull
     @Column(name = Constants.PAYMENTS_DATE_PAID_COLUMN)
-    private Date datePaid;
+    private String datePaid;
 
     @NotNull
     @Size(min = Constants.CARD_NUMBER_VALIDATION_MIN_VALUE, max = Constants.CARD_NUMBER_VALIDATION_MAX_VALUE)
@@ -53,7 +53,7 @@ public class Payment {
 
     }
 
-    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, Date datePaid, String cardNumber) {
+    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, String datePaid, String cardNumber) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setPropertyId(propertyId);
@@ -83,7 +83,7 @@ public class Payment {
         return paymentAmount;
     }
 
-    public Date getDatePaid() {
+    public String getDatePaid() {
         return datePaid;
     }
 
@@ -115,7 +115,7 @@ public class Payment {
         this.paymentAmount = paymentAmount;
     }
 
-    private void setDatePaid(Date datePaid) {
+    private void setDatePaid(String datePaid) {
         this.datePaid = datePaid;
     }
 
