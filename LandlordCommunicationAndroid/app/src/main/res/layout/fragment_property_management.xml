@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.propertymanagement.PropertyManagementFragment">
 
     <ScrollView
+        android:id="@+id/sv_property_management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbarFadeDuration="450"
@@ -134,59 +136,150 @@
                 android:text="@string/pay_rent"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/tv_fill_credit_card_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_pay_rent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/small_margin"
+                android:fontFamily="cursive"
+                android:text="@string/please_fill_in_your_credit_card_information"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
             <EditText
                 android:id="@+id/et_first_name_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/tv_fill_credit_card_information"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                android:paddingStart="5dp"
                 android:singleLine="true"
-                android:layout_below="@+id/btn_pay_rent"
-                android:layout_marginTop="30dp"
-                android:inputType="text" />
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_valid_thru_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_first_name_card"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_toStartOf="@+id/et_valid_thru_month"
+                android:fontFamily="cursive"
+                android:text="@string/valid_thru"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/et_last_name_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/tv_fill_credit_card_information"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:paddingStart="5dp"
                 android:singleLine="true"
-                android:layout_below="@+id/et_first_name_card"
-                android:layout_marginTop="10dp"
-                android:inputType="text" />
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/et_valid_thru_month"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/et_last_name_card"
-                android:singleLine="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:inputType="number" />
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/et_valid_thru_year"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/month"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
+
             <EditText
                 android:id="@+id/et_valid_thru_year"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:layout_width="70dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/et_last_name_card"
-                android:layout_toEndOf="@+id/et_valid_thru_month"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
-                android:inputType="number" />
+                android:layout_marginEnd="@dimen/small_margin"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/year"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/et_card_number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:layout_height="45dp"
                 android:layout_below="@+id/et_valid_thru_month"
+                android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="10dp"
-                android:inputType="number" />
+                android:layout_marginEnd="@dimen/small_margin"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/card_number"
+                android:inputType="number"
+                android:paddingStart="5dp"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/et_card_cvv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:layout_width="70dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/et_card_number"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
-                android:inputType="number" />
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/cvv"
+                android:inputType="number"
+                android:paddingStart="5dp"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_finish_payment"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_card_cvv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:background="@drawable/rounded_button"
+                android:text="@string/pay"
+                android:textColor="@color/colorWhite"
+                android:visibility="gone" />
 
         </RelativeLayout>
     </ScrollView>

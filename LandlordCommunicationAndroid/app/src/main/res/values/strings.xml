@@ -41,4 +41,13 @@
     <string name="rate">RATE</string>
     <string name="or">OR</string>
     <string name="pay_rent">PAY RENT</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="please_fill_in_your_credit_card_information">Please fill in your credit card information</string>
+    <string name="valid_thru">Valid thru</string>
+    <string name="month">MM</string>
+    <string name="year">YY</string>
+    <string name="card_number">Card Number</string>
+    <string name="cvv">CVV</string>
+    <string name="pay">PAY</string>
 </resources>

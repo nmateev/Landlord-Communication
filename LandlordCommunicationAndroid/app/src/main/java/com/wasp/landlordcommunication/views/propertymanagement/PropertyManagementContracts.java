@@ -56,6 +56,8 @@ public interface PropertyManagementContracts {
         void messageButtonIsClicked();
 
         void payRentButtonIsClicked();
+
+        void finishPaymentButtonIsClicked(String firstName, String lastName, String validThruMonth, String validThruYear, String cardNumber, String cardCvvNumber);
     }
 
     interface Navigator {

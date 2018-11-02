@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +37,7 @@ import static com.wasp.landlordcommunication.utils.Constants.THREE_STAR_RATING_T
 import static com.wasp.landlordcommunication.utils.Constants.TWO_STAR_RATING_TEXT;
 
 
-public class PropertyManagementFragment extends Fragment implements PropertyManagementContracts.View, RatingDialogListener, View.OnClickListener {
+public class PropertyManagementFragment extends Fragment implements PropertyManagementContracts.View, RatingDialogListener {
 
 
     @BindView(R.id.prb_loading_view)
@@ -69,6 +71,37 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
     Button mPayRentButton;
 
 
+    @BindView(R.id.tv_fill_credit_card_information)
+    TextView mFillCreditCardInformationTextView;
+
+    @BindView(R.id.et_first_name_card)
+    EditText mFirstNameEditText;
+
+    @BindView(R.id.et_last_name_card)
+    EditText mLastNameEditText;
+
+    @BindView(R.id.tv_valid_thru_message)
+    TextView mValidThruTextView;
+
+    @BindView(R.id.et_valid_thru_month)
+    EditText mValidThruMonthEditText;
+
+    @BindView(R.id.et_valid_thru_year)
+    EditText mValidThruYearEditText;
+
+    @BindView(R.id.et_card_number)
+    EditText mCardNumberEditText;
+
+    @BindView(R.id.et_card_cvv)
+    EditText mCardCvvEditText;
+
+    @BindView(R.id.btn_finish_payment)
+    Button mFinishPaymentButton;
+
+    @BindView(R.id.sv_property_management)
+    ScrollView mPropertyManagementScrollView;
+
+
     private PropertyManagementContracts.Navigator mNavigator;
     private PropertyManagementContracts.Presenter mPresenter;
 
@@ -86,9 +119,9 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         View view = inflater.inflate(R.layout.fragment_property_management, container, false);
         ButterKnife.bind(this, view);
 
-        mChatWithUserButton.setOnClickListener(this);
+     /*   mChatWithUserButton.setOnClickListener(this);
         mRateUserButton.setOnClickListener(this);
-        mPayRentButton.setOnClickListener(this);
+        mPayRentButton.setOnClickListener(this);*/
 
         return view;
     }
@@ -204,6 +237,17 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
 
     @Override
     public void showPaymentInputOption() {
+        mFillCreditCardInformationTextView.setVisibility(View.VISIBLE);
+        mFirstNameEditText.setVisibility(View.VISIBLE);
+        mLastNameEditText.setVisibility(View.VISIBLE);
+        mValidThruTextView.setVisibility(View.VISIBLE);
+        mValidThruMonthEditText.setVisibility(View.VISIBLE);
+        mValidThruYearEditText.setVisibility(View.VISIBLE);
+        mCardNumberEditText.setVisibility(View.VISIBLE);
+        mCardCvvEditText.setVisibility(View.VISIBLE);
+        mFinishPaymentButton.setVisibility(View.VISIBLE);
+        
+        mPropertyManagementScrollView.post(() -> mPropertyManagementScrollView.fullScroll(View.FOCUS_DOWN));
 
     }
 
@@ -226,20 +270,30 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         mPresenter.userIsRated(ratingValue);
     }
 
-    @Override
-    public void onClick(View buttonView) {
-        switch (buttonView.getId()) {
-            case R.id.btn_message:
-                mPresenter.messageButtonIsClicked();
-                break;
-            case R.id.btn_rate:
-                mPresenter.rateButtonIsClicked();
-                break;
-            case R.id.btn_pay_rent:
-                mPresenter.payRentButtonIsClicked();
-                break;
-            default:
-                break;
-        }
+    @OnClick(R.id.btn_message)
+    public void onMessageButtonClick() {
+        mPresenter.messageButtonIsClicked();
+    }
+
+    @OnClick(R.id.btn_rate)
+    public void onRateButtonClick() {
+        mPresenter.rateButtonIsClicked();
+    }
+
+    @OnClick(R.id.btn_pay_rent)
+    public void onPayButtonClick() {
+        mPresenter.payRentButtonIsClicked();
+    }
+
+    @OnClick(R.id.btn_finish_payment)
+    public void onFinishPaymentButtonClick() {
+        String firstName = mFirstNameEditText.getText().toString();
+        String lastName = mLastNameEditText.getText().toString();
+        String validThruMonth = mValidThruMonthEditText.getText().toString();
+        String validThruYear = mValidThruYearEditText.getText().toString();
+        String cardNumber = mCardNumberEditText.getText().toString();
+        String cardCvvNumber = mCardCvvEditText.getText().toString();
+
+        mPresenter.finishPaymentButtonIsClicked(firstName, lastName, validThruMonth, validThruYear, cardNumber, cardCvvNumber);
     }
 }

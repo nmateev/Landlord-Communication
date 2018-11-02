@@ -129,6 +129,16 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
         mView.showPaymentInputOption();
     }
 
+    @Override
+    public void finishPaymentButtonIsClicked(String firstName, String lastName, String validThruMonth, String validThruYear, String cardNumber, String cardCvvNumber) {
+        mView.showMessage(firstName);
+        mView.showMessage(lastName);
+        mView.showMessage(validThruMonth);
+        mView.showMessage(validThruYear);
+        mView.showMessage(cardNumber);
+        mView.showMessage(cardCvvNumber);
+    }
+
     private void submitUserRating(int ratingValue, int voterId, int votedForId) {
         Rating newRating = new Rating(voterId, votedForId, ratingValue);
 
