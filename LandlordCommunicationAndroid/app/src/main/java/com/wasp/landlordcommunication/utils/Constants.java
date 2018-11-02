@@ -131,4 +131,9 @@ public class Constants {
     public static final String ALL_FIELDS_MUST_BE_FILLED_IN = "You must fill in al fields!";
     public static final String SUCCESSFUL_PAYMENT_MESSAGE = "You have successfully paid your rent for this month!";
     public static final String ALREADY_PAID_RENT_MESSAGE = "You have already paid your rent for this month!";
+    public static final String INPUT_NOT_CORRECT_MESSAGE = "You must enter a valid number!";
+    public static final String RENT_AMOUNT_BOUNDS_NOT_MET_MESSAGE = "Rent price must be between 1 and 3500!";
+    public static final double RENT_AMOUNT_MIN_BOUND = 1;
+    public static final double RENT_AMOUNT_MAX_BOUND = 3500;
+    public static final String SUCCESSFUL_CHANGE_OF_RENT_MESSAGE = "You have successfully changed the rent price!";
 }

@@ -101,6 +101,15 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
     @BindView(R.id.sv_property_management)
     ScrollView mPropertyManagementScrollView;
 
+    @BindView(R.id.tv_change_amount_message)
+    TextView mChangeRentPriceMessageTextView;
+
+    @BindView(R.id.et_rent_new_price)
+    EditText mRentNewPriceEditText;
+
+    @BindView(R.id.btn_change_rent_amount)
+    Button mChangeRentAmountButton;
+
 
     private PropertyManagementContracts.Navigator mNavigator;
     private PropertyManagementContracts.Presenter mPresenter;
@@ -202,6 +211,10 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
                 .append(individualisation)
                 .toString());
 
+        mChangeRentPriceMessageTextView.setVisibility(View.VISIBLE);
+        mRentNewPriceEditText.setVisibility(View.VISIBLE);
+        mChangeRentAmountButton.setVisibility(View.VISIBLE);
+
 
     }
 
@@ -283,6 +296,13 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
     public void onPayButtonClick() {
         mPresenter.payRentButtonIsClicked();
     }
+
+    @OnClick(R.id.btn_change_rent_amount)
+    public void onChangeRentAmountButtonClick() {
+        String newRentAmountInString = mRentNewPriceEditText.getText().toString();
+        mPresenter.rentChangeButtonIsClicked(newRentAmountInString);
+    }
+
 
     @OnClick(R.id.btn_finish_payment)
     public void onFinishPaymentButtonClick() {

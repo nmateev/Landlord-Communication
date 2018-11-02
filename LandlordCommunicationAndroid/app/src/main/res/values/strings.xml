@@ -50,4 +50,7 @@
     <string name="card_number">Card Number</string>
     <string name="cvv">CVV</string>
     <string name="pay">PAY</string>
+    <string name="change_rent_amount">Change Rent Amount</string>
+    <string name="money_hint">$</string>
+    <string name="ok_change_rent_amount_confirmation">OK</string>
 </resources>

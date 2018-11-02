@@ -165,6 +165,57 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
 
     }
 
+    @Override
+    public void rentChangeButtonIsClicked(String newRentAmountInString) {
+        double newRentAmount;
+        try {
+            newRentAmount = Double.parseDouble(newRentAmountInString);
+            if (newRentAmount < Constants.RENT_AMOUNT_MIN_BOUND || newRentAmount > Constants.RENT_AMOUNT_MAX_BOUND) {
+                mView.showMessage(Constants.RENT_AMOUNT_BOUNDS_NOT_MET_MESSAGE);
+            } else {
+                loadPropertyAndUpdateRentPrice(newRentAmount, mSelectedPropertyId);
+
+            }
+        } catch (NumberFormatException nfe) {
+            mView.showMessage(Constants.INPUT_NOT_CORRECT_MESSAGE);
+        }
+    }
+
+    private void loadPropertyAndUpdateRentPrice(double newRentAmount, int selectedPropertyId) {
+        mView.showProgressBar();
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<Property>) emitter -> {
+                    Property property = mPropertiesService.getPropertyById(selectedPropertyId);
+                    emitter.onNext(property);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideProgressBar)
+                .subscribe(property -> updatePropertyRentPrice(newRentAmount,property),
+                        error -> mView.showError(error));
+
+
+    }
+
+    private void updatePropertyRentPrice(double newRentAmount, Property propertyToUpdate) {
+        propertyToUpdate.setRentPrice(newRentAmount);
+
+        propertyToUpdate.setPropertyPicture(null);
+        mView.showProgressBar();
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<Property>) emitter -> {
+                    Property property = mPropertiesService.updateProperty(propertyToUpdate, propertyToUpdate.getPropertyId());
+                    emitter.onNext(property);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideProgressBar)
+                .subscribe(property -> mView.showMessage(Constants.SUCCESSFUL_CHANGE_OF_RENT_MESSAGE), error -> mView.showError(error));
+
+    }
+
     private void makePaymentTransaction(CardTransaction cardTransaction) {
         int tenantId;
         int landlordId;
@@ -201,7 +252,6 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
                 .subscribe(paymentResult -> loadPropertyAndUpdateRentPaidStatus(mSelectedPropertyId),
                         error -> mView.showError(error));
 
-        //TODO if the payment is successful make rent paid for property
 
     }
 

@@ -121,12 +121,59 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/tv_change_amount_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_user_individualisation"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:fontFamily="cursive"
+                android:text="@string/change_rent_amount"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/et_rent_new_price"
+                android:layout_width="70dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/tv_user_individualisation"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toStartOf="@+id/btn_change_rent_amount"
+                android:background="@drawable/rounded_edit_text_layout"
+                android:hint="@string/money_hint"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_change_rent_amount"
+                style="@style/ButtonStyle"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/tv_user_individualisation"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_button"
+                android:text="@string/ok_change_rent_amount_confirmation"
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/btn_pay_rent"
                 style="@style/ButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/tv_user_individualisation"
+                android:layout_below="@+id/tv_change_amount_message"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
@@ -276,9 +323,9 @@
                 android:layout_below="@+id/et_card_cvv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/small_margin"
+                android:alpha="0.8"
                 android:background="@drawable/rounded_button"
                 android:text="@string/pay"
-                android:alpha="0.8"
                 android:textColor="@color/colorWhite"
                 android:visibility="gone" />
 

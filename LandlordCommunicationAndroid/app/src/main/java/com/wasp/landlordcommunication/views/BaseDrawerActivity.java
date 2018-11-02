@@ -25,6 +25,8 @@ import com.wasp.landlordcommunication.views.payments.PaymentsActivity;
 import com.wasp.landlordcommunication.views.properties.PropertiesActivity;
 import com.wasp.landlordcommunication.views.settings.SettingsActivity;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import dagger.android.support.DaggerAppCompatActivity;
 
