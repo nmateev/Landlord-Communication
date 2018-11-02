@@ -27,6 +27,8 @@ public interface PropertyManagementContracts {
         void showPayButtonOption();
 
         void showRatingDialog();
+
+        void showChatWithUsers(int userId, int otherUserId);
     }
 
     interface Presenter {
@@ -48,10 +50,13 @@ public interface PropertyManagementContracts {
         void ratingWasCancelled();
 
         void userIsRated(int ratingValue);
+
+        void messageButtonIsClicked();
     }
 
     interface Navigator {
 
 
+        void navigateToChatWithUsers(int userId, int otherUserId);
     }
 }

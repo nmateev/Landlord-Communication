@@ -193,6 +193,11 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
                 .show();
     }
 
+    @Override
+    public void showChatWithUsers(int userId, int otherUserId) {
+        mNavigator.navigateToChatWithUsers(userId, otherUserId);
+    }
+
     public void setNavigator(PropertyManagementContracts.Navigator navigator) {
         mNavigator = navigator;
     }
@@ -200,6 +205,11 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
     @OnClick(R.id.btn_rate)
     public void onClick() {
         mPresenter.rateButtonIsClicked();
+    }
+
+    @OnClick(R.id.btn_message)
+    public void onClick(View view) {
+        mPresenter.messageButtonIsClicked();
     }
 
 
@@ -215,7 +225,6 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
 
     @Override
     public void onPositiveButtonClicked(int ratingValue, String s) {
-        Toast.makeText(getContext(), String.valueOf(ratingValue), Toast.LENGTH_LONG).show();
         mPresenter.userIsRated(ratingValue);
     }
 }

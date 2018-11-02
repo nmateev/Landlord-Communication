@@ -121,4 +121,6 @@ public class Constants {
     public static final String ALREADY_RATED_MESSAGE = "You have already submitted your rating!";
     public static final String SUCCESSFUL_RATING = "Your feedback was successfully submitted!";
     public static final String UNEXPECTED_ERROR = "Something went wrong. Please try again!";
+    public static final String LOGGED_IN_USER_ID_EXTRA = "loggedUser";
+    public static final String CONTACTED_USER_ID_EXTRA = "contactedUser";
 }

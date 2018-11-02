@@ -119,6 +119,11 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
 
     }
 
+    @Override
+    public void messageButtonIsClicked() {
+        mView.showChatWithUsers(mUserId, mOtherUserId);
+    }
+
     private void submitUserRating(int ratingValue, int voterId, int votedForId) {
         Rating newRating = new Rating(voterId, votedForId, ratingValue);
 
