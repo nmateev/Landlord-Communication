@@ -22,6 +22,7 @@ import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -66,6 +67,9 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
 
     @BindView(R.id.tv_user_individualisation)
     TextView mUserIndividualisationTextView;
+
+    @BindView(R.id.tv_user_rating)
+    TextView mUserRatingTextView;
 
     @BindView(R.id.btn_pay_rent)
     Button mPayRentButton;
@@ -261,6 +265,13 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         mFinishPaymentButton.setVisibility(View.VISIBLE);
 
         mPropertyManagementScrollView.post(() -> mPropertyManagementScrollView.fullScroll(View.FOCUS_DOWN));
+    }
+
+    @Override
+    public void showUserRating(double userRating) {
+        String ratingRepresentation = String.format(Locale.UK, "%.1f", userRating) + Constants.RATING_REPRESENTATION;
+        mUserRatingTextView.setVisibility(View.VISIBLE);
+        mUserRatingTextView.setText(ratingRepresentation);
     }
 
     public void setNavigator(PropertyManagementContracts.Navigator navigator) {

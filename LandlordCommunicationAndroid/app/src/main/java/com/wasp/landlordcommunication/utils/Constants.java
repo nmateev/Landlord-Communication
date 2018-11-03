@@ -143,4 +143,5 @@ public class Constants {
     public static final String PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_TENANT = "Choose layout for how your places wil be visualised";
     public static final String PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_LANDLORD = "Choose layout for how your properties wil be visualised";
 
+    public static final String RATING_REPRESENTATION = "/5";
 }

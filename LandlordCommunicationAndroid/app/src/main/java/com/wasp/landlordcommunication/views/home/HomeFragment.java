@@ -131,8 +131,8 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
 
     @Override
     public void showUserRating(double rating) {
-        String textRating = String.format(Locale.UK, "%.1f", rating) + "/5";
-        mUserRatingTextView.setText(textRating);
+        String ratingRepresentation = String.format(Locale.UK, "%.1f", rating) + Constants.RATING_REPRESENTATION;
+        mUserRatingTextView.setText(ratingRepresentation);
     }
 
     @OnClick(R.id.fab_change_picture)

@@ -17,6 +17,7 @@ import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 import com.wasp.landlordcommunication.utils.base.Validator;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -93,10 +94,28 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(() -> mView.hideProgressBar())
-                .subscribe(this::preparePropertyDetails,
+                .subscribe(property -> {
+                            preparePropertyDetails(property);
+                            loadOtherUsersRating();
+                        },
                         error -> mView.showError(error));
 
 
+    }
+
+    private void loadOtherUsersRating() {
+        mView.showProgressBar();
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<Double>) emitter -> {
+                    double userRating = mRatingsService.getUserRatingById(mOtherUserId);
+                    emitter.onNext(userRating);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideProgressBar)
+                .subscribe(userRatingResult -> mView.showUserRating(userRatingResult),
+                        error -> mView.showError(error));
     }
 
     @Override
@@ -192,7 +211,7 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBar)
-                .subscribe(property -> updatePropertyRentPrice(newRentAmount,property),
+                .subscribe(property -> updatePropertyRentPrice(newRentAmount, property),
                         error -> mView.showError(error));
 
 
@@ -303,7 +322,10 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBar)
-                .subscribe(rating -> mView.showMessage(Constants.SUCCESSFUL_RATING),
+                .subscribe(rating -> {
+                            mView.showMessage(Constants.SUCCESSFUL_RATING);
+                            loadOtherUsersRating();
+                        },
                         error -> {
                             if (error instanceof NullPointerException) {
                                 mView.showMessage(Constants.UNEXPECTED_ERROR);
@@ -339,6 +361,8 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
         }
         mSelectedPropertyRentPrice = property.getRentPrice();
         mIsRentPaidForCurrentMonth = property.getRentPaid();
+
+
         mView.showPropertyDetails(property, individualisation);
 
         if (mUserType.equals(TENANT)) {

@@ -122,10 +122,23 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/tv_change_amount_message"
+                android:id="@+id/tv_user_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_user_individualisation"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_star_small"
+                android:drawablePadding="4dp"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_change_amount_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_user_rating"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="@dimen/small_margin"
@@ -139,7 +152,7 @@
                 android:id="@+id/et_rent_new_price"
                 android:layout_width="70dp"
                 android:layout_height="45dp"
-                android:layout_below="@+id/tv_user_individualisation"
+                android:layout_below="@+id/tv_user_rating"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
@@ -158,7 +171,7 @@
                 style="@style/ButtonStyle"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_below="@+id/tv_user_individualisation"
+                android:layout_below="@+id/tv_user_rating"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"

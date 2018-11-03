@@ -31,6 +31,8 @@ public interface PropertyManagementContracts {
         void showChatWithUsers(int userId, int otherUserId);
 
         void showPaymentInputOption();
+
+        void showUserRating(double rating);
     }
 
     interface Presenter {
