@@ -163,6 +163,7 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
 
     @Override
     public void showUserImage(Bitmap userImage) {
+
         mUserPictureImageView.setImageBitmap(userImage);
     }
 

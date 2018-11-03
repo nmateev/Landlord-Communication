@@ -57,7 +57,7 @@ public class Constants {
     public static final String IMAGE_FILE_TYPE = "image/*";
     public static final String DATA_EXTRA = "data";
     public static final String IMAGE_CHANGE_ERROR_MESSAGE = "Profile image update failed!";
-    public static final int IMAGE_QUALITY = 35;
+    public static final int IMAGE_QUALITY = 50;
     public static final String ERROR_LOADING_USER_IMAGE = "Unsuccessful profile image loading!";
     public static final String PAYMENTS_URL_SUFFIX = "payments";
     public static final String PAYMENTS_GET_BY_ID_URL_SUFFIX = "/";
@@ -137,4 +137,10 @@ public class Constants {
     public static final double RENT_AMOUNT_MAX_BOUND = 3500;
     public static final String SUCCESSFUL_CHANGE_OF_RENT_MESSAGE = "You have successfully changed the rent price!";
     public static final String USER_PROFILE_IMAGE_KEY = "userImage";
+    public static final String PREFERENCE_SAVED_MESSAGE = "Preference saved successfully! ";
+    public static final String PREFERENCE_PROPERTIES_LAYOUT_VIEW_SELECTION_MESSAGE = " view is selected.";
+
+    public static final String PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_TENANT = "Choose layout for how your places wil be visualised";
+    public static final String PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_LANDLORD = "Choose layout for how your properties wil be visualised";
+
 }

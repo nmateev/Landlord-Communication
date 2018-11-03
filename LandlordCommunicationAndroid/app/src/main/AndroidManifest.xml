@@ -52,7 +52,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".views.landlordspropertieslist.LandlordsPropertiesListActivity" />
         <activity android:name=".views.landlordpropertydetails.LandlordPropertyDetailsActivity" />
-        <activity android:name=".views.propertymanagement.PropertyManagementActivity"></activity>
+        <activity android:name=".views.propertymanagement.PropertyManagementActivity" />
     </application>
 
 </manifest>

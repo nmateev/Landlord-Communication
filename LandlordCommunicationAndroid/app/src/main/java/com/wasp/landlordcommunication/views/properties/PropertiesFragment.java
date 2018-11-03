@@ -145,6 +145,7 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
         mNoPropertiesTextView.setVisibility(View.GONE);
         mFilterOptionsSpinner.setVisibility(View.VISIBLE);
         mPropertiesListView.setVisibility(View.VISIBLE);
+        mPropertiesRecyclerView.setVisibility(View.GONE);
 
         mPropertiesArrayAdapter.clear();
         mPropertiesArrayAdapter.addAll(propertiesResult);
@@ -156,6 +157,7 @@ public class PropertiesFragment extends Fragment implements PropertiesContracts.
         mNoPropertiesTextView.setVisibility(View.GONE);
         mFilterOptionsSpinner.setVisibility(View.VISIBLE);
         mPropertiesRecyclerView.setVisibility(View.VISIBLE);
+        mPropertiesListView.setVisibility(View.GONE);
 
         mPropertiesAdapter.clear();
         mPropertiesAdapter.addAll(propertiesResult);

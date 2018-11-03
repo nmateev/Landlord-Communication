@@ -3,7 +3,6 @@ package com.wasp.landlordcommunication.diconfig;
 import android.app.Application;
 
 import com.wasp.landlordcommunication.AndroidApplication;
-import com.wasp.landlordcommunication.diconfig.viewsmodules.CameraModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.ChatModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.HomeModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordPropertyDetailsModule;
@@ -13,6 +12,7 @@ import com.wasp.landlordcommunication.diconfig.viewsmodules.LoginModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.PaymentsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.PropertiesModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.PropertyManagementModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.SettingsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.SignUpModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.ViewsModule;
 
@@ -45,7 +45,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         PropertyManagementModule.class,
         ChatModule.class,
         PaymentsModule.class,
-        CameraModule.class
+        SettingsModule.class
 
 })
 

@@ -98,7 +98,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .withHeaderBackground(R.drawable.drawerheader)
                 .withTranslucentStatusBar(true)
                 .withSelectionListEnabledForSingleProfile(false)
-                .withCompactStyle(true)
+                .withCompactStyle(false)
                 .addProfiles(
                         new ProfileDrawerItem()
                                 .withName(getUserDrawerName())

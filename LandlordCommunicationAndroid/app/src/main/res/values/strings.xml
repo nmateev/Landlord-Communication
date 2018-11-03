@@ -33,6 +33,10 @@
         <item>Price ascending</item>
         <item>Price descending</item>
     </string-array>
+    <string-array name="properties_layout_options">
+        <item>Compact</item>
+        <item>Detailed</item>
+    </string-array>
 
     <string name="rent">RENT</string>
     <string name="search">Search by address</string>
@@ -53,4 +57,7 @@
     <string name="change_rent_amount">Change Rent Amount</string>
     <string name="money_hint">$</string>
     <string name="ok_change_rent_amount_confirmation">OK</string>
+
+    <string name="preferences">Preferences</string>
+    <string name="layout">Layout</string>
 </resources>
