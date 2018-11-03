@@ -11,7 +11,7 @@
         <item name="material_drawer_secondary_text">@color/colorPrimaryDark</item>
         <item name="material_drawer_divider">@color/colorPrimaryDark</item>
         <item name="material_drawer_selected_text">@color/colorPrimaryDark</item>
-        <item name="material_drawer_header_selection_text">@color/colorAccent</item>
+        <item name="material_drawer_header_selection_text">@color/colorWhite</item>
         <item name="material_drawer_background">@color/colorWindow</item>
         <item name="material_drawer_selected">@color/colorWindow</item>
 

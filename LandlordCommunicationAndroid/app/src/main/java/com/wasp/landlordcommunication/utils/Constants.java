@@ -136,4 +136,5 @@ public class Constants {
     public static final double RENT_AMOUNT_MIN_BOUND = 1;
     public static final double RENT_AMOUNT_MAX_BOUND = 3500;
     public static final String SUCCESSFUL_CHANGE_OF_RENT_MESSAGE = "You have successfully changed the rent price!";
+    public static final String USER_PROFILE_IMAGE_KEY = "userImage";
 }

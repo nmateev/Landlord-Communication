@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.wasp.landlordcommunication.async.base.SchedulerProvider;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.repositories.base.BitmapCacheRepository;
 import com.wasp.landlordcommunication.services.base.PropertiesService;
 import com.wasp.landlordcommunication.services.base.RatingsService;
 import com.wasp.landlordcommunication.services.base.UsersService;
@@ -28,18 +29,20 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
     private final SchedulerProvider mSchedulerProvider;
     private final PropertiesService mPropertiesService;
     private final ImageEncoder mImageEncoder;
+    private final BitmapCacheRepository mBitmapCacheRepository;
     private HomeActivityContracts.View mView;
     private String mUserName;
     private int mUserId;
     private String mUserType;
 
     @Inject
-    public HomeActivityPresenter(UsersService usersService, RatingsService ratingsService, PropertiesService propertiesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder) {
+    public HomeActivityPresenter(UsersService usersService, RatingsService ratingsService, PropertiesService propertiesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder, BitmapCacheRepository bitmapCacheRepository) {
         mUsersService = usersService;
         mRatingsService = ratingsService;
         mPropertiesService = propertiesService;
         mSchedulerProvider = schedulerProvider;
         mImageEncoder = imageEncoder;
+        mBitmapCacheRepository = bitmapCacheRepository;
     }
 
     @Override
@@ -131,6 +134,7 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
         if (Objects.equals(decodedUserPicture, null)) {
             mView.showMessage(errorMessage);
         } else {
+            mBitmapCacheRepository.addBitmapToBitmapCache(decodedUserPicture, Constants.USER_PROFILE_IMAGE_KEY);
             mView.showUserImage(decodedUserPicture);
         }
     }

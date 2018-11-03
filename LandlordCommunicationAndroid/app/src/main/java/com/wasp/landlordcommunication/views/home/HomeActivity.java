@@ -18,6 +18,7 @@ import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_ID
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_NAME_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.PREFERENCES_USER_TYPE_KEY;
 import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
+import static com.wasp.landlordcommunication.utils.Constants.USER_PROFILE_IMAGE_KEY;
 
 public class HomeActivity extends BaseDrawerActivity {
 

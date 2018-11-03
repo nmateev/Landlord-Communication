@@ -1,7 +1,9 @@
 package com.wasp.landlordcommunication.views.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
@@ -14,6 +16,7 @@ import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 import static com.wasp.landlordcommunication.utils.Constants.USER_EXTRA;
+import static com.wasp.landlordcommunication.utils.Constants.USER_PROFILE_IMAGE_KEY;
 
 
 public class LoginActivity extends DaggerAppCompatActivity implements LoginContracts.Navigator {
@@ -55,6 +58,12 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
     @Override
     public void navigateToHomeWithUser(User user) {
         Intent intent = new Intent(this, HomeActivity.class);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USER_PROFILE_IMAGE_KEY, user.getUserPicture());
+        editor.commit();
+
+
         user.setUserPicture(null);
 
         intent.putExtra(USER_EXTRA, user);

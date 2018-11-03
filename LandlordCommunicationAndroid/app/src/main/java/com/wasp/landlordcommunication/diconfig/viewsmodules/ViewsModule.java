@@ -14,6 +14,8 @@ import com.wasp.landlordcommunication.views.payments.PaymentsAdapter;
 import com.wasp.landlordcommunication.views.properties.PropertiesAdapter;
 import com.wasp.landlordcommunication.views.properties.PropertiesArrayAdapter;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
