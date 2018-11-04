@@ -46,7 +46,7 @@ public class PaymentsPresenter implements PaymentsContracts.Presenter {
 
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<Payment>>) emitter -> {
-                    List<Payment> payments = mPaymentsService.getAllPayments(mUserType, mUserId);
+                    List<Payment> payments = mPaymentsService.getAllPaymentsById(mUserType, mUserId);
                     emitter.onNext(payments);
                     emitter.onComplete();
                 })

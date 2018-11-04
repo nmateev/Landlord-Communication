@@ -1,4 +1,4 @@
-package com.wasp.landlordcommunication.repositories;
+package com.wasp.landlordcommunication.repositories.cacherepostories;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;

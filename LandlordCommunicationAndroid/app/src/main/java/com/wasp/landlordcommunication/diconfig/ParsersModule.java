@@ -1,5 +1,6 @@
 package com.wasp.landlordcommunication.diconfig;
 
+import com.wasp.landlordcommunication.models.ChatSession;
 import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.Rating;
@@ -30,5 +31,10 @@ public class ParsersModule {
     @Provides
     public JsonParser<Property> propertiesJsonParser() {
         return new GsonJsonParser<>(Property.class, Property[].class);
+    }
+
+    @Provides
+    public JsonParser<ChatSession> chatSessionsJsonParser() {
+        return new GsonJsonParser<>(ChatSession.class, ChatSession[].class);
     }
 }

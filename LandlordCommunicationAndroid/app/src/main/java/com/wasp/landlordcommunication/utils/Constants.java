@@ -158,4 +158,7 @@ public class Constants {
     public static final int RENT_NOTIFICATION_DAYS_BEFORE_PERIOD = -5;
     public static final int RENT_NOTIFICATION_HOUR_TRIGGER = 11;
     public static final int RENT_NOTIFICATION_MINUTE_TRIGGER = 25;
+    public static final String CHAT_SESSIONS_URL_SUFFIX = "chatsessions";
+    public static final String USERS_TYPE_SUFFIX = "type";
+
 }

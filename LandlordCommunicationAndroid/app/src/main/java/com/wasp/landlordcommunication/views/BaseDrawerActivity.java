@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -20,12 +18,10 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.repositories.base.BitmapCacheRepository;
 import com.wasp.landlordcommunication.utils.Constants;
-import com.wasp.landlordcommunication.utils.ImageEncoder;
-import com.wasp.landlordcommunication.views.chat.ChatActivity;
+import com.wasp.landlordcommunication.views.chat.ChatListActivity;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.landlordslist.LandlordsListActivity;
 import com.wasp.landlordcommunication.views.payments.PaymentsActivity;
@@ -35,7 +31,6 @@ import com.wasp.landlordcommunication.views.settings.SettingsActivity;
 import java.util.Objects;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import butterknife.BindView;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -122,7 +117,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .withIdentifier(LandlordsListActivity.DRAWER_IDENTIFIER)
                 .withName(LANDLORDS_LIST_DRAWER_ITEM_NAME);
         SecondaryDrawerItem chat = new SecondaryDrawerItem()
-                .withIdentifier(ChatActivity.DRAWER_IDENTIFIER)
+                .withIdentifier(ChatListActivity.DRAWER_IDENTIFIER)
                 .withName(CHAT_DRAWER_ITEM_NAME);
         SecondaryDrawerItem settings = new SecondaryDrawerItem()
                 .withIdentifier(SettingsActivity.DRAWER_IDENTIFIER)
@@ -205,8 +200,8 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
             return new Intent(this, PaymentsActivity.class);
         } else if (identifier == LandlordsListActivity.DRAWER_IDENTIFIER) {
             return new Intent(this, LandlordsListActivity.class);
-        } else if (identifier == ChatActivity.DRAWER_IDENTIFIER) {
-            return new Intent(this, ChatActivity.class);
+        } else if (identifier == ChatListActivity.DRAWER_IDENTIFIER) {
+            return new Intent(this, ChatListActivity.class);
         } else if (identifier == SettingsActivity.DRAWER_IDENTIFIER) {
             return new Intent(this, SettingsActivity.class);
         } else {

@@ -44,7 +44,7 @@
         <activity android:name=".views.home.HomeActivity" />
         <activity android:name=".views.payments.PaymentsActivity" />
         <activity android:name=".views.properties.PropertiesActivity" />
-        <activity android:name=".views.chat.ChatActivity" />
+        <activity android:name=".views.chat.ChatListActivity" />
         <activity android:name=".views.settings.SettingsActivity" />
         <activity
             android:name=".views.landlordslist.LandlordsListActivity"

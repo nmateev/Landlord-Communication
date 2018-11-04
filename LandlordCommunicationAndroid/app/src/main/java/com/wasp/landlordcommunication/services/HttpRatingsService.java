@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.services;
 
 import com.wasp.landlordcommunication.models.Rating;
-import com.wasp.landlordcommunication.repositories.base.Repository;
+import com.wasp.landlordcommunication.repositories.base.RatingsRepository;
 import com.wasp.landlordcommunication.services.base.RatingsService;
 
 import java.io.IOException;
@@ -10,15 +10,15 @@ import java.util.List;
 public class HttpRatingsService implements RatingsService {
 
 
-    private final Repository<Rating> mRatingsRepository;
+    private final RatingsRepository mRatingsRepository;
 
-    public HttpRatingsService(Repository<Rating> ratingsRepository) {
+    public HttpRatingsService(RatingsRepository ratingsRepository) {
         mRatingsRepository = ratingsRepository;
     }
 
     @Override
     public double getUserRatingById(int id) throws IOException {
-        List<Rating> userRatings = mRatingsRepository.getAllByParameter(String.valueOf(id));
+        List<Rating> userRatings = mRatingsRepository.getUserRatingById(id);
 
         double rating = 0;
         int size = userRatings.size();
@@ -35,12 +35,12 @@ public class HttpRatingsService implements RatingsService {
     @Override
     public Rating checkIfUserAlreadyRatedByVoter(Rating rating) throws IOException {
 
-        return mRatingsRepository.post(rating);
+        return mRatingsRepository.checkIfUserAlreadyRatedByVoter(rating);
 
     }
 
     @Override
     public Rating submitRating(Rating newRating) throws IOException {
-        return mRatingsRepository.add(newRating);
+        return mRatingsRepository.submitRating(newRating);
     }
 }

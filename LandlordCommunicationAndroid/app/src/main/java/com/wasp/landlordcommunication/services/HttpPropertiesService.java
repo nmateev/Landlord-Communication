@@ -2,30 +2,27 @@ package com.wasp.landlordcommunication.services;
 
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.repositories.base.CacheRepository;
-import com.wasp.landlordcommunication.repositories.base.Repository;
+import com.wasp.landlordcommunication.repositories.base.PropertiesRepository;
 import com.wasp.landlordcommunication.services.base.PropertiesService;
-import com.wasp.landlordcommunication.utils.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class HttpPropertiesService implements PropertiesService {
 
-    private final Repository<Property> mPropertiesRepository;
+    private final PropertiesRepository mPropertiesRepository;
     private final CacheRepository<Property> mPropertiesCacheRepository;
 
-    public HttpPropertiesService(Repository<Property> propertiesRepository, CacheRepository<Property> propertiesCacheRepository) {
+    public HttpPropertiesService(PropertiesRepository propertiesRepository, CacheRepository<Property> propertiesCacheRepository) {
         mPropertiesRepository = propertiesRepository;
         mPropertiesCacheRepository = propertiesCacheRepository;
     }
 
     @Override
     public List<Property> getUsersPropertiesByIdAndType(int userId, String userType) throws IOException {
-        String parameter = userType.toLowerCase() + Constants.SLASH_STRING_VALUE + userId;
-        List<Property> result = mPropertiesRepository.getAllByParameter(parameter);
+        List<Property> result = mPropertiesRepository.getUsersPropertiesByIdAndType(userId, userType);
 
         mPropertiesCacheRepository.cacheData(result);
         return result;
@@ -33,12 +30,12 @@ public class HttpPropertiesService implements PropertiesService {
 
     @Override
     public Property getPropertyById(int propertyId) throws IOException {
-        return mPropertiesRepository.getById(propertyId);
+        return mPropertiesRepository.getPropertyById(propertyId);
     }
 
     @Override
     public Property updateProperty(Property property, int propertyId) throws IOException {
-        return mPropertiesRepository.update(property, propertyId);
+        return mPropertiesRepository.updateProperty(property, propertyId);
     }
 
     @Override

@@ -1,30 +1,29 @@
 package com.wasp.landlordcommunication.services;
 
 import com.wasp.landlordcommunication.models.Payment;
-import com.wasp.landlordcommunication.repositories.base.Repository;
+import com.wasp.landlordcommunication.repositories.base.PaymentsRepository;
 import com.wasp.landlordcommunication.services.base.PaymentsService;
-import com.wasp.landlordcommunication.utils.Constants;
 
 import java.io.IOException;
 import java.util.List;
 
 public class HttpPaymentsService implements PaymentsService {
 
-    private final Repository<Payment> mPaymentsRepository;
+    private final PaymentsRepository mPaymentsRepository;
 
-    public HttpPaymentsService(Repository<Payment> paymentsRepository) {
+    public HttpPaymentsService(PaymentsRepository paymentsRepository) {
         mPaymentsRepository = paymentsRepository;
     }
 
 
     @Override
-    public List<Payment> getAllPayments(String userType, int id) throws IOException {
-        String parameter = userType.toLowerCase() + Constants.SLASH_STRING_VALUE + String.valueOf(id);
-        return mPaymentsRepository.getAllByParameter(parameter);
+    public List<Payment> getAllPaymentsById(String userType, int id) throws IOException {
+
+        return mPaymentsRepository.getAllPaymentsById(userType, id);
     }
 
     @Override
-    public Payment makeTransaction(Payment payment) throws IOException {
-        return mPaymentsRepository.add(payment);
+    public Payment makePayment(Payment payment) throws IOException {
+        return mPaymentsRepository.makePayment(payment);
     }
 }

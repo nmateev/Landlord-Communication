@@ -1,7 +1,7 @@
 package com.wasp.landlordcommunication.diconfig;
 
 import com.wasp.landlordcommunication.models.CardTransaction;
-import com.wasp.landlordcommunication.repositories.LruBitmapCacheRepository;
+import com.wasp.landlordcommunication.repositories.cacherepostories.LruBitmapCacheRepository;
 import com.wasp.landlordcommunication.repositories.base.BitmapCacheRepository;
 import com.wasp.landlordcommunication.utils.CardTransactionValidator;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -19,11 +19,13 @@ import dagger.Provides;
 public class UtilitiesModule {
 
     @Provides
+    @Singleton
     public ImageEncoder imageEncoder() {
         return new com.wasp.landlordcommunication.utils.ImageEncoder();
     }
 
     @Provides
+    @Singleton
     public DateFormatter dateFormatter(@Named(Constants.DATE_REPRESENTATION_NAME) String dateRepresentation) {
 
         return new com.wasp.landlordcommunication.utils.DateFormatter(dateRepresentation);
@@ -36,6 +38,7 @@ public class UtilitiesModule {
     }
 
     @Provides
+    @Singleton
     public Validator<CardTransaction> cardTransactionValidator() {
         return new CardTransactionValidator();
     }

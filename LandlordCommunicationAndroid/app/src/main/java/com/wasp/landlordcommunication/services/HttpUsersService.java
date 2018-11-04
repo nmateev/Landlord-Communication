@@ -2,7 +2,7 @@ package com.wasp.landlordcommunication.services;
 
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.repositories.base.CacheRepository;
-import com.wasp.landlordcommunication.repositories.base.Repository;
+import com.wasp.landlordcommunication.repositories.base.UsersRepository;
 import com.wasp.landlordcommunication.services.base.UsersService;
 
 import java.io.IOException;
@@ -11,38 +11,37 @@ import java.util.List;
 
 public class HttpUsersService implements UsersService {
 
-    private final Repository<User> mUsersRepository;
+    private final UsersRepository mUsersRepository;
     private final CacheRepository<User> mUsersCacheRepository;
 
-    public HttpUsersService(Repository<User> userRepository, CacheRepository<User> usersCacheRepository) {
+    public HttpUsersService(UsersRepository userRepository, CacheRepository<User> usersCacheRepository) {
         mUsersRepository = userRepository;
         mUsersCacheRepository = usersCacheRepository;
     }
 
     @Override
     public User getUserByUserName(String name) throws IOException {
-        return mUsersRepository.getByParameter(name);
+        return mUsersRepository.getUserByUserName(name);
     }
 
     @Override
     public User loginUser(User user) throws IOException {
-        return mUsersRepository.post(user);
+        return mUsersRepository.loginUser(user);
     }
 
     @Override
     public User createUser(User userToCreate) throws IOException {
-        return mUsersRepository.add(userToCreate);
+        return mUsersRepository.createUser(userToCreate);
     }
 
     @Override
     public User updateUser(User user, int userId) throws IOException {
-        return mUsersRepository.update(user, userId);
+        return mUsersRepository.updateUser(user, userId);
     }
 
     @Override
     public List<User> getAllUsersByType(String type, int excludedIdFromResult) throws IOException {
-        String parameter = "type/" + type;
-        List<User> result = mUsersRepository.getAllByParameter(parameter);
+        List<User> result = mUsersRepository.getAllUsersByType(type);
         //TODO uncomment when api  level is set to 24
        /* result
                 .stream()

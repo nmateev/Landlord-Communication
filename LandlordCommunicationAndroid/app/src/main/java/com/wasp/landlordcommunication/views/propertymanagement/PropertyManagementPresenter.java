@@ -261,7 +261,7 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
         mView.showProgressBar();
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<Payment>) emitter -> {
-                    Payment paymentResult = mPaymentsService.makeTransaction(payment);
+                    Payment paymentResult = mPaymentsService.makePayment(payment);
                     emitter.onNext(paymentResult);
                     emitter.onComplete();
                 })

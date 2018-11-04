@@ -1,14 +1,12 @@
 package com.wasp.landlordcommunication.views.propertymanagement;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
-import com.wasp.landlordcommunication.views.chat.ChatActivity;
+import com.wasp.landlordcommunication.views.chat.ChatListActivity;
 
 import javax.inject.Inject;
 
@@ -59,7 +57,7 @@ public class PropertyManagementActivity extends BaseDrawerActivity implements Pr
     public void navigateToChatWithUsers(int userId, int otherUserId) {
 
         //TODO Navigate to specific chat session
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, ChatListActivity.class);
 
         intent.putExtra(Constants.LOGGED_IN_USER_ID_EXTRA, userId);
         intent.putExtra(Constants.CONTACTED_USER_ID_EXTRA, otherUserId);

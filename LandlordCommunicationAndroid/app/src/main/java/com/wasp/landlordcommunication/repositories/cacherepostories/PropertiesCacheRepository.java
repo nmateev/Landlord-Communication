@@ -1,4 +1,4 @@
-package com.wasp.landlordcommunication.repositories;
+package com.wasp.landlordcommunication.repositories.cacherepostories;
 
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.repositories.base.CacheRepository;
