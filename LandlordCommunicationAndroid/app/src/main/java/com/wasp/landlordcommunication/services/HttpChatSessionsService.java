@@ -5,6 +5,7 @@ import com.wasp.landlordcommunication.repositories.base.ChatSessionsRepository;
 import com.wasp.landlordcommunication.services.base.ChatSessionsService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HttpChatSessionsService implements ChatSessionsService {
 
@@ -16,6 +17,17 @@ public class HttpChatSessionsService implements ChatSessionsService {
 
     @Override
     public ChatSession getChatSessionByTenantAndLandlord(ChatSession chatSessionRequest) throws IOException {
-        return null;
+        return mChatSessionsRepository.getChatSessionByTenantAndLandlord(chatSessionRequest);
+    }
+
+    @Override
+    public boolean isChatSessionCreatedBetweenTenantAndLandlord(ChatSession chatSessionRequest) throws IOException {
+
+        return mChatSessionsRepository.isChatSessionCreatedBetweenTenantAndLandlord(chatSessionRequest);
+    }
+
+    @Override
+    public List<ChatSession> getAllChatSessionsByUserTypeAndId(String userType, int id) throws IOException {
+        return mChatSessionsRepository.getAllChatSessionsByUserTypeAndId(userType,id);
     }
 }

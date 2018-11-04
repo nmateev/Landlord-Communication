@@ -161,4 +161,6 @@ public class Constants {
     public static final String CHAT_SESSIONS_URL_SUFFIX = "chatsessions";
     public static final String USERS_TYPE_SUFFIX = "type";
 
+    public static final String CHAT_SESSIONS_RELATION_SUFFIX = "relation";
+    public static final String CHAT_SESSIONS_CHECK_SUFFIX = "check";
 }
