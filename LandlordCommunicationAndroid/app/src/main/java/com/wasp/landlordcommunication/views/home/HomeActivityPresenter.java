@@ -22,6 +22,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
+import static com.wasp.landlordcommunication.utils.Constants.TENANT;
+
 public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
 
     private final UsersService mUsersService;
@@ -204,12 +206,12 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
-                .subscribe(this::checkIfPaidStatusShouldBeUpdated,
+                .subscribe(this::checkIfPaidStatusAndNotificationsShouldBeUpdated,
                         error -> mView.showError(error));
 
     }
 
-    private void checkIfPaidStatusShouldBeUpdated(List<Property> propertiesResult) {
+    private void checkIfPaidStatusAndNotificationsShouldBeUpdated(List<Property> propertiesResult) {
         Calendar now = Calendar.getInstance();
         int currentDay = now.get(Calendar.DAY_OF_MONTH);
 
@@ -217,7 +219,27 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
             if (property.getRentPaid()) {
                 if (currentDay > property.getDueDate()) {
                     setPaidStatusFalseForProperty(property);
+                  //TODO uncomment when database is populated
+                   /* if (mUserType.equals(TENANT)) {
+                        mView.setupRentNotification(Constants.NOTIFICATION_CHANNEL_NAME,
+                                property.getPropertyId(),
+                                Constants.RENT_NOTIFICATION_TITLE,
+                                Constants.RENT_NOTIFICATION_DESCRIPTION, property.getPropertyAddress(),
+                                property.getDueDate()
+                        );
+                    }*/
+                    //remove in pay rent activity the notification
                 }
+            } else {
+                //TODO uncomment when database is populated
+                /*if (mUserType.equals(TENANT)) {
+                    mView.setupRentNotification(Constants.NOTIFICATION_CHANNEL_NAME,
+                            property.getPropertyId(),
+                            Constants.RENT_NOTIFICATION_TITLE,
+                            Constants.RENT_NOTIFICATION_DESCRIPTION, property.getPropertyAddress(),
+                            property.getDueDate()
+                    );
+                }*/
             }
         }
     }

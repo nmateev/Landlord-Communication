@@ -27,6 +27,8 @@ public interface HomeActivityContracts {
         void presentOptionToTakePicture();
 
         void showUserImage(Bitmap userImage);
+
+        void setupRentNotification(String channelName, int notificationCode, String notificationTitle, String notificationDescription, String notificationRentAddress, int dayRentIsDue);
     }
 
     interface Presenter {

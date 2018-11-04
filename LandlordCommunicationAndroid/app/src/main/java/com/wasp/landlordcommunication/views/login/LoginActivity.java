@@ -1,14 +1,20 @@
 package com.wasp.landlordcommunication.views.login;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.User;
+import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.signup.SignUpActivity;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -39,6 +45,8 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
                 .beginTransaction()
                 .replace(R.id.fr_login, mLoginFragment)
                 .commit();
+
+        createRentNotificationChannel();
     }
 
     @Override
@@ -69,5 +77,20 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
         intent.putExtra(USER_EXTRA, user);
         startActivity(intent);
         finish();
+    }
+
+    private void createRentNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence channelName = Constants.NOTIFICATION_CHANNEL_NAME;
+            String channelDescription = Constants.RENT_NOTIFICATION_CHANNEL_DESCRIPTION;
+            int importanceLevel = NotificationManager.IMPORTANCE_HIGH;
+
+            NotificationChannel rentChannel = new NotificationChannel(Constants.RENT_CHANNEL_ID, channelName, importanceLevel);
+            rentChannel.setDescription(channelDescription);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            Objects.requireNonNull(notificationManager).createNotificationChannel(rentChannel);
+        }
     }
 }

@@ -144,4 +144,18 @@ public class Constants {
     public static final String PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_LANDLORD = "Choose layout for how your properties wil be visualised";
 
     public static final String RATING_REPRESENTATION = "/5";
+    public static final String NOTIFICATION_CHANNEL_NAME = "Rent";
+    public static final String RENT_NOTIFICATION_CHANNEL_DESCRIPTION = "Channel to receive notifications about upcoming rents that are due";
+    public static final String RENT_CHANNEL_ID = "Rent";
+    public static final String PURPOSE_EXTRA = "purpose";
+    public static final String NOTIFICATION_CODE_EXTRA = "notificationCode";
+    public static final String NOTIFICATION_TITLE_EXTRA = "notificationTitle";
+    public static final String NOTIFICATION_DESCRIPTION_EXTRA = "notificationDescription";
+    public static final String NOTIFICATION_DESCRIPTION_ADDRESS_EXTRA = "address";
+    public static final String RENT_NOTIFICATION_TITLE = "Upcoming rent";
+    public static final String RENT_NOTIFICATION_DESCRIPTION = "Rent is due in 5 days for your place at";
+    public static final String RENT_NOTIFICATION_COLOUR_STRING = "#641D79";
+    public static final int RENT_NOTIFICATION_DAYS_BEFORE_PERIOD = -5;
+    public static final int RENT_NOTIFICATION_HOUR_TRIGGER = 11;
+    public static final int RENT_NOTIFICATION_MINUTE_TRIGGER = 25;
 }

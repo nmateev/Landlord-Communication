@@ -33,7 +33,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.signup.SignUpActivity" />
-        <activity android:name=".views.camera.CameraActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
@@ -53,6 +52,9 @@
         <activity android:name=".views.landlordspropertieslist.LandlordsPropertiesListActivity" />
         <activity android:name=".views.landlordpropertydetails.LandlordPropertyDetailsActivity" />
         <activity android:name=".views.propertymanagement.PropertyManagementActivity" />
+
+        <receiver android:name=".utils.NotificationReceiver" />
+
     </application>
 
 </manifest>

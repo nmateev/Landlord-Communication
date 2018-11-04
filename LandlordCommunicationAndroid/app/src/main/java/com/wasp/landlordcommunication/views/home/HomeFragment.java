@@ -2,6 +2,8 @@ package com.wasp.landlordcommunication.views.home;
 
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -20,8 +22,10 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.utils.Constants;
+import com.wasp.landlordcommunication.utils.NotificationReceiver;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -31,9 +35,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.content.Context.ALARM_SERVICE;
+
 
 public class HomeFragment extends Fragment implements HomeActivityContracts.View {
-
+    private static final int GALLERY_IMAGE_CHOOSER_REQUEST_CODE = 5;
+    private static final int TAKE_PICTURE_REQUEST_CODE = 10;
 
     @BindView(R.id.tv_user_rating_value)
     TextView mUserRatingTextView;
@@ -59,11 +66,8 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
     @BindView(R.id.fam_image_options_menu)
     FloatingActionsMenu mImageChangeFloatingMenu;
 
-
-    private static final int GALLERY_IMAGE_CHOOSER_REQUEST_CODE = 5;
-    private static final int TAKE_PICTURE_REQUEST_CODE = 10;
-
     private HomeActivityContracts.Presenter mPresenter;
+    private AlarmManager mAlarmManager;
 
     @Inject
     public HomeFragment() {
@@ -78,6 +82,7 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
+        mAlarmManager = (AlarmManager) Objects.requireNonNull(getActivity()).getSystemService(ALARM_SERVICE);
 
         return view;
     }
@@ -165,6 +170,34 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
     public void showUserImage(Bitmap userImage) {
 
         mUserPictureImageView.setImageBitmap(userImage);
+    }
+
+    @Override
+    public void setupRentNotification(String channelName, int notificationCode, String notificationTitle, String notificationDescription, String notificationRentAddress, int dayRentIsDue) {
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+
+        //setting the calendar as if it is the day of the rent
+        calendar.set(year, month, dayRentIsDue, Constants.RENT_NOTIFICATION_HOUR_TRIGGER, Constants.RENT_NOTIFICATION_MINUTE_TRIGGER);
+
+        //subtract 5 days from the due date in order to setup the notification 5 days before the actual due date
+        calendar.add(Calendar.DATE, Constants.RENT_NOTIFICATION_DAYS_BEFORE_PERIOD);
+
+
+        Intent intent = new Intent(getContext(), NotificationReceiver.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra(Constants.PURPOSE_EXTRA, channelName);
+        intent.putExtra(Constants.NOTIFICATION_CODE_EXTRA, notificationCode);
+        intent.putExtra(Constants.NOTIFICATION_TITLE_EXTRA, notificationTitle);
+        intent.putExtra(Constants.NOTIFICATION_DESCRIPTION_EXTRA, notificationDescription);
+        intent.putExtra(Constants.NOTIFICATION_DESCRIPTION_ADDRESS_EXTRA, notificationRentAddress);
+
+        PendingIntent pendingNotificationIntent = PendingIntent
+                .getBroadcast(getContext(), notificationCode, intent, 0);
+        Objects
+                .requireNonNull(mAlarmManager)
+                .setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingNotificationIntent);
     }
 
     @Override
