@@ -33,4 +33,19 @@ public class ChatPresenter implements ChatContracts.Presenter {
     public void setUserType(String userType) {
         mUserType = userType;
     }
+
+    @Override
+    public void setChatSessionId(int chatSessionId) {
+
+    }
+
+    @Override
+    public void setFirstChatMember(int firstChatMemberId) {
+
+    }
+
+    @Override
+    public void setSecondChatMember(int secondChatMemberId) {
+
+    }
 }

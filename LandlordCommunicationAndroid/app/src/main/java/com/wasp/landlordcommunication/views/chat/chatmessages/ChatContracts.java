@@ -26,5 +26,10 @@ public interface ChatContracts {
 
         void setUserType(String userType);
 
+        void setChatSessionId(int chatSessionId);
+
+        void setFirstChatMember(int firstChatMemberId);
+
+        void setSecondChatMember(int secondChatMemberId);
     }
 }

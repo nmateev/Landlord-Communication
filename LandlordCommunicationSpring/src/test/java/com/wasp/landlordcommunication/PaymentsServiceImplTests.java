@@ -29,28 +29,27 @@ public class PaymentsServiceImplTests {
                     1,
                     1000.00,
                     "01.01.2019",
-            "123456789"),
+                    "123456789"),
             new Payment(
                     2,
-            2,
-            2,
-            2000.00,
-            "02.02.2019",
-            "987654321"),
+                    2,
+                    2,
+                    2000.00,
+                    "02.02.2019",
+                    "987654321"),
             new Payment(
                     3,
-                            3,
-                            3,
-                            3000.00,
-                            "03.03.2019",
-                            "135792468"));
-
+                    3,
+                    3,
+                    3000.00,
+                    "03.03.2019",
+                    "135792468"));
 
 
     @Test
-    public void makePayment_Should_ReturnNewPayment(){
+    public void makePayment_Should_ReturnNewPayment() {
         // Arrange
-        Payment newPayment=new Payment();
+        Payment newPayment = new Payment();
         Mockito.when(mockRepository.makePayment(newPayment))
                 .thenReturn(newPayment);
 
@@ -62,20 +61,20 @@ public class PaymentsServiceImplTests {
     }
 
     @Test
-    public void getPaymentById_Should_ReturnMatchingPayment_WhenMatchExist(){
+    public void getPaymentById_Should_ReturnMatchingPayment_WhenMatchExist() {
         // Arrange
         Mockito.when(mockRepository.getPaymentById(1))
                 .thenReturn(defaultTestInput.get(0));
 
         // Act
-       Payment result = service.getPaymentById(1);
+        Payment result = service.getPaymentById(1);
 
         // Assert
         Assert.assertEquals(result, defaultTestInput.get(0));
     }
 
     @Test
-    public void getPaymentsByTenantId_Should_ReturnMatchingPayment_WhenMatchExist(){
+    public void getPaymentsByTenantId_Should_ReturnMatchingPayment_WhenMatchExist() {
         // Arrange
         Mockito.when(mockRepository.getPaymentsByTenantId(2))
                 .thenReturn(defaultTestInput);
@@ -88,7 +87,7 @@ public class PaymentsServiceImplTests {
     }
 
     @Test
-    public void getPaymentsByLandlordId_Should_ReturnMatchingPayment_WhenMatchExist(){
+    public void getPaymentsByLandlordId_Should_ReturnMatchingPayment_WhenMatchExist() {
         // Arrange
         Mockito.when(mockRepository.getPaymentsByTenantId(3))
                 .thenReturn(defaultTestInput);

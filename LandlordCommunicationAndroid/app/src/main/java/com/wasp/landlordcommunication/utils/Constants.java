@@ -2,7 +2,8 @@ package com.wasp.landlordcommunication.utils;
 
 public class Constants {
 
-    public static final String BASE_SERVER_URL = "http://192.168.0.103:9999/api/";
+    public static final String BASE_SERVER_URL = "http://192.168.1.77:9999/api/";
+    // public static final String BASE_SERVER_URL = "http://192.168.0.103:9999/api/";
     // public static final String BASE_SERVER_URL = "http://10.178.154.95:9999/api/";
     public static final String SLASH_STRING_VALUE = "/";
     public static final String USERS_URL_SUFFIX = "users";

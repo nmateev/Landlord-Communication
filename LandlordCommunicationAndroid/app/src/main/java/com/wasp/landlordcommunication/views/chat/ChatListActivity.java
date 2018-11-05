@@ -29,12 +29,6 @@ public class ChatListActivity extends BaseDrawerActivity implements ChatListCont
 
         ButterKnife.bind(this);
 
-      /*  //TODO Move to specific chat session activity
-        Intent incomingIntent = getIntent();
-        int loggedInUser = incomingIntent.getIntExtra(Constants.LOGGED_IN_USER_ID_EXTRA, getUserId());
-        int contactedUserId = incomingIntent.getIntExtra(Constants.CONTACTED_USER_ID_EXTRA, 0);
-        //TODO Move to specific chat session activity*/
-
         mChatListPresenter.setUserId(getUserId());
         mChatListPresenter.setUserType(getUserType());
 
@@ -45,7 +39,6 @@ public class ChatListActivity extends BaseDrawerActivity implements ChatListCont
                 .beginTransaction()
                 .replace(R.id.fr_chat_list, mChatListFragment)
                 .commit();
-
 
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
+import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
 
 import javax.inject.Inject;
@@ -31,9 +32,19 @@ public class ChatActivity extends BaseDrawerActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
-        //TODO get information from chat list and form property management redirect here
-        int id = intent.getIntExtra(CHAT_SESSION_ID_EXTRA, 0);
-        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+        //if the user navigates from his chat lists activity
+        if (intent.hasExtra(CHAT_SESSION_ID_EXTRA)) {
+
+            mChatPresenter.setChatSessionId(intent.getIntExtra(CHAT_SESSION_ID_EXTRA, 0));
+
+        } else {
+            //in the case when the user selects to message another user through the property management chat option
+            if ((intent.hasExtra(Constants.LOGGED_IN_USER_ID_EXTRA)) && (intent.hasExtra(Constants.CONTACTED_USER_ID_EXTRA))) {
+                mChatPresenter.setFirstChatMember(intent.getIntExtra(Constants.LOGGED_IN_USER_ID_EXTRA, 0));
+                mChatPresenter.setSecondChatMember(intent.getIntExtra(Constants.CONTACTED_USER_ID_EXTRA, 0));
+
+            }
+        }
 
         mChatPresenter.setUserId(getUserId());
         mChatPresenter.setUserType(getUserType());
