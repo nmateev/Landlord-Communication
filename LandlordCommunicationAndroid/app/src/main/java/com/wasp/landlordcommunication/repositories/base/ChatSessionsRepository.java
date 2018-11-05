@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ChatSessionsRepository {
+
+    ChatSession createChatSessionBetweenTenantAndLandlord(ChatSession chatSessionRequest) throws IOException;
+
     ChatSession getChatSessionByTenantAndLandlord(ChatSession chatSessionRequest) throws IOException;
 
     boolean isChatSessionCreatedBetweenTenantAndLandlord(ChatSession chatSessionRequest) throws IOException;

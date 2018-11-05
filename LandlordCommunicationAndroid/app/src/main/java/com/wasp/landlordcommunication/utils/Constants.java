@@ -165,4 +165,6 @@ public class Constants {
     public static final String NO_CHAT_SESSIONS_MESSAGE = "Your chat's list is empty.";
     public static final String CHAT_SESSION_ID_EXTRA = "chatSessionId";
     public static final String CHAT_MESSAGES_URL_SUFFIX = "messages";
+    public static final String CHAT_SESSION_TENANT_ID_EXTRA = "tenantExtra";
+    public static final String CHAT_SESSION_LANDLORD_ID_EXTRA = "landlordExtra";
 }

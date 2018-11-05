@@ -24,7 +24,7 @@ public interface ChatListContracts {
 
         void setLoggedInUserIdToAdapter(int userId);
 
-        void showChatMessages(int chatSessionId);
+        void showChatMessages(int chatSessionId, int tenantId, int landlordId);
     }
 
     interface Presenter {
@@ -44,6 +44,6 @@ public interface ChatListContracts {
 
     interface Navigator {
 
-        void navigateToChat(int chatSessionId);
+        void navigateToChat(int chatSessionId, int tenantId, int landlordId);
     }
 }

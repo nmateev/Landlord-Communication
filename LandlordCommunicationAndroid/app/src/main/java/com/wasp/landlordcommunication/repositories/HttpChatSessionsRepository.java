@@ -23,6 +23,15 @@ public class HttpChatSessionsRepository implements ChatSessionsRepository {
 
 
     @Override
+    public ChatSession createChatSessionBetweenTenantAndLandlord(ChatSession chatSessionRequest) throws IOException {
+
+        String requestBody = mJsonParser.toJson(chatSessionRequest);
+        String responseBody = mHttpRequester.post(mServerUrl, requestBody);
+
+        return mJsonParser.fromJson(responseBody);
+    }
+
+    @Override
     public ChatSession getChatSessionByTenantAndLandlord(ChatSession chatSessionRequest) throws IOException {
         String requestBody = mJsonParser.toJson(chatSessionRequest);
 

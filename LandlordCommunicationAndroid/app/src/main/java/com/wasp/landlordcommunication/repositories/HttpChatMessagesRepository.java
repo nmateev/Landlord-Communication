@@ -4,6 +4,10 @@ import com.wasp.landlordcommunication.http.base.HttpRequester;
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
 import com.wasp.landlordcommunication.repositories.base.ChatMessagesRepository;
+import com.wasp.landlordcommunication.utils.Constants;
+
+import java.io.IOException;
+import java.util.List;
 
 public class HttpChatMessagesRepository implements ChatMessagesRepository {
 
@@ -15,5 +19,19 @@ public class HttpChatMessagesRepository implements ChatMessagesRepository {
         mServerUrl = serverUrl;
         mHttpRequester = httpRequester;
         mJsonParser = jsonParser;
+    }
+
+    @Override
+    public List<ChatMessage> getChatMessagesByChatSessionId(int chatSessionId) throws IOException {
+        String url = new StringBuilder()
+                .append(mServerUrl)
+                .append(Constants.SLASH_STRING_VALUE)
+                .append(chatSessionId)
+                .toString();
+
+        String itemsJson = mHttpRequester.get(url);
+
+        return mJsonParser.fromJsonArray(itemsJson);
+
     }
 }

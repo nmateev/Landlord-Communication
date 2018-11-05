@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 
 import static com.wasp.landlordcommunication.utils.Constants.CHAT_SESSION_ID_EXTRA;
+import static com.wasp.landlordcommunication.utils.Constants.CHAT_SESSION_LANDLORD_ID_EXTRA;
+import static com.wasp.landlordcommunication.utils.Constants.CHAT_SESSION_TENANT_ID_EXTRA;
 
 public class ChatActivity extends BaseDrawerActivity {
     public static final long DRAWER_IDENTIFIER = -1;
@@ -36,6 +38,8 @@ public class ChatActivity extends BaseDrawerActivity {
         if (intent.hasExtra(CHAT_SESSION_ID_EXTRA)) {
 
             mChatPresenter.setChatSessionId(intent.getIntExtra(CHAT_SESSION_ID_EXTRA, 0));
+            mChatPresenter.setChatSessionTenantId(intent.getIntExtra(CHAT_SESSION_TENANT_ID_EXTRA, 0));
+            mChatPresenter.setChatSessionLandlordId(intent.getIntExtra(CHAT_SESSION_LANDLORD_ID_EXTRA, 0));
 
         } else {
             //in the case when the user selects to message another user through the property management chat option

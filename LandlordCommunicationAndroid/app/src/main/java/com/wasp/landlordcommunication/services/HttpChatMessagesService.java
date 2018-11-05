@@ -1,7 +1,11 @@
 package com.wasp.landlordcommunication.services;
 
+import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.repositories.base.ChatMessagesRepository;
 import com.wasp.landlordcommunication.services.base.ChatMessagesService;
+
+import java.io.IOException;
+import java.util.List;
 
 public class HttpChatMessagesService implements ChatMessagesService {
 
@@ -9,5 +13,10 @@ public class HttpChatMessagesService implements ChatMessagesService {
 
     public HttpChatMessagesService(ChatMessagesRepository chatMessagesRepository) {
         mChatMessagesRepository = chatMessagesRepository;
+    }
+
+    @Override
+    public List<ChatMessage> getChatMessagesByChatSessionId(int chatSessionId) throws IOException {
+        return mChatMessagesRepository.getChatMessagesByChatSessionId(chatSessionId);
     }
 }

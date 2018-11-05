@@ -71,7 +71,7 @@ public class ChatListPresenter implements ChatListContracts.Presenter {
 
     @Override
     public void chatSessionIsSelected(ChatSession chatSession) {
-        mView.showChatMessages(chatSession.getChatSessionId());
+        mView.showChatMessages(chatSession.getChatSessionId(), chatSession.getTenantId(), chatSession.getLandlordId());
     }
 
     private void presentChatSessionsToView(List<ChatSession> chatSessions) {

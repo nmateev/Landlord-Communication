@@ -48,9 +48,11 @@ public class ChatListActivity extends BaseDrawerActivity implements ChatListCont
     }
 
     @Override
-    public void navigateToChat(int chatSessionId) {
+    public void navigateToChat(int chatSessionId, int tenantId, int landlordId) {
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra(Constants.CHAT_SESSION_ID_EXTRA, chatSessionId);
+        intent.putExtra(Constants.CHAT_SESSION_TENANT_ID_EXTRA, tenantId);
+        intent.putExtra(Constants.CHAT_SESSION_LANDLORD_ID_EXTRA, landlordId);
         startActivity(intent);
     }
 }

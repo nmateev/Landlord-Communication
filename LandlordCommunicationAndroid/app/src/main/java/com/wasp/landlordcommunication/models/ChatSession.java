@@ -5,7 +5,6 @@ import java.util.Date;
 public class ChatSession {
 
     private int chatSessionId;
-    private Date dateCreated;
     private int tenantId;
     private int landlordId;
     private User tenant;
@@ -20,17 +19,8 @@ public class ChatSession {
         setLandlordId(landlordId);
     }
 
-    public ChatSession(Date dateCreated, int tenantId, int landlordId) {
-        this(tenantId, landlordId);
-        setDateCreated(dateCreated);
-    }
-
     public int getChatSessionId() {
         return chatSessionId;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
     }
 
     public int getTenantId() {
@@ -51,10 +41,6 @@ public class ChatSession {
 
     private void setChatSessionId(int chatSessionId) {
         this.chatSessionId = chatSessionId;
-    }
-
-    private void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
     }
 
     private void setTenantId(int tenantId) {

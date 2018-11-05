@@ -5,7 +5,6 @@ import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 @Table(name = Constants.CHAT_SESSIONS_TABLE_NAME)
@@ -15,10 +14,6 @@ public class ChatSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = Constants.CHAT_SESSIONS_TABLE_ID_FIELD)
     private int chatSessionId;
-
-    @NotNull
-    @Column(name = Constants.CHAT_SESSIONS_TABLE_DATE_CREATED_FIELD)
-    private Date dateCreated;
 
     @NotNull
     @Column(name = Constants.CHAT_SESSIONS_TABLE_TENANT_ID_FIELD)
@@ -40,18 +35,13 @@ public class ChatSession {
 
     }
 
-    public ChatSession(Date dateCreated, int tenantId, int landlordId) {
-        setDateCreated(dateCreated);
+    public ChatSession(int tenantId, int landlordId) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
     }
 
     public int getChatSessionId() {
         return chatSessionId;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
     }
 
     public int getTenantId() {
@@ -72,10 +62,6 @@ public class ChatSession {
 
     private void setChatSessionId(int chatSessionId) {
         this.chatSessionId = chatSessionId;
-    }
-
-    private void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
     }
 
     private void setTenantId(int tenantId) {

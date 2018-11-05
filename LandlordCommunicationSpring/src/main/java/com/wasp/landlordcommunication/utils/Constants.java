@@ -37,7 +37,6 @@ public class Constants {
     public static final String CHAT_SESSIONS_ROOT_MAPPING = "api/chatsessions";
     public static final String CHAT_SESSIONS_TABLE_NAME = "chat_sessions";
     public static final String CHAT_SESSIONS_TABLE_ID_FIELD = "chat_session_id";
-    public static final String CHAT_SESSIONS_TABLE_DATE_CREATED_FIELD = "date_created";
     public static final String CHAT_SESSIONS_TABLE_TENANT_ID_FIELD = "tenant_id";
     public static final String CHAT_SESSIONS_TABLE_LANDLORD_ID_FIELD = "landlord_id";
 

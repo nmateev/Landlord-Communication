@@ -55,7 +55,8 @@
 
         <receiver android:name=".utils.NotificationReceiver" />
 
-        <activity android:name=".views.chat.chatmessages.ChatActivity"></activity>
+        <activity android:name=".views.chat.chatmessages.ChatActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -131,8 +131,8 @@ public class ChatListFragment extends Fragment implements ChatListContracts.View
     }
 
     @Override
-    public void showChatMessages(int chatSessionId) {
-        mNavigator.navigateToChat(chatSessionId);
+    public void showChatMessages(int chatSessionId, int tenantId, int landlordId) {
+        mNavigator.navigateToChat(chatSessionId, tenantId, landlordId);
     }
 
     public void setNavigator(ChatListContracts.Navigator navigator) {

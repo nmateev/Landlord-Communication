@@ -16,6 +16,11 @@ public class HttpChatSessionsService implements ChatSessionsService {
     }
 
     @Override
+    public ChatSession createChatSessionBetweenTenantAndLandlord(ChatSession chatSessionRequest) throws IOException {
+        return mChatSessionsRepository.createChatSessionBetweenTenantAndLandlord(chatSessionRequest);
+    }
+
+    @Override
     public ChatSession getChatSessionByTenantAndLandlord(ChatSession chatSessionRequest) throws IOException {
         return mChatSessionsRepository.getChatSessionByTenantAndLandlord(chatSessionRequest);
     }

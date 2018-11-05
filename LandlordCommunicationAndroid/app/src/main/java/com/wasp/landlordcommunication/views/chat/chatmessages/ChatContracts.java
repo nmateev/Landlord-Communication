@@ -33,5 +33,11 @@ public interface ChatContracts {
         void setSecondChatMember(int secondChatMemberId);
 
         void loadChatSessionMessages();
+
+        void checkIfChatSessionAlreadyExistsBetweenUsersAndLoadMessages(int mTenantId, int mLandlordId);
+
+        void setChatSessionTenantId(int tenantId);
+
+        void setChatSessionLandlordId(int landlordId);
     }
 }
