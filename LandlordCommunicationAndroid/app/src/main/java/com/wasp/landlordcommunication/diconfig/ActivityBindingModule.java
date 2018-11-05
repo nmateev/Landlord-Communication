@@ -2,6 +2,7 @@ package com.wasp.landlordcommunication.diconfig;
 
 
 import com.wasp.landlordcommunication.diconfig.viewsmodules.ChatListModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.ChatModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.HomeModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordPropertyDetailsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsListModule;
@@ -13,6 +14,7 @@ import com.wasp.landlordcommunication.diconfig.viewsmodules.PropertyManagementMo
 import com.wasp.landlordcommunication.diconfig.viewsmodules.SettingsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.SignUpModule;
 import com.wasp.landlordcommunication.views.chat.ChatListActivity;
+import com.wasp.landlordcommunication.views.chat.chatmessages.ChatActivity;
 import com.wasp.landlordcommunication.views.home.HomeActivity;
 import com.wasp.landlordcommunication.views.landlordpropertydetails.LandlordPropertyDetailsActivity;
 import com.wasp.landlordcommunication.views.landlordslist.LandlordsListActivity;
@@ -69,6 +71,10 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = ChatListModule.class)
     abstract ChatListActivity chatListActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = ChatModule.class)
+    abstract ChatActivity chatActivity();
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = SettingsModule.class)

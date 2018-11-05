@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.wasp.landlordcommunication.AndroidApplication;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.ChatListModule;
+import com.wasp.landlordcommunication.diconfig.viewsmodules.ChatModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.HomeModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordPropertyDetailsModule;
 import com.wasp.landlordcommunication.diconfig.viewsmodules.LandlordsListModule;
@@ -44,6 +45,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         PropertiesModule.class,
         PropertyManagementModule.class,
         ChatListModule.class,
+        ChatModule.class,
         PaymentsModule.class,
         SettingsModule.class
 
