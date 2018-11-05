@@ -31,5 +31,7 @@ public interface ChatContracts {
         void setFirstChatMember(int firstChatMemberId);
 
         void setSecondChatMember(int secondChatMemberId);
+
+        void loadChatSessionMessages();
     }
 }

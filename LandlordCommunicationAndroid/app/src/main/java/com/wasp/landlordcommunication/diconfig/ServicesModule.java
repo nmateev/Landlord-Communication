@@ -4,16 +4,19 @@ import com.wasp.landlordcommunication.models.ChatSession;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.repositories.base.CacheRepository;
+import com.wasp.landlordcommunication.repositories.base.ChatMessagesRepository;
 import com.wasp.landlordcommunication.repositories.base.ChatSessionsRepository;
 import com.wasp.landlordcommunication.repositories.base.PaymentsRepository;
 import com.wasp.landlordcommunication.repositories.base.PropertiesRepository;
 import com.wasp.landlordcommunication.repositories.base.RatingsRepository;
 import com.wasp.landlordcommunication.repositories.base.UsersRepository;
+import com.wasp.landlordcommunication.services.HttpChatMessagesService;
 import com.wasp.landlordcommunication.services.HttpChatSessionsService;
 import com.wasp.landlordcommunication.services.HttpPaymentsService;
 import com.wasp.landlordcommunication.services.HttpPropertiesService;
 import com.wasp.landlordcommunication.services.HttpRatingsService;
 import com.wasp.landlordcommunication.services.HttpUsersService;
+import com.wasp.landlordcommunication.services.base.ChatMessagesService;
 import com.wasp.landlordcommunication.services.base.ChatSessionsService;
 import com.wasp.landlordcommunication.services.base.PaymentsService;
 import com.wasp.landlordcommunication.services.base.PropertiesService;
@@ -48,5 +51,10 @@ public class ServicesModule {
     @Provides
     public ChatSessionsService chatSessionsService(ChatSessionsRepository chatSessionsRepository) {
         return new HttpChatSessionsService(chatSessionsRepository);
+    }
+
+    @Provides
+    public ChatMessagesService chatMessagesService(ChatMessagesRepository chatMessagesRepository) {
+        return new HttpChatMessagesService(chatMessagesRepository);
     }
 }

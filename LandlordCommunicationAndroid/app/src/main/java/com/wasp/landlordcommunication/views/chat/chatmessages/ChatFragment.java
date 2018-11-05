@@ -48,6 +48,7 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
     public void onResume() {
         super.onResume();
         mPresenter.subscribe(this);
+        mPresenter.loadChatSessionMessages();
     }
 
     @Override
