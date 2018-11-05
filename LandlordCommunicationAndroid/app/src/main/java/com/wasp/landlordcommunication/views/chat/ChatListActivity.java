@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
+import com.wasp.landlordcommunication.views.chat.chatmessages.ChatActivity;
 
 import javax.inject.Inject;
 
@@ -37,6 +38,7 @@ public class ChatListActivity extends BaseDrawerActivity implements ChatListCont
         mChatListPresenter.setUserId(getUserId());
         mChatListPresenter.setUserType(getUserType());
 
+        mChatListFragment.setNavigator(this);
         mChatListFragment.setPresenter(mChatListPresenter);
 
         getSupportFragmentManager()
@@ -52,4 +54,10 @@ public class ChatListActivity extends BaseDrawerActivity implements ChatListCont
         return DRAWER_IDENTIFIER;
     }
 
+    @Override
+    public void navigateToChat(int chatSessionId) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(Constants.CHAT_SESSION_ID_EXTRA, chatSessionId);
+        startActivity(intent);
+    }
 }

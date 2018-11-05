@@ -5,9 +5,11 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 
+import com.wasp.landlordcommunication.models.ChatSession;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.utils.base.DateFormatter;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
+import com.wasp.landlordcommunication.views.chat.ChatSessionsArrayAdapter;
 import com.wasp.landlordcommunication.views.landlordslist.UsersAdapter;
 import com.wasp.landlordcommunication.views.landlordspropertieslist.LandlordsPropertiesAdapter;
 import com.wasp.landlordcommunication.views.payments.PaymentsAdapter;
@@ -45,5 +47,10 @@ public class ViewsModule {
     @Provides
     public RecyclerView.Adapter<PropertiesAdapter.PropertyViewHolder> propertiesAdapter(ImageEncoder imageEncoder) {
         return new PropertiesAdapter(imageEncoder);
+    }
+
+    @Provides
+    public ArrayAdapter<ChatSession> chatSessionsArrayAdapter(Context context) {
+        return new ChatSessionsArrayAdapter(context);
     }
 }

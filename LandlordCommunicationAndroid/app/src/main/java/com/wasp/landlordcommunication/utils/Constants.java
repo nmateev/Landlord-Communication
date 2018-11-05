@@ -39,7 +39,6 @@ public class Constants {
     public static final String MY_PROPERTIES_DRAWER_ITEM_NAME = "My Properties";
     public static final String RATINGS_URL_SUFFIX = "ratings";
     public static final String RATINGS_CHECK_URL_SUFFIX = "/check";
-    public static final String RATINGS_GET_BY_USERNAME_URL_SUFFIX = "/";
 
 
     public static final String PREFERENCES_USER_ID_KEY = "userId";
@@ -60,7 +59,6 @@ public class Constants {
     public static final int IMAGE_QUALITY = 50;
     public static final String ERROR_LOADING_USER_IMAGE = "Unsuccessful profile image loading!";
     public static final String PAYMENTS_URL_SUFFIX = "payments";
-    public static final String PAYMENTS_GET_BY_ID_URL_SUFFIX = "/";
     public static final String EMPTY_STRING = "";
     public static final String PAYMENTS_SENT_TITLE = "Sent payments";
     public static final String PAYMENTS_RECEIVED_TITLE = "Received payments";
@@ -163,4 +161,6 @@ public class Constants {
 
     public static final String CHAT_SESSIONS_RELATION_SUFFIX = "relation";
     public static final String CHAT_SESSIONS_CHECK_SUFFIX = "check";
+    public static final String NO_CHAT_SESSIONS_MESSAGE = "Your chat's list is empty.";
+    public static final String CHAT_SESSION_ID_EXTRA = "chatSessionId";
 }
