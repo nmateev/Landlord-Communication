@@ -25,6 +25,10 @@ public class ChatMessage {
     private int landlordId;
 
     @NotNull
+    @Column(name = Constants.CHAT_MESSAGES_SENDER_ID_COLUMN)
+    private int senderId;
+
+    @NotNull
     @Column(name = Constants.CHAT_MESSAGES_CHAT_SESSION_ID_COLUMN)
     private int chatSessionId;
 
@@ -54,9 +58,10 @@ public class ChatMessage {
 
     }
 
-    public ChatMessage(int tenantId, int landlordId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
+        setSenderId(senderId);
         setChatSessionId(chatSessionId);
         setDateSent(dateSent);
         setMessageText(messageText);
@@ -76,6 +81,10 @@ public class ChatMessage {
 
     public int getLandlordId() {
         return landlordId;
+    }
+
+    public int getSenderId() {
+        return senderId;
     }
 
     public int getChatSessionId() {
@@ -120,6 +129,10 @@ public class ChatMessage {
 
     private void setLandlordId(int landlordId) {
         this.landlordId = landlordId;
+    }
+
+    private void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
     private void setChatSessionId(int chatSessionId) {

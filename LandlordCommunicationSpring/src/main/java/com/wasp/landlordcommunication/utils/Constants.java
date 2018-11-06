@@ -55,6 +55,7 @@ public class Constants {
     public static final String CHAT_MESSAGES_ID_COLUMN = "message_id";
     public static final String CHAT_MESSAGES_TENANT_COLUMN = "tenant_id";
     public static final String CHAT_MESSAGES_LANDLORD_COLUMN = "landlord_id";
+    public static final String CHAT_MESSAGES_SENDER_ID_COLUMN = "sender_id";
     public static final String CHAT_MESSAGES_CHAT_SESSION_ID_COLUMN = "chat_session_id";
     public static final String CHAT_MESSAGES_DATE_SENT_COLUMN = "date_sent";
     public static final String CHAT_MESSAGES_TEXT_COLUMN = "message_text";

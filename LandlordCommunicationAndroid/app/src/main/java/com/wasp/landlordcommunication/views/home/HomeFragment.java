@@ -184,20 +184,21 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
         //subtract 5 days from the due date in order to setup the notification 5 days before the actual due date
         calendar.add(Calendar.DATE, Constants.RENT_NOTIFICATION_DAYS_BEFORE_PERIOD);
 
+        if (calendar.getTimeInMillis() > System.currentTimeMillis()) {
+            Intent intent = new Intent(getContext(), NotificationReceiver.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra(Constants.PURPOSE_EXTRA, channelName);
+            intent.putExtra(Constants.NOTIFICATION_CODE_EXTRA, notificationCode);
+            intent.putExtra(Constants.NOTIFICATION_TITLE_EXTRA, notificationTitle);
+            intent.putExtra(Constants.NOTIFICATION_DESCRIPTION_EXTRA, notificationDescription);
+            intent.putExtra(Constants.NOTIFICATION_DESCRIPTION_ADDRESS_EXTRA, notificationRentAddress);
 
-        Intent intent = new Intent(getContext(), NotificationReceiver.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra(Constants.PURPOSE_EXTRA, channelName);
-        intent.putExtra(Constants.NOTIFICATION_CODE_EXTRA, notificationCode);
-        intent.putExtra(Constants.NOTIFICATION_TITLE_EXTRA, notificationTitle);
-        intent.putExtra(Constants.NOTIFICATION_DESCRIPTION_EXTRA, notificationDescription);
-        intent.putExtra(Constants.NOTIFICATION_DESCRIPTION_ADDRESS_EXTRA, notificationRentAddress);
-
-        PendingIntent pendingNotificationIntent = PendingIntent
-                .getBroadcast(getContext(), notificationCode, intent, 0);
-        Objects
-                .requireNonNull(mAlarmManager)
-                .setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingNotificationIntent);
+            PendingIntent pendingNotificationIntent = PendingIntent
+                    .getBroadcast(getContext(), notificationCode, intent, 0);
+            Objects
+                    .requireNonNull(mAlarmManager)
+                    .setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingNotificationIntent);
+        }
     }
 
     @Override

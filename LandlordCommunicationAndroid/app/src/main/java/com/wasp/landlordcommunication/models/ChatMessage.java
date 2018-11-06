@@ -8,6 +8,7 @@ public class ChatMessage {
     private int messageId;
     private int tenantId;
     private int landlordId;
+    private int senderId;
     private int chatSessionId;
     private Date dateSent;
     private String messageText;
@@ -20,9 +21,10 @@ public class ChatMessage {
 
     }
 
-    public ChatMessage(int tenantId, int landlordId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
+        setSenderId(senderId);
         setChatSessionId(chatSessionId);
         setDateSent(dateSent);
         setMessageText(messageText);
@@ -42,6 +44,10 @@ public class ChatMessage {
 
     public int getLandlordId() {
         return landlordId;
+    }
+
+    public int getSenderId() {
+        return senderId;
     }
 
     public int getChatSessionId() {
@@ -88,6 +94,10 @@ public class ChatMessage {
         this.landlordId = landlordId;
     }
 
+    private void setSenderId(int senderId) {
+        this.senderId = senderId;
+    }
+
     private void setChatSessionId(int chatSessionId) {
         this.chatSessionId = chatSessionId;
     }
@@ -103,4 +113,5 @@ public class ChatMessage {
     private void setImageMessage(String imageMessage) {
         this.imageMessage = imageMessage;
     }
+
 }

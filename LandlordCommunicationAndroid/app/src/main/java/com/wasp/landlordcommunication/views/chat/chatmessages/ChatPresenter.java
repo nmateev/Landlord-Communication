@@ -1,5 +1,7 @@
 package com.wasp.landlordcommunication.views.chat.chatmessages;
 
+import android.graphics.Bitmap;
+
 import com.wasp.landlordcommunication.async.base.SchedulerProvider;
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.models.ChatSession;
@@ -9,6 +11,7 @@ import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -180,7 +183,27 @@ public class ChatPresenter implements ChatContracts.Presenter {
 
     private void loadInitialMessagesForChatSession(ChatSession chatSession, int tenantId, int landlordId) {
         mView.showProgressBar();
+        Bitmap userImage = null;
+        if (mUserId == tenantId) {
+            //If the logged in user is the tenant we have to show the landlords image in chat
+            if (!Objects.equals(chatSession.getLandlord().getUserPicture(), null)) {
+                userImage = mImageEncoder.decodeStringToBitmap(chatSession.getLandlord().getUserPicture());
+            }
+        } else {
+            //we have to show the tenants image in chat
+            if (!Objects.equals(chatSession.getTenant().getUserPicture(), null)) {
+                userImage = mImageEncoder.decodeStringToBitmap(chatSession.getLandlord().getUserPicture());
+            }
+
+        }
+        mView.setLoggedInUserToAdapter(mUserId);
+        mView.setUserImageToShowInAdapter(userImage);
+
+
+        mView.showProgressBar();
         int chatSessionId = chatSession.getChatSessionId();
+
+
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<ChatMessage>>) emitter -> {
                     List<ChatMessage> chatMessages = mChatMessagesService.getChatMessagesByChatSessionId(chatSessionId);
@@ -191,9 +214,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBar)
                 .subscribe(chatMessages -> {
-                    for (ChatMessage message : chatMessages) {
-                        mView.showMessage(message.getMessageText());
-                    }
+                    mView.showChatMessages(chatMessages);
 
 
                 }, error -> mView.showError(error));

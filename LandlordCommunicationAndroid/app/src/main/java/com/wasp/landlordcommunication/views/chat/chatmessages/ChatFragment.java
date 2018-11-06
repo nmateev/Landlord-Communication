@@ -1,6 +1,7 @@
 package com.wasp.landlordcommunication.views.chat.chatmessages;
 
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
+import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.utils.Constants;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -83,5 +87,20 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
 
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT)
                 .show();
+    }
+
+    @Override
+    public void setLoggedInUserToAdapter(int userId) {
+
+    }
+
+    @Override
+    public void setUserImageToShowInAdapter(Bitmap userImage) {
+
+    }
+
+    @Override
+    public void showChatMessages(List<ChatMessage> chatMessages) {
+
     }
 }

@@ -1,5 +1,11 @@
 package com.wasp.landlordcommunication.views.chat.chatmessages;
 
+import android.graphics.Bitmap;
+
+import com.wasp.landlordcommunication.models.ChatMessage;
+
+import java.util.List;
+
 public interface ChatContracts {
 
     interface View {
@@ -14,6 +20,11 @@ public interface ChatContracts {
 
         void showMessage(String message);
 
+        void setLoggedInUserToAdapter(int userId);
+
+        void setUserImageToShowInAdapter(Bitmap userImage);
+
+        void showChatMessages(List<ChatMessage> chatMessages);
     }
 
     interface Presenter {
