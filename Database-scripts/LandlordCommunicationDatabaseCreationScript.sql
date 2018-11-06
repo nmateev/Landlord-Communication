@@ -28,20 +28,23 @@ CREATE TABLE `chat_messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) NOT NULL,
   `landlord_id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
   `chat_session_id` int(11) NOT NULL,
   `date_sent` datetime NOT NULL,
-  `message_text` varchar(200) NOT NULL,
-  `image_message` blob DEFAULT NULL,
+  `message_text` varchar(120) NOT NULL,
+  `image_message` longtext DEFAULT NULL,
   `is_delivered_to_tenant` tinyint(4) NOT NULL DEFAULT 0,
   `is_delivered_to_landlord` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`message_id`),
   KEY `fk_chat_messages_chat_sessions` (`chat_session_id`),
   KEY `fk_chat_messages_user` (`landlord_id`),
   KEY `fk_chat_messages_users` (`tenant_id`),
+  KEY `fk_chat_messages_usert` (`sender_id`),
   CONSTRAINT `fk_chat_messages_chat_sessions` FOREIGN KEY (`chat_session_id`) REFERENCES `chat_sessions` (`chat_session_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_chat_messages_user` FOREIGN KEY (`landlord_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_chat_messages_users` FOREIGN KEY (`tenant_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_chat_messages_users` FOREIGN KEY (`tenant_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_chat_messages_usert` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +56,6 @@ DROP TABLE IF EXISTS `chat_sessions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chat_sessions` (
   `chat_session_id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_created` date NOT NULL,
   `tenant_id` int(11) NOT NULL,
   `landlord_id` int(11) NOT NULL,
   PRIMARY KEY (`chat_session_id`),
@@ -61,7 +63,7 @@ CREATE TABLE `chat_sessions` (
   KEY `fk_chat_sessions_user` (`landlord_id`),
   CONSTRAINT `fk_chat_sessions_user` FOREIGN KEY (`landlord_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_chat_sessions_users` FOREIGN KEY (`tenant_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,9 +77,10 @@ CREATE TABLE `payments` (
   `payment_id` int(11) NOT NULL AUTO_INCREMENT,
   `tenant_id` int(11) NOT NULL,
   `landlord_id` int(11) NOT NULL,
+  `property_address` varchar(100) NOT NULL,
   `property_id` int(11) NOT NULL,
   `amount` double NOT NULL,
-  `date_paid` datetime DEFAULT NULL,
+  `date_paid` varchar(45) DEFAULT NULL,
   `card_number` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`payment_id`),
   KEY `fk_payments_users` (`tenant_id`),
@@ -86,7 +89,7 @@ CREATE TABLE `payments` (
   CONSTRAINT `fk_payments_properties` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_payments_user` FOREIGN KEY (`landlord_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_payments_users` FOREIGN KEY (`tenant_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,20 +101,18 @@ DROP TABLE IF EXISTS `properties`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `properties` (
   `property_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tenant_id` int(11) DEFAULT NULL,
+  `tenant_id` int(11) NOT NULL,
   `landlord_id` int(11) NOT NULL,
   `rent_price` double NOT NULL,
-  `due_date` date NOT NULL,
+  `due_date` int(11) NOT NULL,
   `is_rent_paid` tinyint(4) NOT NULL DEFAULT 0,
-  `property_picture` blob DEFAULT NULL,
+  `property_picture` longtext DEFAULT NULL,
   `property_address` varchar(100) NOT NULL,
-  `description` varchar(100) NOT NULL,
+  `description` text NOT NULL,
   PRIMARY KEY (`property_id`),
   KEY `fk_properties_user` (`landlord_id`),
-  KEY `fk_properties_users` (`tenant_id`),
-  CONSTRAINT `fk_properties_user` FOREIGN KEY (`landlord_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_properties_users` FOREIGN KEY (`tenant_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_properties_user` FOREIGN KEY (`landlord_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +132,7 @@ CREATE TABLE `ratings` (
   KEY `fk_ratings_user` (`voted_for_id`),
   CONSTRAINT `fk_ratings_user` FOREIGN KEY (`voted_for_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ratings_users` FOREIGN KEY (`voter_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,10 +164,10 @@ CREATE TABLE `users` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `user_type` varchar(45) NOT NULL,
-  `user_picture` blob DEFAULT NULL,
+  `user_picture` longtext DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name_UNIQUE` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -178,4 +179,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-23 15:13:53
+-- Dump completed on 2018-11-07  0:52:53
