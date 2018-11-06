@@ -215,11 +215,43 @@ public class ChatPresenter implements ChatContracts.Presenter {
                 .doFinally(mView::hideProgressBar)
                 .subscribe(chatMessages -> {
                     mView.showChatMessages(chatMessages);
-
+                    updateDeliveredStatusToMessagesForLoggedInUser(chatMessages);
 
                 }, error -> mView.showError(error));
 
 
+    }
+
+    private void updateDeliveredStatusToMessagesForLoggedInUser(List<ChatMessage> chatMessages) {
+
+        for (ChatMessage message : chatMessages) {
+            if (mUserType.equals(TENANT)) {
+                if (!message.isDeliveredToTenant()) {
+                    message.setIsDeliveredToTenant(true);
+                    updateMessageStatus(message);
+                }
+
+            } else {
+                if (!message.isDeliveredToLandlord()) {
+                    message.setIsDeliveredToLandlord(true);
+                    updateMessageStatus(message);
+                }
+            }
+        }
+    }
+
+    private void updateMessageStatus(ChatMessage message) {
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<ChatMessage>) emitter -> {
+                    ChatMessage chatMessagesToUpdate = mChatMessagesService.updateDeliveredStatusForChatMessage(message);
+                    emitter.onNext(chatMessagesToUpdate);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .subscribe(chatMessage -> {
+
+                }, error -> mView.showError(error));
     }
 
     private void assignTenantAndLandlordId(int mFirstChatMemberId, int mSecondChatMemberId) {

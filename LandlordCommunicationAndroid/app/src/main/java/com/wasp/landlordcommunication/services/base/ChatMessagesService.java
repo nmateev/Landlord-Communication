@@ -8,4 +8,6 @@ import java.util.List;
 public interface ChatMessagesService {
 
     List<ChatMessage> getChatMessagesByChatSessionId(int chatSessionId) throws IOException;
+
+    ChatMessage updateDeliveredStatusForChatMessage(ChatMessage chatMessage) throws IOException;
 }

@@ -10,7 +10,7 @@ public class ChatMessage {
     private int landlordId;
     private int senderId;
     private int chatSessionId;
-    private Date dateSent;
+    private String dateSent;
     private String messageText;
     private String imageMessage;
     private boolean isDeliveredToTenant;
@@ -21,7 +21,7 @@ public class ChatMessage {
 
     }
 
-    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, String dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setSenderId(senderId);
@@ -29,8 +29,8 @@ public class ChatMessage {
         setDateSent(dateSent);
         setMessageText(messageText);
         setImageMessage(imageMessage);
-        setDeliveredToTenant(isDeliveredToTenant);
-        setDeliveredToLandlord(isDeliveredToLandlord);
+        setIsDeliveredToTenant(isDeliveredToTenant);
+        setIsDeliveredToLandlord(isDeliveredToLandlord);
     }
 
 
@@ -54,7 +54,7 @@ public class ChatMessage {
         return chatSessionId;
     }
 
-    public Date getDateSent() {
+    public String getDateSent() {
         return dateSent;
     }
 
@@ -74,12 +74,12 @@ public class ChatMessage {
         return isDeliveredToLandlord;
     }
 
-    public void setDeliveredToTenant(boolean deliveredToTenant) {
-        this.isDeliveredToTenant = deliveredToTenant;
+    public void setIsDeliveredToTenant(boolean isDeliveredToTenant) {
+        this.isDeliveredToTenant = isDeliveredToTenant;
     }
 
-    public void setDeliveredToLandlord(boolean deliveredToLandlord) {
-        this.isDeliveredToLandlord = deliveredToLandlord;
+    public void setIsDeliveredToLandlord(boolean isDeliveredToLandlord) {
+        this.isDeliveredToLandlord = isDeliveredToLandlord;
     }
 
     private void setMessageId(int messageId) {
@@ -102,7 +102,7 @@ public class ChatMessage {
         this.chatSessionId = chatSessionId;
     }
 
-    private void setDateSent(Date dateSent) {
+    private void setDateSent(String dateSent) {
         this.dateSent = dateSent;
     }
 

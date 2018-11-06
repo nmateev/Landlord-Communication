@@ -19,4 +19,9 @@ public class HttpChatMessagesService implements ChatMessagesService {
     public List<ChatMessage> getChatMessagesByChatSessionId(int chatSessionId) throws IOException {
         return mChatMessagesRepository.getChatMessagesByChatSessionId(chatSessionId);
     }
+
+    @Override
+    public ChatMessage updateDeliveredStatusForChatMessage(ChatMessage chatMessage) throws IOException {
+        return mChatMessagesRepository.updateDeliveredStatusForChatMessage(chatMessage);
+    }
 }

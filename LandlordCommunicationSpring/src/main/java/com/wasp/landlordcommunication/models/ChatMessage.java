@@ -66,8 +66,8 @@ public class ChatMessage {
         setDateSent(dateSent);
         setMessageText(messageText);
         setImageMessage(imageMessage);
-        setDeliveredToTenant(isDeliveredToTenant);
-        setDeliveredToLandlord(isDeliveredToLandlord);
+        setIsDeliveredToTenant(isDeliveredToTenant);
+        setIsDeliveredToLandlord(isDeliveredToLandlord);
     }
 
 
@@ -111,12 +111,12 @@ public class ChatMessage {
         return isDeliveredToLandlord;
     }
 
-    public void setDeliveredToTenant(boolean deliveredToTenant) {
-        this.isDeliveredToTenant = deliveredToTenant;
+    public void setIsDeliveredToTenant(boolean isDeliveredToTenant) {
+        this.isDeliveredToTenant = isDeliveredToTenant;
     }
 
-    public void setDeliveredToLandlord(boolean deliveredToLandlord) {
-        this.isDeliveredToLandlord = deliveredToLandlord;
+    public void setIsDeliveredToLandlord(boolean isDeliveredToLandlord) {
+        this.isDeliveredToLandlord = isDeliveredToLandlord;
     }
 
     private void setMessageId(int messageId) {

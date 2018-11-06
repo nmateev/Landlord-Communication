@@ -34,4 +34,12 @@ public class HttpChatMessagesRepository implements ChatMessagesRepository {
         return mJsonParser.fromJsonArray(itemsJson);
 
     }
+
+    @Override
+    public ChatMessage updateDeliveredStatusForChatMessage(ChatMessage chatMessage) throws IOException {
+        String requestBody = mJsonParser.toJson(chatMessage);
+        String responseBody = mHttpRequester.update(mServerUrl, requestBody);
+
+        return mJsonParser.fromJson(responseBody);
+    }
 }

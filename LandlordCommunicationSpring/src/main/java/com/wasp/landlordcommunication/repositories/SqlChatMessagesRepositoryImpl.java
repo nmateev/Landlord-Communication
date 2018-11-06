@@ -131,8 +131,8 @@ public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
 
             chatMessage = session.get(ChatMessage.class, messageToUpdate.getMessageId());
 
-            chatMessage.setDeliveredToTenant(messageToUpdate.isDeliveredToTenant());
-            chatMessage.setDeliveredToLandlord(messageToUpdate.isDeliveredToLandlord());
+            chatMessage.setIsDeliveredToTenant(messageToUpdate.isDeliveredToTenant());
+            chatMessage.setIsDeliveredToLandlord(messageToUpdate.isDeliveredToLandlord());
             transaction.commit();
 
         } catch (Exception e) {
