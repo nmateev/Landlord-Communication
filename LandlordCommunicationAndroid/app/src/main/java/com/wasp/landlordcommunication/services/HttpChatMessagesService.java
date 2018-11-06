@@ -24,4 +24,14 @@ public class HttpChatMessagesService implements ChatMessagesService {
     public ChatMessage updateDeliveredStatusForChatMessage(ChatMessage chatMessage) throws IOException {
         return mChatMessagesRepository.updateDeliveredStatusForChatMessage(chatMessage);
     }
+
+    @Override
+    public List<ChatMessage> getUndeliveredMessagesByChatSessionIdAndUserType(int chatSessionId, String userType) throws IOException {
+        return mChatMessagesRepository.getUndeliveredMessagesByChatSessionIdAndUserType(chatSessionId, userType);
+    }
+
+    @Override
+    public ChatMessage postChatMessage(ChatMessage newChatMessage) throws IOException {
+        return mChatMessagesRepository.postChatMessage(newChatMessage);
+    }
 }

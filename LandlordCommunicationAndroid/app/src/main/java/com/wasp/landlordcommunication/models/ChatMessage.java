@@ -10,18 +10,18 @@ public class ChatMessage {
     private int landlordId;
     private int senderId;
     private int chatSessionId;
-    private String dateSent;
+    private Date dateSent;
     private String messageText;
     private String imageMessage;
-    private boolean isDeliveredToTenant;
-    private boolean isDeliveredToLandlord;
+    private boolean deliveredToTenant;
+    private boolean deliveredToLandlord;
 
 
     public ChatMessage() {
 
     }
 
-    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, String dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean deliveredToTenant, boolean deliveredToLandlord) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setSenderId(senderId);
@@ -29,8 +29,8 @@ public class ChatMessage {
         setDateSent(dateSent);
         setMessageText(messageText);
         setImageMessage(imageMessage);
-        setIsDeliveredToTenant(isDeliveredToTenant);
-        setIsDeliveredToLandlord(isDeliveredToLandlord);
+        setDeliveredToTenant(deliveredToTenant);
+        setDeliveredToLandlord(deliveredToLandlord);
     }
 
 
@@ -54,7 +54,7 @@ public class ChatMessage {
         return chatSessionId;
     }
 
-    public String getDateSent() {
+    public Date getDateSent() {
         return dateSent;
     }
 
@@ -66,20 +66,20 @@ public class ChatMessage {
         return imageMessage;
     }
 
-    public boolean isDeliveredToTenant() {
-        return isDeliveredToTenant;
+    public boolean getDeliveredToTenant() {
+        return deliveredToTenant;
     }
 
-    public boolean isDeliveredToLandlord() {
-        return isDeliveredToLandlord;
+    public boolean getDeliveredToLandlord() {
+        return deliveredToLandlord;
     }
 
-    public void setIsDeliveredToTenant(boolean isDeliveredToTenant) {
-        this.isDeliveredToTenant = isDeliveredToTenant;
+    public void setDeliveredToTenant(boolean deliveredToTenant) {
+        this.deliveredToTenant = deliveredToTenant;
     }
 
-    public void setIsDeliveredToLandlord(boolean isDeliveredToLandlord) {
-        this.isDeliveredToLandlord = isDeliveredToLandlord;
+    public void setDeliveredToLandlord(boolean deliveredToLandlord) {
+        this.deliveredToLandlord = deliveredToLandlord;
     }
 
     private void setMessageId(int messageId) {
@@ -102,7 +102,7 @@ public class ChatMessage {
         this.chatSessionId = chatSessionId;
     }
 
-    private void setDateSent(String dateSent) {
+    private void setDateSent(Date dateSent) {
         this.dateSent = dateSent;
     }
 

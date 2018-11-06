@@ -1,7 +1,9 @@
 package com.wasp.landlordcommunication.parsers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
+import com.wasp.landlordcommunication.utils.Constants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,9 @@ public class GsonJsonParser<T> implements JsonParser<T> {
     public GsonJsonParser(Class<T> klass, Class<T[]> arrayKlass) {
         mKlass = klass;
         mArrayKlass = arrayKlass;
-        mGson = new Gson();
+        mGson = new GsonBuilder()
+                .setDateFormat(Constants.DATE_REPRESENTATION)
+                .create();
     }
 
 

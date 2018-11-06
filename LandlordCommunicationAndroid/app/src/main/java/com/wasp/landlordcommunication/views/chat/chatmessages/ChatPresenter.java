@@ -10,8 +10,10 @@ import com.wasp.landlordcommunication.services.base.ChatSessionsService;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -22,11 +24,15 @@ import io.reactivex.disposables.Disposable;
 import static com.wasp.landlordcommunication.utils.Constants.TENANT;
 
 public class ChatPresenter implements ChatContracts.Presenter {
+    private static final int LOOPER_DELAY_AMOUNT_SECONDS = 5;
+
     private final ChatSessionsService mChatSessionsService;
     private final ChatMessagesService mChatMessagesService;
     private final SchedulerProvider mSchedulerProvider;
     private final ImageEncoder mImageEncoder;
     private ChatContracts.View mView;
+    private Disposable mChatLooperDisposable;
+
 
     private int mUserId;
     private String mUserType;
@@ -41,6 +47,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
     private int mSecondChatMemberId;
 
     //used as final identification for the chat
+    private int mChatId;
     private int mTenantId;
     private int mLandlordId;
 
@@ -99,11 +106,17 @@ public class ChatPresenter implements ChatContracts.Presenter {
     }
 
     @Override
+    public void stopChatLooping() {
+        mChatLooperDisposable.dispose();
+    }
+
+    @Override
     public void loadChatSessionMessages() {
 
        /* If the chat session id is different from 0 the user navigated from his chat lists activity and there is no need to
        check if the chat session between the users exists and we load the messages from the session directly */
         if (mChatSessionId != 0) {
+            mChatId = mChatSessionId;
             mTenantId = mChatSessionTenantId;
             mLandlordId = mChatSessionLandlordId;
             getChatSessionByTenantAndLandlordAndLoadMessages(mTenantId, mLandlordId);
@@ -203,6 +216,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
         mView.showProgressBar();
         int chatSessionId = chatSession.getChatSessionId();
 
+        mChatId = chatSessionId;
 
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<ChatMessage>>) emitter -> {
@@ -214,11 +228,40 @@ public class ChatPresenter implements ChatContracts.Presenter {
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBar)
                 .subscribe(chatMessages -> {
-                    mView.showChatMessages(chatMessages);
-                    updateDeliveredStatusToMessagesForLoggedInUser(chatMessages);
+                    if (!chatMessages.isEmpty()) {
+                        mView.showChatMessages(chatMessages);
+                        mView.scrollChatToBottom();
+                        updateDeliveredStatusToMessagesForLoggedInUser(chatMessages);
+                    }
 
                 }, error -> mView.showError(error));
 
+
+        loadUndeliveredMessagesByUserTypeFromChatSessionIdLooper(mChatId);
+
+    }
+
+    private void loadUndeliveredMessagesByUserTypeFromChatSessionIdLooper(int chatSessionId) {
+
+
+        mChatLooperDisposable = Observable
+                .create((ObservableOnSubscribe<List<ChatMessage>>) emitter -> {
+                    List<ChatMessage> chatMessages = mChatMessagesService.getUndeliveredMessagesByChatSessionIdAndUserType(chatSessionId, mUserType);
+                    emitter.onNext(chatMessages);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideProgressBar)
+                .repeatWhen(completed -> completed.delay(LOOPER_DELAY_AMOUNT_SECONDS, TimeUnit.SECONDS))
+                .subscribe(chatMessages -> {
+                    if (!chatMessages.isEmpty()) {
+                        mView.showChatMessages(chatMessages);
+                        mView.scrollChatToBottom();
+                        updateDeliveredStatusToMessagesForLoggedInUser(chatMessages);
+                    }
+
+                }, error -> mView.showError(error));
 
     }
 
@@ -226,14 +269,14 @@ public class ChatPresenter implements ChatContracts.Presenter {
 
         for (ChatMessage message : chatMessages) {
             if (mUserType.equals(TENANT)) {
-                if (!message.isDeliveredToTenant()) {
-                    message.setIsDeliveredToTenant(true);
+                if (!message.getDeliveredToTenant()) {
+                    message.setDeliveredToTenant(true);
                     updateMessageStatus(message);
                 }
 
             } else {
-                if (!message.isDeliveredToLandlord()) {
-                    message.setIsDeliveredToLandlord(true);
+                if (!message.getDeliveredToLandlord()) {
+                    message.setDeliveredToLandlord(true);
                     updateMessageStatus(message);
                 }
             }
@@ -250,8 +293,40 @@ public class ChatPresenter implements ChatContracts.Presenter {
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .subscribe(chatMessage -> {
-
                 }, error -> mView.showError(error));
+    }
+
+    @Override
+    public void sendButtonIsClicked(String message) {
+        if (message.length() == 0) {
+            return;
+        }
+
+        mView.clearMessageTextInput();
+
+        ChatMessage newChatMessage;
+        if (mUserType.equals(TENANT)) {
+            newChatMessage = new ChatMessage(mTenantId, mLandlordId, mUserId, mChatId, new Date(), message, null, true, false);
+        } else {
+            newChatMessage = new ChatMessage(mTenantId, mLandlordId, mUserId, mChatId, new Date(), message, null, false, true);
+        }
+
+
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<ChatMessage>) emitter -> {
+                    ChatMessage chatMessageToPost = mChatMessagesService.postChatMessage(newChatMessage);
+                    emitter.onNext(chatMessageToPost);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .subscribe(postedChatMessage -> {
+                            mView.showNewMessage(postedChatMessage);
+                            mView.scrollChatToBottom();
+                        },
+                        error -> mView.showError(error));
+
+
     }
 
     private void assignTenantAndLandlordId(int mFirstChatMemberId, int mSecondChatMemberId) {

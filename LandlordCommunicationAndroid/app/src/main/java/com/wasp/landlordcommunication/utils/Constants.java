@@ -66,7 +66,7 @@ public class Constants {
     public static final String TIME_ZONE_NAME = "timeZone";
     public static final String DATE_REPRESENTATION_NAME = "dateRepresentation";
     public static final String TIME_ZONE = "UTC";
-    public static final String PAYMENTS_DATE_REPRESENTATION = "dd.MM.yyyy  HH:mm:ss";
+    public static final String DATE_REPRESENTATION = "dd.MM.yyyy  HH:mm:ss";
     public static final String NO_LANDLORDS_AVAILABLE_MESSAGE = "There are currently no landlords at the moment";
     public static final String NO_RESULT_ON_SEARCH_QUERY_MESSAGE = "Your search returned zero results";
     public static final String PRICE = "Price: ";

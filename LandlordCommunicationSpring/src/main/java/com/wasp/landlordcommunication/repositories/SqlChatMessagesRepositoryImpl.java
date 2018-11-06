@@ -17,8 +17,8 @@ import java.util.List;
 public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
 
     private static final String GET_MESSAGES_BY_CHAT_SESSION_ID_QUERY = "FROM ChatMessage WHERE chatSessionId = :chatSessionId AND dateSent >= :dateSearched";
-    private static final String GET_TENANTS_UNDELIVERED_MESSAGES_QUERY = "FROM ChatMessage WHERE dateSent >= :dateSearched AND chatSessionId = :chatSessionId  AND isDeliveredToTenant = :isDeliveredToTenant";
-    private static final String GET_LANDLORDS_UNDELIVERED_MESSAGES_QUERY = "FROM ChatMessage WHERE dateSent >= :dateSearched AND chatSessionId = :chatSessionId  AND isDeliveredToLandlord = :isDeliveredToLandlord";
+    private static final String GET_TENANTS_UNDELIVERED_MESSAGES_QUERY = "FROM ChatMessage WHERE dateSent >= :dateSearched AND chatSessionId = :chatSessionId  AND deliveredToTenant = :isDeliveredToTenant";
+    private static final String GET_LANDLORDS_UNDELIVERED_MESSAGES_QUERY = "FROM ChatMessage WHERE dateSent >= :dateSearched AND chatSessionId = :chatSessionId  AND deliveredToLandlord = :isDeliveredToLandlord";
     private static final String DATE_SEARCHED_PARAMETER = "dateSearched";
     private static final String CHAT_SESSION_ID_PARAMETER = "chatSessionId";
     private static final String IS_MESSAGE_DELIVERED_TO_TENANT_PARAMETER = "isDeliveredToTenant";
@@ -131,8 +131,8 @@ public class SqlChatMessagesRepositoryImpl implements ChatMessagesRepository {
 
             chatMessage = session.get(ChatMessage.class, messageToUpdate.getMessageId());
 
-            chatMessage.setIsDeliveredToTenant(messageToUpdate.isDeliveredToTenant());
-            chatMessage.setIsDeliveredToLandlord(messageToUpdate.isDeliveredToLandlord());
+            chatMessage.setDeliveredToTenant(messageToUpdate.getDeliveredToTenant());
+            chatMessage.setDeliveredToLandlord(messageToUpdate.getDeliveredToLandlord());
             transaction.commit();
 
         } catch (Exception e) {

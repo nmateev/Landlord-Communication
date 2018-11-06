@@ -60,5 +60,6 @@
 
     <string name="preferences">Preferences</string>
     <string name="layout">Layout</string>
+    <string name="write_a_message">Write a message</string>
 
 </resources>

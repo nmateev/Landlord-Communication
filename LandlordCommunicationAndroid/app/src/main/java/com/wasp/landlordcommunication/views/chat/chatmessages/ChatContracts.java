@@ -25,6 +25,12 @@ public interface ChatContracts {
         void setUserImageToShowInAdapter(Bitmap userImage);
 
         void showChatMessages(List<ChatMessage> chatMessages);
+
+        void showNewMessage(ChatMessage newMessage);
+
+        void scrollChatToBottom();
+
+        void clearMessageTextInput();
     }
 
     interface Presenter {
@@ -50,5 +56,9 @@ public interface ChatContracts {
         void setChatSessionTenantId(int tenantId);
 
         void setChatSessionLandlordId(int landlordId);
+
+        void stopChatLooping();
+
+        void sendButtonIsClicked(String message);
     }
 }

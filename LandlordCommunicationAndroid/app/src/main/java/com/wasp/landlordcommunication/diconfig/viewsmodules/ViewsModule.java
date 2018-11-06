@@ -10,6 +10,7 @@ import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.utils.base.DateFormatter;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 import com.wasp.landlordcommunication.views.chat.ChatSessionsArrayAdapter;
+import com.wasp.landlordcommunication.views.chat.chatmessages.ChatAdapter;
 import com.wasp.landlordcommunication.views.landlordslist.UsersAdapter;
 import com.wasp.landlordcommunication.views.landlordspropertieslist.LandlordsPropertiesAdapter;
 import com.wasp.landlordcommunication.views.payments.PaymentsAdapter;
@@ -52,5 +53,10 @@ public class ViewsModule {
     @Provides
     public ArrayAdapter<ChatSession> chatSessionsArrayAdapter(Context context) {
         return new ChatSessionsArrayAdapter(context);
+    }
+
+    @Provides
+    public ChatAdapter chatMessagesAdapter() {
+        return new ChatAdapter();
     }
 }

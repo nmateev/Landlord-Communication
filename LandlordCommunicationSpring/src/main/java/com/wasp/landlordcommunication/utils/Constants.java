@@ -5,6 +5,7 @@ public class Constants {
 
     public static final String HIBERNATE_CONFIGURATION_FILE_NAME = "hibernate.cfg.xml";
     public static final String TIME_ZONE_CONFIGURATION_VALUE = "UTC";
+    public static final String DATE_REPRESENTATION = "dd.MM.yyyy  HH:mm:ss";
 
     public static final String TEMPLATE_MESSAGES_ROOT_MAPPING = "/api/templates";
     public static final String TEMPLATE_MESSAGES_TABLE_NAME = "template_messages";
@@ -45,6 +46,7 @@ public class Constants {
     public static final String PAYMENTS_ID_COLUMN = "payment_id";
     public static final String PAYMENTS_TENANT_ID_COLUMN = "tenant_id";
     public static final String PAYMENTS_LANDLORD_ID_COLUMN = "landlord_id";
+    public static final String PAYMENTS_PROPERTY_ADDRESS_COLUMN = "property_address";
     public static final String PAYMENTS_PROPERTY_ID_COLUMN = "property_id";
     public static final String PAYMENTS_AMOUNT_COLUMN = "amount";
     public static final String PAYMENTS_DATE_PAID_COLUMN = "date_paid";
@@ -83,7 +85,7 @@ public class Constants {
     public static final int CARD_NUMBER_VALIDATION_MAX_VALUE = 45;
 
     public static final int TEXT_MESSAGE_MIN_LENGTH = 1;
-    public static final int TEXT_MESSAGE_MAX_LENGTH = 200;
+    public static final int TEXT_MESSAGE_MAX_LENGTH = 120;
     public static final int FIRST_LAST_NAME_MIN_LENGTH = 2;
 
     public static final int PAYMENT_AMOUNT_VALIDATION_MIN_VALUE = 1;
@@ -92,5 +94,6 @@ public class Constants {
     public static final int PROPERTY_DESCRIPTION_MAX_LENGTH = 500;
     public static final int MIN_DAY_VALUE = 1;
     public static final int MAX_DAY_VALUE = 31;
+
 }
 

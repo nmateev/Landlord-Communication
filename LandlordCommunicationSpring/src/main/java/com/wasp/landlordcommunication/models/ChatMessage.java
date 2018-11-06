@@ -1,5 +1,6 @@
 package com.wasp.landlordcommunication.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wasp.landlordcommunication.utils.Constants;
 
 import javax.persistence.*;
@@ -33,7 +34,7 @@ public class ChatMessage {
     private int chatSessionId;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.DATE_REPRESENTATION, timezone = Constants.TIME_ZONE_CONFIGURATION_VALUE)
     @Column(name = Constants.CHAT_MESSAGES_DATE_SENT_COLUMN)
     private Date dateSent;
 
@@ -47,18 +48,18 @@ public class ChatMessage {
 
     @NotNull
     @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_TENANT_COLUMN)
-    private boolean isDeliveredToTenant;
+    private boolean deliveredToTenant;
 
     @NotNull
     @Column(name = Constants.CHAT_MESSAGES_IS_DELIVERED_TO_LANDLORD_COLUMN)
-    private boolean isDeliveredToLandlord;
+    private boolean deliveredToLandlord;
 
 
     public ChatMessage() {
 
     }
 
-    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean isDeliveredToTenant, boolean isDeliveredToLandlord) {
+    public ChatMessage(int tenantId, int landlordId, int senderId, int chatSessionId, Date dateSent, String messageText, String imageMessage, boolean deliveredToTenant, boolean deliveredToLandlord) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
         setSenderId(senderId);
@@ -66,8 +67,8 @@ public class ChatMessage {
         setDateSent(dateSent);
         setMessageText(messageText);
         setImageMessage(imageMessage);
-        setIsDeliveredToTenant(isDeliveredToTenant);
-        setIsDeliveredToLandlord(isDeliveredToLandlord);
+        setDeliveredToTenant(deliveredToTenant);
+        setDeliveredToLandlord(deliveredToLandlord);
     }
 
 
@@ -103,20 +104,20 @@ public class ChatMessage {
         return imageMessage;
     }
 
-    public boolean isDeliveredToTenant() {
-        return isDeliveredToTenant;
+    public boolean getDeliveredToTenant() {
+        return deliveredToTenant;
     }
 
-    public boolean isDeliveredToLandlord() {
-        return isDeliveredToLandlord;
+    public boolean getDeliveredToLandlord() {
+        return deliveredToLandlord;
     }
 
-    public void setIsDeliveredToTenant(boolean isDeliveredToTenant) {
-        this.isDeliveredToTenant = isDeliveredToTenant;
+    public void setDeliveredToTenant(boolean deliveredToTenant) {
+        this.deliveredToTenant = deliveredToTenant;
     }
 
-    public void setIsDeliveredToLandlord(boolean isDeliveredToLandlord) {
-        this.isDeliveredToLandlord = isDeliveredToLandlord;
+    public void setDeliveredToLandlord(boolean deliveredToLandlord) {
+        this.deliveredToLandlord = deliveredToLandlord;
     }
 
     private void setMessageId(int messageId) {

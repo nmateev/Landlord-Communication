@@ -1,34 +1,28 @@
 package com.wasp.landlordcommunication.models;
 
-import java.util.Date;
-
 public class Payment {
 
     private int paymentId;
     private int tenantId;
     private int landlordId;
+    private String propertyAddress;
     private int propertyId;
     private double paymentAmount;
     private String datePaid;
     private String cardNumber;
-    private Property property;
 
     public Payment() {
 
     }
 
-    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, String datePaid, String cardNumber) {
+    public Payment(int tenantId, int landlordId, String propertyAddress, int propertyId, double paymentAmount, String datePaid, String cardNumber) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
+        setPropertyAddress(propertyAddress);
         setPropertyId(propertyId);
         setPaymentAmount(paymentAmount);
         setDatePaid(datePaid);
         setCardNumber(cardNumber);
-    }
-
-    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, String datePaid, String cardNumber, Property property) {
-        this(tenantId, landlordId, propertyId, paymentAmount, datePaid, cardNumber);
-        setProperty(property);
     }
 
     public int getPaymentId() {
@@ -41,6 +35,10 @@ public class Payment {
 
     public int getLandlordId() {
         return landlordId;
+    }
+
+    public String getPropertyAddress() {
+        return propertyAddress;
     }
 
     public int getPropertyId() {
@@ -71,6 +69,10 @@ public class Payment {
         this.landlordId = landlordId;
     }
 
+    private void setPropertyAddress(String propertyAddress) {
+        this.propertyAddress = propertyAddress;
+    }
+
     private void setPropertyId(int propertyId) {
         this.propertyId = propertyId;
     }
@@ -83,16 +85,8 @@ public class Payment {
         this.datePaid = datePaid;
     }
 
-    public Property getProperty() {
-        return property;
-    }
-
     private void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
-    }
-
-    private void setProperty(Property property) {
-        this.property = property;
     }
 
 }

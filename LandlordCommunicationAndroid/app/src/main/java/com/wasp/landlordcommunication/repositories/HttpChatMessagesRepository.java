@@ -42,4 +42,29 @@ public class HttpChatMessagesRepository implements ChatMessagesRepository {
 
         return mJsonParser.fromJson(responseBody);
     }
+
+    @Override
+    public List<ChatMessage> getUndeliveredMessagesByChatSessionIdAndUserType(int chatSessionId, String userType) throws IOException {
+
+        String url = new StringBuilder()
+                .append(mServerUrl)
+                .append(Constants.SLASH_STRING_VALUE)
+                .append(userType.toLowerCase())
+                .append(Constants.SLASH_STRING_VALUE)
+                .append(chatSessionId)
+                .toString();
+
+        String itemsJson = mHttpRequester.get(url);
+
+        return mJsonParser.fromJsonArray(itemsJson);
+    }
+
+    @Override
+    public ChatMessage postChatMessage(ChatMessage newChatMessage) throws IOException {
+
+        String requestBody = mJsonParser.toJson(newChatMessage);
+        String responseBody = mHttpRequester.post(mServerUrl, requestBody);
+
+        return mJsonParser.fromJson(responseBody);
+    }
 }

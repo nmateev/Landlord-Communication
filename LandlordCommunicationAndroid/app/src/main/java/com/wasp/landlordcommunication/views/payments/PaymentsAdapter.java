@@ -90,10 +90,15 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.Paymen
         }
 
         private void bind(Payment payment) {
-            mPaymentForPropertyAddressTextView.setText(payment.getProperty().getPropertyAddress());
-            mPaymentDateTextView.setText(payment.getDatePaid());
-            mPaymentAmountTextView.setText(String.valueOf(payment.getPaymentAmount()));
-            mCardNumberTextView.setText(payment.getCardNumber());
+
+            mPaymentForPropertyAddressTextView
+                    .setText(payment.getPropertyAddress());
+            mPaymentDateTextView
+                    .setText(payment.getDatePaid());
+            mPaymentAmountTextView
+                    .setText(String.valueOf(payment.getPaymentAmount()));
+            mCardNumberTextView
+                    .setText(payment.getCardNumber());
         }
 
     }

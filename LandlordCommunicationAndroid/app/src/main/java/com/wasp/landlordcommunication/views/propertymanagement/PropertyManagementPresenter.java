@@ -44,6 +44,7 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
     private int mSelectedPropertyId;
     private double mSelectedPropertyRentPrice;
     private boolean mIsRentPaidForCurrentMonth;
+    private String mSelectedProeprtyAddress;
 
     @Inject
     public PropertyManagementPresenter(PropertiesService propertiesService, RatingsService ratingsService, PaymentsService paymentsService, SchedulerProvider schedulerProvider,
@@ -256,7 +257,7 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
         }
 
 
-        Payment payment = new Payment(tenantId, landlordId, mSelectedPropertyId, mSelectedPropertyRentPrice, formattedCurrentDate, cardNumberFormatter.toString());
+        Payment payment = new Payment(tenantId, landlordId,mSelectedProeprtyAddress, mSelectedPropertyId, mSelectedPropertyRentPrice, formattedCurrentDate, cardNumberFormatter.toString());
 
         mView.showProgressBar();
         Disposable observable = Observable
@@ -360,6 +361,7 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
             mOtherUserId = property.getTenantId();
         }
         mSelectedPropertyRentPrice = property.getRentPrice();
+        mSelectedProeprtyAddress = property.getPropertyAddress();
         mIsRentPaidForCurrentMonth = property.getRentPaid();
 
 

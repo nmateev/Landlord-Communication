@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Entity
 @Table(name = Constants.PAYMENTS_TABLE)
@@ -30,6 +29,10 @@ public class Payment {
     private int propertyId;
 
     @NotNull
+    @Column(name = Constants.PAYMENTS_PROPERTY_ADDRESS_COLUMN)
+    private String propertyAddress;
+
+    @NotNull
     @Min(value = Constants.PAYMENT_AMOUNT_VALIDATION_MIN_VALUE)
     @Column(name = Constants.PAYMENTS_AMOUNT_COLUMN)
     private double paymentAmount;
@@ -43,19 +46,16 @@ public class Payment {
     @Column(name = Constants.PAYMENTS_CARD_NUMBER_COLUMN)
     private String cardNumber;
 
-    @ManyToOne
-    @JoinColumn(name = Constants.PROPERTIES_ID_COLUMN_NAME, insertable = false, updatable = false)
-    private Property property;
-
 
     public Payment() {
 
 
     }
 
-    public Payment(int tenantId, int landlordId, int propertyId, double paymentAmount, String datePaid, String cardNumber) {
+    public Payment(int tenantId, int landlordId, String propertyAddress, int propertyId, double paymentAmount, String datePaid, String cardNumber) {
         setTenantId(tenantId);
         setLandlordId(landlordId);
+        setPropertyAddress(propertyAddress);
         setPropertyId(propertyId);
         setPaymentAmount(paymentAmount);
         setDatePaid(datePaid);
@@ -75,6 +75,10 @@ public class Payment {
         return landlordId;
     }
 
+    public String getPropertyAddress() {
+        return propertyAddress;
+    }
+
     public int getPropertyId() {
         return propertyId;
     }
@@ -85,10 +89,6 @@ public class Payment {
 
     public String getDatePaid() {
         return datePaid;
-    }
-
-    public Property getProperty() {
-        return property;
     }
 
     public String getCardNumber() {
@@ -105,6 +105,10 @@ public class Payment {
 
     private void setLandlordId(int landlordId) {
         this.landlordId = landlordId;
+    }
+
+    private void setPropertyAddress(String propertyAddress) {
+        this.propertyAddress = propertyAddress;
     }
 
     private void setPropertyId(int propertyId) {

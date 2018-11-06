@@ -34,7 +34,7 @@ public class UtilitiesModule {
     @Provides
     @Named(Constants.DATE_REPRESENTATION_NAME)
     public String dateRepresentationForPaymentsDate() {
-        return Constants.PAYMENTS_DATE_REPRESENTATION;
+        return Constants.DATE_REPRESENTATION;
     }
 
     @Provides

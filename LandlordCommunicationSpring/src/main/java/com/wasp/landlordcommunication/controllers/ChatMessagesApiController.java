@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,8 +28,8 @@ public class ChatMessagesApiController {
 
     @RequestMapping(value = "/tenant/{id}", method = RequestMethod.GET)
     public List<ChatMessage> getTenantsUndeliveredMessagesByChatSessionId(@PathVariable int id) {
-
         return chatMessagesService.getTenantsUndeliveredMessagesByChatSessionId(id);
+
     }
 
     @RequestMapping(value = "/landlord/{id}", method = RequestMethod.GET)
