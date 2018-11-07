@@ -10,9 +10,9 @@
         android:id="@+id/tv_preferences_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:fontFamily="cursive"
         android:text="@string/preferences"
-        android:layout_marginTop="15dp"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="28sp" />
@@ -27,9 +27,9 @@
         android:layout_marginEnd="@dimen/small_margin"
         android:layout_marginBottom="5dp"
         android:text="@string/layout"
-        android:visibility="gone"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_preferences_layout_description"
@@ -49,6 +49,45 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="@dimen/small_margin"
+        android:visibility="gone"
+        app:arrowTint="@color/colorAccent"
+        app:textTint="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/tv_preferences_template_formality_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sp_properties_layout_options"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginBottom="5dp"
+        android:text="@string/templates"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_preferences_template_formality_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_preferences_template_formality_title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:text="@string/template_formality_option_description"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone" />
+
+    <org.angmarch.views.NiceSpinner
+        android:id="@+id/sp_template_formality_options"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_preferences_template_formality_description"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="15dp"
         android:visibility="gone"
         app:arrowTint="@color/colorAccent"
         app:textTint="@color/colorAccent" />

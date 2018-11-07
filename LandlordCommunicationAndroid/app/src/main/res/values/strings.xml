@@ -38,6 +38,11 @@
         <item>Detailed</item>
     </string-array>
 
+    <string-array name="template_messages_formality_options">
+        <item>Normal</item>
+        <item>Formal</item>
+    </string-array>
+
     <string name="rent">RENT</string>
     <string name="search">Search by address</string>
 
@@ -61,5 +66,7 @@
     <string name="preferences">Preferences</string>
     <string name="layout">Layout</string>
     <string name="write_a_message">Write a message</string>
+    <string name="templates">Templates</string>
+    <string name="template_formality_option_description">Select the formality level of template messages in chat</string>
 
 </resources>

@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import com.wasp.landlordcommunication.async.base.SchedulerProvider;
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.models.ChatSession;
+import com.wasp.landlordcommunication.models.TemplateMessage;
 import com.wasp.landlordcommunication.services.base.ChatMessagesService;
 import com.wasp.landlordcommunication.services.base.ChatSessionsService;
+import com.wasp.landlordcommunication.services.base.TemplateMessagesService;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +31,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
 
     private final ChatSessionsService mChatSessionsService;
     private final ChatMessagesService mChatMessagesService;
+    private final TemplateMessagesService mTemplateMessagesService;
     private final SchedulerProvider mSchedulerProvider;
     private final ImageEncoder mImageEncoder;
     private ChatContracts.View mView;
@@ -53,9 +57,10 @@ public class ChatPresenter implements ChatContracts.Presenter {
 
 
     @Inject
-    public ChatPresenter(ChatSessionsService chatSessionsService, ChatMessagesService chatMessagesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder) {
+    public ChatPresenter(ChatSessionsService chatSessionsService, ChatMessagesService chatMessagesService, TemplateMessagesService templateMessagesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder) {
         mChatSessionsService = chatSessionsService;
         mChatMessagesService = chatMessagesService;
+        mTemplateMessagesService = templateMessagesService;
         mSchedulerProvider = schedulerProvider;
         mImageEncoder = imageEncoder;
     }
@@ -327,6 +332,37 @@ public class ChatPresenter implements ChatContracts.Presenter {
                         error -> mView.showError(error));
 
 
+    }
+
+    @Override
+    public void templatePickerIsClickedWithPreference(String preference) {
+
+        //in the case there is no preference set already the default preference is Normal
+        if (preference.equals(Constants.EMPTY_STRING)) {
+            preference = Constants.NORMAL;
+        }
+        //else use selected preference
+
+        String templateType = preference;
+
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<List<String>>) emitter -> {
+                    List<String> templateMessages = mTemplateMessagesService.getAllTemplateMessagesByType(templateType);
+                    emitter.onNext(templateMessages);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .subscribe(templateMessagesResult ->
+                                mView.showTemplateMessages(templateMessagesResult),
+                        error -> mView.showError(error));
+
+    }
+
+    @Override
+    public void templateMessageIsSelected(String pickedTemplate) {
+        mView.setTextToMessageInput(pickedTemplate);
+        mView.dismissTemplatePicker();
     }
 
     private void assignTenantAndLandlordId(int mFirstChatMemberId, int mSecondChatMemberId) {

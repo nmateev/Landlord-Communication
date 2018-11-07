@@ -169,4 +169,9 @@ public class Constants {
     public static final String CHAT_SESSION_LANDLORD_ID_EXTRA = "landlordExtra";
     public static final String CHAT_TIME_FORMATTER = "chatFormatter";
     public static final String CHAT_DATE_REPRESENTATION = "HH:mm";
+    public static final String PREFERENCES_TEMPLATE_MESSAGES_FORMALITY_KEY = "templateFormality";
+    public static final String NORMAL = "Normal";
+    public static final String FORMAL = "Formal";
+    public static final String TEMPLATE_MESSAGES_URL_SUFFIX = "templates";
+    public static final String PREFERENCE_FORMALITY_LEVEL_SELECTION_MESSAGE = " template type is selected.";
 }

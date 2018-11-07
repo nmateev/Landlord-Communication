@@ -9,18 +9,21 @@ import com.wasp.landlordcommunication.repositories.base.ChatSessionsRepository;
 import com.wasp.landlordcommunication.repositories.base.PaymentsRepository;
 import com.wasp.landlordcommunication.repositories.base.PropertiesRepository;
 import com.wasp.landlordcommunication.repositories.base.RatingsRepository;
+import com.wasp.landlordcommunication.repositories.base.TemplateMessagesRepository;
 import com.wasp.landlordcommunication.repositories.base.UsersRepository;
 import com.wasp.landlordcommunication.services.HttpChatMessagesService;
 import com.wasp.landlordcommunication.services.HttpChatSessionsService;
 import com.wasp.landlordcommunication.services.HttpPaymentsService;
 import com.wasp.landlordcommunication.services.HttpPropertiesService;
 import com.wasp.landlordcommunication.services.HttpRatingsService;
+import com.wasp.landlordcommunication.services.HttpTemplateMessagesService;
 import com.wasp.landlordcommunication.services.HttpUsersService;
 import com.wasp.landlordcommunication.services.base.ChatMessagesService;
 import com.wasp.landlordcommunication.services.base.ChatSessionsService;
 import com.wasp.landlordcommunication.services.base.PaymentsService;
 import com.wasp.landlordcommunication.services.base.PropertiesService;
 import com.wasp.landlordcommunication.services.base.RatingsService;
+import com.wasp.landlordcommunication.services.base.TemplateMessagesService;
 import com.wasp.landlordcommunication.services.base.UsersService;
 
 import dagger.Module;
@@ -56,5 +59,10 @@ public class ServicesModule {
     @Provides
     public ChatMessagesService chatMessagesService(ChatMessagesRepository chatMessagesRepository) {
         return new HttpChatMessagesService(chatMessagesRepository);
+    }
+
+    @Provides
+    public TemplateMessagesService templateMessagesService(TemplateMessagesRepository templateMessagesRepository) {
+        return new HttpTemplateMessagesService(templateMessagesRepository);
     }
 }
