@@ -148,14 +148,17 @@ public class SettingsFragment extends Fragment implements SettingsContracts.View
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
-        if (adapterView.getId() == R.id.sp_properties_layout_options) {
-            mSelectedPropertiesLayoutOption = mLayoutOptions[position];
-            mPresenter.propertiesLayoutPreferenceIsSelected(mSelectedPropertiesLayoutOption);
-        }
+        switch (adapterView.getId()) {
+            case R.id.sp_properties_layout_options:
+                mSelectedPropertiesLayoutOption = mLayoutOptions[position];
+                mPresenter.propertiesLayoutPreferenceIsSelected(mSelectedPropertiesLayoutOption);
 
-        if (adapterView.getId() == R.id.sp_template_formality_options) {
-            mSelectedTemplateFormalityOption = mTemplateFormalityOptions[position];
-            mPresenter.templateMessagesFormalityIsSelected(mSelectedTemplateFormalityOption);
+                break;
+            case R.id.sp_template_formality_options:
+                mSelectedTemplateFormalityOption = mTemplateFormalityOptions[position];
+                mPresenter.templateMessagesFormalityIsSelected(mSelectedTemplateFormalityOption);
+
+                break;
         }
     }
 
