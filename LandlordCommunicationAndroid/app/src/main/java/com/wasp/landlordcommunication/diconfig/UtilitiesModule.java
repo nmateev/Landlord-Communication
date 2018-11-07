@@ -32,6 +32,13 @@ public class UtilitiesModule {
     }
 
     @Provides
+    @Singleton
+    @Named(Constants.CHAT_TIME_FORMATTER)
+    public DateFormatter chatDateFormatter() {
+        return new com.wasp.landlordcommunication.utils.DateFormatter(Constants.CHAT_DATE_REPRESENTATION);
+    }
+
+    @Provides
     @Named(Constants.DATE_REPRESENTATION_NAME)
     public String dateRepresentationForPaymentsDate() {
         return Constants.DATE_REPRESENTATION;

@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 
 import com.wasp.landlordcommunication.models.ChatSession;
 import com.wasp.landlordcommunication.models.Property;
+import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.utils.base.DateFormatter;
 import com.wasp.landlordcommunication.utils.base.ImageEncoder;
 import com.wasp.landlordcommunication.views.chat.ChatSessionsArrayAdapter;
@@ -56,7 +57,7 @@ public class ViewsModule {
     }
 
     @Provides
-    public ChatAdapter chatMessagesAdapter() {
-        return new ChatAdapter();
+    public ChatAdapter chatMessagesAdapter(@Named(Constants.CHAT_TIME_FORMATTER) DateFormatter dateFormatter) {
+        return new ChatAdapter(dateFormatter);
     }
 }

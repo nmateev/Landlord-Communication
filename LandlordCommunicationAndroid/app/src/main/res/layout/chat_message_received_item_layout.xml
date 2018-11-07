@@ -26,11 +26,21 @@
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="2dp"
+        android:layout_marginStart="2dp"
         android:layout_toStartOf="@+id/civ_receiver_image"
         android:background="@drawable/rounded_chat_bubble_accent"
         android:maxWidth="220dp"
         android:padding="8dp"
         android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/text_message_time_sent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_message"
+        android:layout_toStartOf="@+id/tv_message"
+        android:textColor="@color/colorAccent"
+        android:textSize="11sp" />
 </RelativeLayout>

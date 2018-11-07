@@ -167,4 +167,6 @@ public class Constants {
     public static final String CHAT_MESSAGES_URL_SUFFIX = "messages";
     public static final String CHAT_SESSION_TENANT_ID_EXTRA = "tenantExtra";
     public static final String CHAT_SESSION_LANDLORD_ID_EXTRA = "landlordExtra";
+    public static final String CHAT_TIME_FORMATTER = "chatFormatter";
+    public static final String CHAT_DATE_REPRESENTATION = "HH:mm";
 }

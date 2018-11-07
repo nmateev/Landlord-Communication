@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.ChatMessage;
+import com.wasp.landlordcommunication.utils.base.DateFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -26,12 +29,14 @@ public class ChatAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_MESSAGE_SENT = 0;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 1;
 
+    private final DateFormatter mDateFormatter;
     private int mLoggedInUserId;
     private Bitmap mReceiverImage;
     private List<ChatMessage> mChatMessages;
 
     @Inject
-    public ChatAdapter() {
+    public ChatAdapter(DateFormatter dateFormatter) {
+        mDateFormatter = dateFormatter;
         mChatMessages = new ArrayList<>();
 
     }
@@ -114,6 +119,9 @@ public class ChatAdapter extends RecyclerView.Adapter {
         @BindView(R.id.tv_message)
         TextView mSenderMessageTextView;
 
+        @BindView(R.id.text_message_time_sent)
+        TextView mSentTimeTextView;
+
 
         SentMessageHolder(View view) {
             super(view);
@@ -121,7 +129,11 @@ public class ChatAdapter extends RecyclerView.Adapter {
         }
 
         void bind(ChatMessage message) {
+
             mSenderMessageTextView.setText(message.getMessageText());
+            String timeStamp = mDateFormatter.formatDateToString(message.getDateSent());
+            mSentTimeTextView.setText(timeStamp);
+
         }
     }
 
@@ -129,6 +141,9 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         @BindView(R.id.tv_message)
         TextView mReceiverMessageTextView;
+
+        @BindView(R.id.text_message_time_sent)
+        TextView mSentTimeTextView;
 
         @BindView(R.id.civ_receiver_image)
         CircleImageView mReceiverCircleImageView;
@@ -142,6 +157,8 @@ public class ChatAdapter extends RecyclerView.Adapter {
         void bind(ChatMessage message) {
 
             mReceiverMessageTextView.setText(message.getMessageText());
+            String timeStamp = mDateFormatter.formatDateToString(message.getDateSent());
+            mSentTimeTextView.setText(timeStamp);
 
             if (Objects.equals(mReceiverImage, null)) {
                 mReceiverCircleImageView.setImageResource(R.drawable.defaultuserpicture);
