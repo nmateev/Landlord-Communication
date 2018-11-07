@@ -92,11 +92,11 @@ public class PaymentsServiceImplTests {
     @Test
     public void getPaymentsByLandlordId_Should_ReturnMatchingPayment_WhenMatchExist() {
         // Arrange
-        Mockito.when(mockRepository.getPaymentsByTenantId(3))
+        Mockito.when(mockRepository.getPaymentsByLandlordId(3))
                 .thenReturn(defaultTestInput);
 
         // Act
-        List<Payment> result = service.getPaymentsByTenantId(3);
+        List<Payment> result = service.getPaymentsByLandlordId(3);
 
         // Assert
         Assert.assertEquals(result, defaultTestInput);
