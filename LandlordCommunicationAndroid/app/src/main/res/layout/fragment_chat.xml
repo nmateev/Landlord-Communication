@@ -12,7 +12,6 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_chat_messages"
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
         android:background="@drawable/rounded_chat_text_input">
 
         <ImageButton
-            android:id="@+id/ib_send_picture"
+            android:id="@+id/ib_template_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/et_message_input"
@@ -43,14 +42,14 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="3dp"
-            android:background="@drawable/ic_camera" />
+            android:background="@drawable/ic_message" />
 
         <EditText
             android:id="@+id/et_message_input"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_toStartOf="@+id/ib_send_message"
-            android:layout_toEndOf="@+id/ib_send_picture"
+            android:layout_toEndOf="@+id/ib_template_picker"
             android:background="@drawable/rounded_chat_text_input"
             android:ems="10"
             android:hint="@string/write_a_message"
@@ -69,7 +68,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="4dp"
-            android:layout_toStartOf="@+id/ib_send_picture"
+            android:layout_toStartOf="@+id/ib_template_picker"
             android:background="@drawable/ic_send_message" />
     </RelativeLayout>
 </RelativeLayout>

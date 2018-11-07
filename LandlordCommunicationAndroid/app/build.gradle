@@ -44,6 +44,8 @@ dependencies {
     implementation 'com.github.Shashank02051997:FancyAlertDialog-Android:0.1'
     implementation 'com.stepstone.apprating:app-rating:2.3.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
+
 
     //ButterKnife
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'

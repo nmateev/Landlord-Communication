@@ -31,6 +31,12 @@ public interface ChatContracts {
         void scrollChatToBottom();
 
         void clearMessageTextInput();
+
+        void showTemplateMessages(List<String> templateMessages);
+
+        void setTextToMessageInput(String pickedTemplate);
+
+        void dismissTemplatePicker();
     }
 
     interface Presenter {
@@ -60,5 +66,9 @@ public interface ChatContracts {
         void stopChatLooping();
 
         void sendButtonIsClicked(String message);
+
+        void templatePickerIsClickedWithPreference(String preference);
+
+        void templateMessageIsSelected(String pickedTemplate);
     }
 }

@@ -44,7 +44,7 @@ public class SettingsPresenter implements SettingsContracts.Presenter {
     }
 
     @Override
-    public void loadPreferencesOptions(String selectedPropertiesLayoutOption, String[] layoutOptions) {
+    public void loadPreferencesOptions(String selectedPropertiesLayoutOption, String[] layoutOptions, String selectedTemplateFormalityOption, String[] templateFormalityOptions) {
         String individualisation;
         if (mUserType.equals(TENANT)) {
             individualisation = Constants.PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_TENANT;
@@ -52,17 +52,42 @@ public class SettingsPresenter implements SettingsContracts.Presenter {
             individualisation = Constants.PREFERENCE_PROPERTIES_LAYOUT_DESCRIPTION_FOR_LANDLORD;
         }
 
-        //if a preference is not selected already the index is 0 as first option
-        int indexOfSelected = 0;
+        //if a layout preference is not selected already the index is 0 as first option
+        int indexOfSelectedLayoutOption = 0;
 
         //else we find the already selected option in order to set it in spinner as currently chosen
         for (int i = 0; i < layoutOptions.length; i++) {
             if (layoutOptions[i].equals(selectedPropertiesLayoutOption)) {
-                indexOfSelected = i;
+                indexOfSelectedLayoutOption = i;
                 break;
             }
         }
-        mView.showPreferencesOptions(individualisation, indexOfSelected);
+
+
+        //if a template formality preference is not selected already the index is 0 as first option
+        int indexOfSelectedFormalityOption = 0;
+
+        //else we find the already selected option in order to set it in spinner as currently chosen
+        for (int i = 0; i < templateFormalityOptions.length; i++) {
+            if (templateFormalityOptions[i].equals(selectedTemplateFormalityOption)) {
+                indexOfSelectedFormalityOption = i;
+                break;
+            }
+        }
+
+
+        mView.showPreferencesOptions(individualisation, indexOfSelectedLayoutOption, indexOfSelectedFormalityOption);
+    }
+
+    @Override
+    public void templateMessagesFormalityIsSelected(String selectedTemplateFormalityOption) {
+        mView.saveTemplateFormalityPreference(selectedTemplateFormalityOption);
+
+        mView.showMessage(new StringBuilder()
+                .append(Constants.PREFERENCE_SAVED_MESSAGE)
+                .append(selectedTemplateFormalityOption)
+                .append(Constants.PREFERENCE_FORMALITY_LEVEL_SELECTION_MESSAGE)
+                .toString());
     }
 
 }

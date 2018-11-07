@@ -10,7 +10,9 @@ public interface SettingsContracts {
 
         void savePropertiesLayoutPreference(String selectedPropertiesLayoutPreference);
 
-        void showPreferencesOptions(String individualisation, int indexOfAlreadySelectedOption);
+        void showPreferencesOptions(String individualisationForProperties, int indexOfAlreadySelectedLayoutOption, int indexOfAlreadySelectedFormalityOption);
+
+        void saveTemplateFormalityPreference(String selectedTemplateFormalityOption);
     }
 
     interface Presenter {
@@ -23,6 +25,8 @@ public interface SettingsContracts {
 
         void propertiesLayoutPreferenceIsSelected(String selectedPropertiesLayoutPreference);
 
-        void loadPreferencesOptions(String selectedPropertiesLayoutOption, String[] layoutOptions);
+        void loadPreferencesOptions(String selectedPropertiesLayoutOption, String[] layoutOptions, String selectedTemplateFormalityOption, String[] templateFormalityOptions);
+
+        void templateMessagesFormalityIsSelected(String selectedTemplateFormalityOption);
     }
 }

@@ -6,6 +6,7 @@ import com.wasp.landlordcommunication.models.ChatSession;
 import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.Rating;
+import com.wasp.landlordcommunication.models.TemplateMessage;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
 import com.wasp.landlordcommunication.repositories.HttpChatMessagesRepository;
@@ -13,11 +14,13 @@ import com.wasp.landlordcommunication.repositories.HttpChatSessionsRepository;
 import com.wasp.landlordcommunication.repositories.HttpPaymentsRepository;
 import com.wasp.landlordcommunication.repositories.HttpPropertiesRepository;
 import com.wasp.landlordcommunication.repositories.HttpRatingsRepository;
+import com.wasp.landlordcommunication.repositories.HttpTemplateMessagesRepository;
 import com.wasp.landlordcommunication.repositories.HttpUsersRepository;
 import com.wasp.landlordcommunication.repositories.base.ChatMessagesRepository;
 import com.wasp.landlordcommunication.repositories.base.ChatSessionsRepository;
 import com.wasp.landlordcommunication.repositories.base.PaymentsRepository;
 import com.wasp.landlordcommunication.repositories.base.PropertiesRepository;
+import com.wasp.landlordcommunication.repositories.base.TemplateMessagesRepository;
 import com.wasp.landlordcommunication.repositories.cacherepostories.PropertiesCacheRepository;
 import com.wasp.landlordcommunication.repositories.cacherepostories.UsersCacheRepository;
 import com.wasp.landlordcommunication.repositories.base.CacheRepository;
@@ -101,5 +104,14 @@ public class RepositoriesModule {
         String serverUrl = baseServerUrl + Constants.CHAT_MESSAGES_URL_SUFFIX;
 
         return new HttpChatMessagesRepository(serverUrl, httpRequester, jsonParser);
+    }
+
+    @Provides
+    @Singleton
+    public TemplateMessagesRepository templateMessagesRepository(@Named(Constants.BASE_SERVER_URL_VALUE_NAME) String baseServerUrl, HttpRequester httpRequester, JsonParser<TemplateMessage> jsonParser) {
+
+        String serverUrl = baseServerUrl + Constants.TEMPLATE_MESSAGES_URL_SUFFIX;
+
+        return new HttpTemplateMessagesRepository(serverUrl, httpRequester, jsonParser);
     }
 }

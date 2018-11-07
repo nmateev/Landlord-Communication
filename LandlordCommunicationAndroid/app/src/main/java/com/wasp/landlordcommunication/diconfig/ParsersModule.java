@@ -5,6 +5,7 @@ import com.wasp.landlordcommunication.models.ChatSession;
 import com.wasp.landlordcommunication.models.Payment;
 import com.wasp.landlordcommunication.models.Property;
 import com.wasp.landlordcommunication.models.Rating;
+import com.wasp.landlordcommunication.models.TemplateMessage;
 import com.wasp.landlordcommunication.models.User;
 import com.wasp.landlordcommunication.parsers.GsonJsonParser;
 import com.wasp.landlordcommunication.parsers.base.JsonParser;
@@ -42,5 +43,10 @@ public class ParsersModule {
     @Provides
     public JsonParser<ChatMessage> chatMessagesJsonParser() {
         return new GsonJsonParser<>(ChatMessage.class, ChatMessage[].class);
+    }
+
+    @Provides
+    public JsonParser<TemplateMessage> templateMessageJsonParser() {
+        return new GsonJsonParser<>(TemplateMessage.class, TemplateMessage[].class);
     }
 }

@@ -1,21 +1,24 @@
 package com.wasp.landlordcommunication.views.chat.chatmessages;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnItemClickListener;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -28,7 +31,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTouch;
 
 
 public class ChatFragment extends Fragment implements ChatContracts.View {
@@ -45,6 +47,10 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
 
     @Inject
     ChatAdapter mChatMessagesAdapter;
+
+    private SharedPreferences mPreferences;
+    private ArrayAdapter<String> mTemplateMessagesAdapter;
+    private DialogPlus mTemplatePickerDialog;
 
     private LinearLayoutManager mChatMessagesViewLayoutManager;
     private ChatContracts.Presenter mPresenter;
@@ -65,7 +71,8 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
         mChatMessagesViewLayoutManager = new LinearLayoutManager(getContext());
         mChatMessagesRecyclerView.setLayoutManager(mChatMessagesViewLayoutManager);
 
-
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mTemplateMessagesAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()), android.R.layout.simple_list_item_1);
         return view;
     }
 
@@ -154,9 +161,47 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
                 .clear();
     }
 
-    @OnClick(R.id.ib_send_picture)
-    public void onSendPictureButtonClick() {
+    @Override
+    public void showTemplateMessages(List<String> templateMessages) {
+        mTemplateMessagesAdapter.clear();
+        mTemplateMessagesAdapter.addAll(templateMessages);
 
+
+        mTemplatePickerDialog = DialogPlus.newDialog(Objects.requireNonNull(getContext()))
+                .setAdapter(mTemplateMessagesAdapter)
+                .setOnItemClickListener((dialog, item, view, position) -> {
+                    String pickedTemplate = mTemplateMessagesAdapter.getItem(position);
+                    mPresenter.templateMessageIsSelected(pickedTemplate);
+                })
+                .setContentBackgroundResource(R.color.colorWindow)
+                .setExpanded(true)
+                .setGravity(Gravity.TOP)
+                .setPadding(10, 50, 10, 10)
+                .setCancelable(true)
+                .setInAnimation(R.anim.fade_in_animation)
+                .setOutAnimation(R.anim.fade_out_animation)
+                .create();
+
+        mTemplatePickerDialog.show();
+    }
+
+    @Override
+    public void setTextToMessageInput(String pickedTemplate) {
+        mInputMessageEditText.setText(pickedTemplate);
+    }
+
+    @Override
+    public void dismissTemplatePicker() {
+        mTemplatePickerDialog.dismiss();
+    }
+
+    @OnClick(R.id.ib_template_picker)
+    public void onTemplatePickerButtonClick() {
+
+        String preference = mPreferences
+                .getString(Constants.PREFERENCES_TEMPLATE_MESSAGES_FORMALITY_KEY, Constants.EMPTY_STRING);
+
+        mPresenter.templatePickerIsClickedWithPreference(preference);
     }
 
     @OnClick(R.id.ib_send_message)
