@@ -6,4 +6,5 @@ public interface BitmapCacheRepository {
     void addBitmapToBitmapCache(Bitmap bitmap, String key);
 
     Bitmap getBitmapFromCache(String key);
+
 }

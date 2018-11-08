@@ -42,19 +42,18 @@ public class HttpUsersService implements UsersService {
     @Override
     public List<User> getAllUsersByType(String type, int excludedIdFromResult) throws IOException {
         List<User> result = mUsersRepository.getAllUsersByType(type);
-        //TODO uncomment when api  level is set to 24
-       /* result
-                .stream()
-                .filter(user -> user.getUserId() != excludedIdFromResult)
-                .collect(Collectors.toList());*/
+
+        List<User> filteredResult = new ArrayList<>();
 
         for (User user : result) {
-            if (user.getUserId() == excludedIdFromResult) {
-                result.remove(user);
+            if (user.getUserId() != excludedIdFromResult) {
+                filteredResult.add(user);
             }
         }
-        mUsersCacheRepository.cacheData(result);
-        return result;
+
+        mUsersCacheRepository.cacheData(filteredResult);
+
+        return filteredResult;
     }
 
     @Override

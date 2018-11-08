@@ -174,4 +174,6 @@ public class Constants {
     public static final String FORMAL = "Formal";
     public static final String TEMPLATE_MESSAGES_URL_SUFFIX = "templates";
     public static final String PREFERENCE_FORMALITY_LEVEL_SELECTION_MESSAGE = " template type is selected.";
+    public static final String PLACE_NOT_RENTED_NO_OPTION_TO_RATE_MESSAGE = "This place is not rented there is no tenant to rate!";
+    public static final String PLACE_NOT_RENTED_NO_OPTION_TO_CHAT_MESSAGE = "This place is not rented there is no tenant to message!";
 }

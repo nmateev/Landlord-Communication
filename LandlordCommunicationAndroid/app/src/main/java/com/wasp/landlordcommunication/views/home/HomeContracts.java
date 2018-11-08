@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import com.wasp.landlordcommunication.models.User;
 
-public interface HomeActivityContracts {
+public interface HomeContracts {
 
     interface View {
 

@@ -67,7 +67,7 @@ public class ChatSessionsArrayAdapter extends ArrayAdapter<ChatSession> {
             userName = chatSession.getLandlord().getFirstName();
 
             if (!Objects.equals(chatSession.getLandlord().getUserPicture(), null)) {
-                userImage = mImageEncoder.decodeStringToBitmap(chatSession.getTenant().getUserPicture());
+                userImage = mImageEncoder.decodeStringToBitmap(chatSession.getLandlord().getUserPicture());
             }
         }
 

@@ -210,7 +210,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
         } else {
             //we have to show the tenants image in chat
             if (!Objects.equals(chatSession.getTenant().getUserPicture(), null)) {
-                userImage = mImageEncoder.decodeStringToBitmap(chatSession.getLandlord().getUserPicture());
+                userImage = mImageEncoder.decodeStringToBitmap(chatSession.getTenant().getUserPicture());
             }
 
         }

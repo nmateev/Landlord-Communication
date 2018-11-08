@@ -44,7 +44,8 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
     private int mSelectedPropertyId;
     private double mSelectedPropertyRentPrice;
     private boolean mIsRentPaidForCurrentMonth;
-    private String mSelectedProeprtyAddress;
+    private String mSelectedPropertyAddress;
+    private int mPropertyTenantId;
 
     @Inject
     public PropertyManagementPresenter(PropertiesService propertiesService, RatingsService ratingsService, PaymentsService paymentsService, SchedulerProvider schedulerProvider,
@@ -121,7 +122,13 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
 
     @Override
     public void rateButtonIsClicked() {
-        mView.showRatingDialog();
+         /* if the user is tenant he will only see places that he rents but if the user is landlord we have to check if the tenant
+       id is 0 if it is, the place is not rented, in order to prevent rating option if no tenant*/
+        if (mPropertyTenantId == 0) {
+            mView.showMessage(Constants.PLACE_NOT_RENTED_NO_OPTION_TO_RATE_MESSAGE);
+        } else {
+            mView.showRatingDialog();
+        }
     }
 
     @Override
@@ -157,7 +164,13 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
 
     @Override
     public void messageButtonIsClicked() {
-        mView.showChatWithUsers(mUserId, mOtherUserId);
+       /* if the user is tenant he will only see places that he rents but if the user is landlord we have to check if the tenant
+       id is 0 if it is, the place is not rented*/
+        if (mPropertyTenantId == 0) {
+            mView.showMessage(Constants.PLACE_NOT_RENTED_NO_OPTION_TO_CHAT_MESSAGE);
+        } else {
+            mView.showChatWithUsers(mUserId, mOtherUserId);
+        }
     }
 
     @Override
@@ -257,7 +270,7 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
         }
 
 
-        Payment payment = new Payment(tenantId, landlordId,mSelectedProeprtyAddress, mSelectedPropertyId, mSelectedPropertyRentPrice, formattedCurrentDate, cardNumberFormatter.toString());
+        Payment payment = new Payment(tenantId, landlordId, mSelectedPropertyAddress, mSelectedPropertyId, mSelectedPropertyRentPrice, formattedCurrentDate, cardNumberFormatter.toString());
 
         mView.showProgressBar();
         Disposable observable = Observable
@@ -360,8 +373,9 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
         } else {
             mOtherUserId = property.getTenantId();
         }
+        mPropertyTenantId = property.getTenantId();
         mSelectedPropertyRentPrice = property.getRentPrice();
-        mSelectedProeprtyAddress = property.getPropertyAddress();
+        mSelectedPropertyAddress = property.getPropertyAddress();
         mIsRentPaidForCurrentMonth = property.getRentPaid();
 
 

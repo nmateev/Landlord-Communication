@@ -16,12 +16,12 @@ public class LruBitmapCacheRepository implements BitmapCacheRepository {
     public void addBitmapToBitmapCache(Bitmap bitmap, String key) {
 
         mLruCache.put(key, bitmap);
-
     }
 
     @Override
     public Bitmap getBitmapFromCache(String key) {
         return mLruCache.get(key);
     }
+
 }
 

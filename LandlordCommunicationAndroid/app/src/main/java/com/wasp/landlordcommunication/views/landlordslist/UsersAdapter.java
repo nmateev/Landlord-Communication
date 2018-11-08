@@ -22,6 +22,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
     private static final int HEIGHT_DIVIDER = 3;
@@ -84,8 +85,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     public class UserViewHolder extends RecyclerView.ViewHolder {
 
 
-        @BindView(R.id.iv_user_picture)
-        ImageView mUserImageView;
+        @BindView(R.id.civ_user_picture)
+        CircleImageView mUserImageView;
 
         @BindView(R.id.tv_first_name)
         TextView mFirstNameTextView;

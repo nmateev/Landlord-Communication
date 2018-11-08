@@ -22,9 +22,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
-import static com.wasp.landlordcommunication.utils.Constants.TENANT;
-
-public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
+public class HomePresenter implements HomeContracts.Presenter {
 
     private final UsersService mUsersService;
     private final RatingsService mRatingsService;
@@ -32,13 +30,13 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
     private final PropertiesService mPropertiesService;
     private final ImageEncoder mImageEncoder;
     private final BitmapCacheRepository mBitmapCacheRepository;
-    private HomeActivityContracts.View mView;
+    private HomeContracts.View mView;
     private String mUserName;
     private int mUserId;
     private String mUserType;
 
     @Inject
-    public HomeActivityPresenter(UsersService usersService, RatingsService ratingsService, PropertiesService propertiesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder, BitmapCacheRepository bitmapCacheRepository) {
+    public HomePresenter(UsersService usersService, RatingsService ratingsService, PropertiesService propertiesService, SchedulerProvider schedulerProvider, ImageEncoder imageEncoder, BitmapCacheRepository bitmapCacheRepository) {
         mUsersService = usersService;
         mRatingsService = ratingsService;
         mPropertiesService = propertiesService;
@@ -48,7 +46,7 @@ public class HomeActivityPresenter implements HomeActivityContracts.Presenter {
     }
 
     @Override
-    public void subscribe(HomeActivityContracts.View view) {
+    public void subscribe(HomeContracts.View view) {
         mView = view;
     }
 

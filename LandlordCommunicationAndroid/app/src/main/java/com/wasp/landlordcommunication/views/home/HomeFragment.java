@@ -38,7 +38,7 @@ import butterknife.OnClick;
 import static android.content.Context.ALARM_SERVICE;
 
 
-public class HomeFragment extends Fragment implements HomeActivityContracts.View {
+public class HomeFragment extends Fragment implements HomeContracts.View {
     private static final int GALLERY_IMAGE_CHOOSER_REQUEST_CODE = 5;
     private static final int TAKE_PICTURE_REQUEST_CODE = 10;
 
@@ -50,9 +50,6 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
 
     @BindView(R.id.tv_user_names)
     TextView mUserFullNameTextView;
-
-    @BindView(R.id.tv_user_places_count)
-    TextView mUserPlacesCountTextView;
 
     @BindView(R.id.prb_loading_view)
     ProgressBar mProgressBarView;
@@ -66,7 +63,7 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
     @BindView(R.id.fam_image_options_menu)
     FloatingActionsMenu mImageChangeFloatingMenu;
 
-    private HomeActivityContracts.Presenter mPresenter;
+    private HomeContracts.Presenter mPresenter;
     private AlarmManager mAlarmManager;
 
     @Inject
@@ -102,7 +99,7 @@ public class HomeFragment extends Fragment implements HomeActivityContracts.View
     }
 
     @Override
-    public void setPresenter(HomeActivityContracts.Presenter presenter) {
+    public void setPresenter(HomeContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 

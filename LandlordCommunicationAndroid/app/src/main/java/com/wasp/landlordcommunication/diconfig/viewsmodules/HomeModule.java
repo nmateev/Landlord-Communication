@@ -2,8 +2,8 @@ package com.wasp.landlordcommunication.diconfig.viewsmodules;
 
 import com.wasp.landlordcommunication.diconfig.ActivityScoped;
 import com.wasp.landlordcommunication.diconfig.FragmentScoped;
-import com.wasp.landlordcommunication.views.home.HomeActivityContracts;
-import com.wasp.landlordcommunication.views.home.HomeActivityPresenter;
+import com.wasp.landlordcommunication.views.home.HomeContracts;
+import com.wasp.landlordcommunication.views.home.HomePresenter;
 import com.wasp.landlordcommunication.views.home.HomeFragment;
 
 import dagger.Binds;
@@ -19,6 +19,6 @@ public abstract class HomeModule {
 
     @ActivityScoped
     @Binds
-    abstract HomeActivityContracts.Presenter homeActivityPresenter(HomeActivityPresenter homeActivityPresenter);
+    abstract HomeContracts.Presenter homeActivityPresenter(HomePresenter homePresenter);
 
 }
