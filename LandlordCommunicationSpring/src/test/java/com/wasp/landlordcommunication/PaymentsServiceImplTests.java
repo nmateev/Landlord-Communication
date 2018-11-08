@@ -26,6 +26,7 @@ public class PaymentsServiceImplTests {
             new Payment(
                     1,
                     1,
+                    "Address1",
                     1,
                     1000.00,
                     "01.01.2019",
@@ -33,6 +34,7 @@ public class PaymentsServiceImplTests {
             new Payment(
                     2,
                     2,
+                    "Address2",
                     2,
                     2000.00,
                     "02.02.2019",
@@ -40,6 +42,7 @@ public class PaymentsServiceImplTests {
             new Payment(
                     3,
                     3,
+                    "Address3",
                     3,
                     3000.00,
                     "03.03.2019",
@@ -89,11 +92,11 @@ public class PaymentsServiceImplTests {
     @Test
     public void getPaymentsByLandlordId_Should_ReturnMatchingPayment_WhenMatchExist() {
         // Arrange
-        Mockito.when(mockRepository.getPaymentsByTenantId(3))
+        Mockito.when(mockRepository.getPaymentsByLandlordId(3))
                 .thenReturn(defaultTestInput);
 
         // Act
-        List<Payment> result = service.getPaymentsByTenantId(3);
+        List<Payment> result = service.getPaymentsByLandlordId(3);
 
         // Assert
         Assert.assertEquals(result, defaultTestInput);
