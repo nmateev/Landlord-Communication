@@ -77,7 +77,7 @@ public class PaymentsServiceImplTests {
     }
 
     @Test
-    public void getPaymentsByTenantId_Should_ReturnMatchingPayment_WhenMatchExist() {
+    public void getPaymentsByTenantId_Should_ReturnMatchingPayments_WhenMatchExist() {
         // Arrange
         Mockito.when(mockRepository.getPaymentsByTenantId(2))
                 .thenReturn(defaultTestInput);
@@ -90,7 +90,7 @@ public class PaymentsServiceImplTests {
     }
 
     @Test
-    public void getPaymentsByLandlordId_Should_ReturnMatchingPayment_WhenMatchExist() {
+    public void getPaymentsByLandlordId_Should_ReturnMatchingPayments_WhenMatchExist() {
         // Arrange
         Mockito.when(mockRepository.getPaymentsByLandlordId(3))
                 .thenReturn(defaultTestInput);
