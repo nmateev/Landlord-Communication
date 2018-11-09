@@ -29,7 +29,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public User createUser(User userToCreate) {
         if (Objects.equals(userToCreate.getUserPassword(), null)) {
-            //user choose to login with social media account, no password is stored on database
+            //user chose to login with social media account, no password is stored on database
             return usersRepository.createUser(userToCreate);
         } else {
             String encodedPassword = passwordEncoder.encode(userToCreate.getUserPassword());
