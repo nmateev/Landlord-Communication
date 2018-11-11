@@ -6,7 +6,7 @@
  
  *The android application "Landlord communication" was created in accordance to Telerik Academy final project assignment. It is 
  designed with the MVP design pattern with dependency injection with Dagger. The backend side of this project was built with Spring 
- and Hibernate for relational database access with MySQL.*
+ and Hibernate for relational database access with MariaDB.*
 
 **<h1>Contributors:</h1>**
 Nikolay Mateev (nmateev)
