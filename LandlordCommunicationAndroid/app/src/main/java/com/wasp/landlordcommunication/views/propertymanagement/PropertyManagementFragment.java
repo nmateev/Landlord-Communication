@@ -274,6 +274,11 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         mUserRatingTextView.setText(ratingRepresentation);
     }
 
+    @Override
+    public void showNewRentPrice(double newPrice) {
+        mPropertyRentPriceTextView.setText(String.valueOf(newPrice));
+    }
+
     public void setNavigator(PropertyManagementContracts.Navigator navigator) {
         mNavigator = navigator;
     }

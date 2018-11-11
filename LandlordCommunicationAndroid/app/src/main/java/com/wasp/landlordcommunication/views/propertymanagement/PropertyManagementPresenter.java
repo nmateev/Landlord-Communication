@@ -245,7 +245,12 @@ public class PropertyManagementPresenter implements PropertyManagementContracts.
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBar)
-                .subscribe(property -> mView.showMessage(Constants.SUCCESSFUL_CHANGE_OF_RENT_MESSAGE), error -> mView.showError(error));
+                .subscribe(property -> {
+                            mView.showNewRentPrice(newRentAmount);
+                            mView.showMessage(Constants.SUCCESSFUL_CHANGE_OF_RENT_MESSAGE);
+
+                        },
+                        error -> mView.showError(error));
 
     }
 

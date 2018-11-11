@@ -33,6 +33,8 @@ public interface PropertyManagementContracts {
         void showPaymentInputOption();
 
         void showUserRating(double rating);
+
+        void showNewRentPrice(double newPrice);
     }
 
     interface Presenter {
