@@ -22,6 +22,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
+import static com.wasp.landlordcommunication.utils.Constants.TENANT;
+
 public class HomePresenter implements HomeContracts.Presenter {
 
     private final UsersService mUsersService;
@@ -217,27 +219,26 @@ public class HomePresenter implements HomeContracts.Presenter {
             if (property.getRentPaid()) {
                 if (currentDay > property.getDueDate()) {
                     setPaidStatusFalseForProperty(property);
-                  //TODO uncomment when database is populated
-                   /* if (mUserType.equals(TENANT)) {
+
+                    if (mUserType.equals(TENANT)) {
                         mView.setupRentNotification(Constants.NOTIFICATION_CHANNEL_NAME,
                                 property.getPropertyId(),
                                 Constants.RENT_NOTIFICATION_TITLE,
                                 Constants.RENT_NOTIFICATION_DESCRIPTION, property.getPropertyAddress(),
                                 property.getDueDate()
                         );
-                    }*/
-                    //remove in pay rent activity the notification
+                    }
+
                 }
             } else {
-                //TODO uncomment when database is populated
-                /*if (mUserType.equals(TENANT)) {
+                if (mUserType.equals(TENANT)) {
                     mView.setupRentNotification(Constants.NOTIFICATION_CHANNEL_NAME,
                             property.getPropertyId(),
                             Constants.RENT_NOTIFICATION_TITLE,
                             Constants.RENT_NOTIFICATION_DESCRIPTION, property.getPropertyAddress(),
                             property.getDueDate()
                     );
-                }*/
+                }
             }
         }
     }

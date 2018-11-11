@@ -132,10 +132,6 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
         View view = inflater.inflate(R.layout.fragment_property_management, container, false);
         ButterKnife.bind(this, view);
 
-     /*   mChatWithUserButton.setOnClickListener(this);
-        mRateUserButton.setOnClickListener(this);
-        mPayRentButton.setOnClickListener(this);*/
-
         return view;
     }
 
@@ -276,7 +272,7 @@ public class PropertyManagementFragment extends Fragment implements PropertyMana
 
     @Override
     public void showNewRentPrice(double newPrice) {
-        mPropertyRentPriceTextView.setText(String.valueOf(newPrice));
+        mPropertyRentPriceTextView.setText(String.format(Locale.UK, "%.1f", newPrice));
     }
 
     public void setNavigator(PropertyManagementContracts.Navigator navigator) {

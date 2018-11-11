@@ -9,7 +9,7 @@ public class LruBitmapCacheRepository implements BitmapCacheRepository {
     private final LruCache<String, Bitmap> mLruCache;
 
     public LruBitmapCacheRepository() {
-        mLruCache = new LruCache<String, Bitmap>(1024);
+        mLruCache = new LruCache<>(1024);
     }
 
     @Override

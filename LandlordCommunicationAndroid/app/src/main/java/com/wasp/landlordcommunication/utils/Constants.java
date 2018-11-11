@@ -177,4 +177,5 @@ public class Constants {
     public static final String PLACE_NOT_RENTED_NO_OPTION_TO_RATE_MESSAGE = "This place is not rented. There is no tenant to rate!";
     public static final String PLACE_NOT_RENTED_NO_OPTION_TO_CHAT_MESSAGE = "This place is not rented. There is no tenant to message!";
     public static final int SHAKE_ANIMATION_DURATION_VALUE = 1500;
+
 }
