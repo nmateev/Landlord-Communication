@@ -15,8 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.ChatMessage;
@@ -31,6 +34,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.daimajia.androidanimations.library.YoYo.with;
+
 
 public class ChatFragment extends Fragment implements ChatContracts.View {
 
@@ -40,6 +45,8 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
     @BindView(R.id.et_message_input)
     EditText mInputMessageEditText;
 
+    @BindView(R.id.rl_user_options)
+    RelativeLayout mUserOptionsRelativeLayout;
 
     @BindView(R.id.rv_chat_messages)
     RecyclerView mChatMessagesRecyclerView;
@@ -192,6 +199,14 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
     @Override
     public void dismissTemplatePicker() {
         mTemplatePickerDialog.dismiss();
+    }
+
+    @Override
+    public void shakeUserOptionsLayout() {
+        YoYo
+                .with(Techniques.Shake)
+                .duration(Constants.SHAKE_ANIMATION_DURATION_VALUE)
+                .playOn(mUserOptionsRelativeLayout);
     }
 
     @OnClick(R.id.ib_template_picker)

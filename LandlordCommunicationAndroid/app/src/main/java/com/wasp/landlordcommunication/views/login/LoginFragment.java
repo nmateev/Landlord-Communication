@@ -39,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+import butterknife.OnTextChanged;
 import es.dmoral.toasty.Toasty;
 
 import static com.wasp.landlordcommunication.utils.Constants.INITIAL_SELECTION;
@@ -50,12 +51,16 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
     private static final int REQUEST_CODE = 999;
     @BindView(R.id.et_username_field)
     EditText mUserNameEditText;
+
     @BindView(R.id.et_password_field)
     EditText mPasswordEditText;
+
     @BindView(R.id.tv_login_credentials_problem)
     TextView mLoginProblemTextView;
+
     @BindView(R.id.prb_loading_view)
     ProgressBar mProgressBarView;
+
     @BindView(R.id.btn_fb_login)
     LoginButton mFacebookButton;
 
@@ -131,9 +136,10 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
 
     @OnClick(R.id.btn_custom_login)
     public void onLoginButtonClick() {
-        mPresenter.handleCustomLoginAttempt(mUserNameEditText.getText().toString(),
-                mPasswordEditText.getText().toString(),
-                mLoginProblemTextView.getVisibility());
+        mPresenter
+                .handleCustomLoginAttempt(mUserNameEditText.getText().toString(),
+                        mPasswordEditText.getText().toString(),
+                        mLoginProblemTextView.getVisibility());
     }
 
     @OnClick(R.id.btn_custom_signup)
@@ -198,9 +204,12 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
         builder.setTitle(SELECT_USER_TYPE_TITLE);
         String[] userTypeOptions = getResources().getStringArray(R.array.user_types);
 
-        builder.setSingleChoiceItems(userTypeOptions, INITIAL_SELECTION, (dialog, selected) -> item = selected);
-        builder.setPositiveButton(Constants.CONFIRMATION, (dialog, chosen) -> mPresenter.handleChosenUserTypeOption(userTypeOptions[item]));
-        builder.setNegativeButton(Constants.DISAGREEMENT, (dialogInterface, i) -> mPresenter.handleUnselectedUserTypeOption());
+        builder
+                .setSingleChoiceItems(userTypeOptions, INITIAL_SELECTION, (dialog, selected) -> item = selected);
+        builder
+                .setPositiveButton(Constants.CONFIRMATION, (dialog, chosen) -> mPresenter.handleChosenUserTypeOption(userTypeOptions[item]));
+        builder
+                .setNegativeButton(Constants.DISAGREEMENT, (dialogInterface, i) -> mPresenter.handleUnselectedUserTypeOption());
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
@@ -282,5 +291,15 @@ public class LoginFragment extends Fragment implements LoginContracts.View, Goog
             user = new User(email, displayName, familyName);
         }
         mPresenter.handleGoogleLogin(isGoogleLoginSuccessful, user);
+    }
+
+    @OnTextChanged(R.id.et_username_field)
+    public void onUserNameEditTextChanged() {
+        mPresenter.checkErrorVisibility(mLoginProblemTextView.getVisibility());
+    }
+
+    @OnTextChanged(R.id.et_password_field)
+    public void onPasswordEditTextChanged() {
+        mPresenter.checkErrorVisibility(mLoginProblemTextView.getVisibility());
     }
 }

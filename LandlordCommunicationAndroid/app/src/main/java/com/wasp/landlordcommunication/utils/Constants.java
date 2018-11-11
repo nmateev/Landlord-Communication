@@ -156,7 +156,7 @@ public class Constants {
     public static final String RENT_NOTIFICATION_COLOUR_STRING = "#641D79";
     public static final int RENT_NOTIFICATION_DAYS_BEFORE_PERIOD = -5;
     public static final int RENT_NOTIFICATION_HOUR_TRIGGER = 11;
-    public static final int RENT_NOTIFICATION_MINUTE_TRIGGER = 25;
+    public static final int RENT_NOTIFICATION_MINUTE_TRIGGER = 26;
     public static final String CHAT_SESSIONS_URL_SUFFIX = "chatsessions";
     public static final String USERS_TYPE_SUFFIX = "type";
 
@@ -174,6 +174,7 @@ public class Constants {
     public static final String FORMAL = "Formal";
     public static final String TEMPLATE_MESSAGES_URL_SUFFIX = "templates";
     public static final String PREFERENCE_FORMALITY_LEVEL_SELECTION_MESSAGE = " template type is selected.";
-    public static final String PLACE_NOT_RENTED_NO_OPTION_TO_RATE_MESSAGE = "This place is not rented there is no tenant to rate!";
-    public static final String PLACE_NOT_RENTED_NO_OPTION_TO_CHAT_MESSAGE = "This place is not rented there is no tenant to message!";
+    public static final String PLACE_NOT_RENTED_NO_OPTION_TO_RATE_MESSAGE = "This place is not rented. There is no tenant to rate!";
+    public static final String PLACE_NOT_RENTED_NO_OPTION_TO_CHAT_MESSAGE = "This place is not rented. There is no tenant to message!";
+    public static final int SHAKE_ANIMATION_DURATION_VALUE = 1500;
 }

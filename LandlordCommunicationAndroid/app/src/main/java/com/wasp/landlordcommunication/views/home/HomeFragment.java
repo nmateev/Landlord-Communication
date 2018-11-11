@@ -176,7 +176,12 @@ public class HomeFragment extends Fragment implements HomeContracts.View {
         int year = calendar.get(Calendar.YEAR);
 
         //setting the calendar as if it is the day of the rent
-        calendar.set(year, month, dayRentIsDue, Constants.RENT_NOTIFICATION_HOUR_TRIGGER, Constants.RENT_NOTIFICATION_MINUTE_TRIGGER);
+        calendar
+                .set(year,
+                month,
+                dayRentIsDue,
+                Constants.RENT_NOTIFICATION_HOUR_TRIGGER,
+                Constants.RENT_NOTIFICATION_MINUTE_TRIGGER);
 
         //subtract 5 days from the due date in order to setup the notification 5 days before the actual due date
         calendar.add(Calendar.DATE, Constants.RENT_NOTIFICATION_DAYS_BEFORE_PERIOD);

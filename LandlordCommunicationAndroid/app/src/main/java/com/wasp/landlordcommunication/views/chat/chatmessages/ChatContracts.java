@@ -37,6 +37,8 @@ public interface ChatContracts {
         void setTextToMessageInput(String pickedTemplate);
 
         void dismissTemplatePicker();
+
+        void shakeUserOptionsLayout();
     }
 
     interface Presenter {

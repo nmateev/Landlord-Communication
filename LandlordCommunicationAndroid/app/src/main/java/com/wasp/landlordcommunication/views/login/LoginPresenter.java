@@ -169,4 +169,11 @@ public class LoginPresenter implements LoginContracts.Presenter {
                             }
                         });
     }
+
+    @Override
+    public void checkErrorVisibility(int visibilityCode) {
+        if (visibilityCode == Constants.VISIBLE_CODE_VALUE) {
+            mView.hideLoginProblemMessage();
+        }
+    }
 }

@@ -27,7 +27,7 @@ import io.reactivex.disposables.Disposable;
 import static com.wasp.landlordcommunication.utils.Constants.TENANT;
 
 public class ChatPresenter implements ChatContracts.Presenter {
-    private static final int LOOPER_DELAY_AMOUNT_SECONDS = 5;
+    private static final int LOOPER_DELAY_AMOUNT_SECONDS = 4;
 
     private final ChatSessionsService mChatSessionsService;
     private final ChatMessagesService mChatMessagesService;
@@ -304,6 +304,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
     @Override
     public void sendButtonIsClicked(String message) {
         if (message.length() == 0) {
+            mView.shakeUserOptionsLayout();
             return;
         }
 

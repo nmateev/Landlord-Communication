@@ -56,6 +56,8 @@ public interface LoginContracts {
         void handleChosenUserTypeOption(String userTypeOption);
 
         void checkAndHandleSocialLogin(User user);
+
+        void checkErrorVisibility(int visibilityCode);
     }
 
     interface Navigator {

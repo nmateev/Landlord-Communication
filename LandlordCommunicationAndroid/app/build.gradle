@@ -46,6 +46,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.orhanobut:dialogplus:1.11@aar'
 
+    
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+
 
     //ButterKnife
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'
