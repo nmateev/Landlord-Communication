@@ -53,9 +53,10 @@
             android:background="@drawable/rounded_chat_text_input"
             android:ems="10"
             android:hint="@string/write_a_message"
-            android:inputType="textFilter"
+            android:inputType="textFilter|textMultiLine"
             android:maxLength="120"
             android:paddingStart="7dp"
+            android:maxLines="5"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite" />
 
