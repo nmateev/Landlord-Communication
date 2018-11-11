@@ -22,6 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatAdapter extends RecyclerView.Adapter {
@@ -33,6 +34,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
     private int mLoggedInUserId;
     private Bitmap mReceiverImage;
     private List<ChatMessage> mChatMessages;
+    private OnChatMessageItemClickListener mOnChatMessageItemClickListener;
 
     @Inject
     public ChatAdapter(DateFormatter dateFormatter) {
@@ -76,12 +78,15 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         switch (viewHolder.getItemViewType()) {
             case VIEW_TYPE_MESSAGE_SENT:
+                ((SentMessageHolder)viewHolder).setOnClickListener(mOnChatMessageItemClickListener);
                 ((SentMessageHolder) viewHolder).bind(message);
                 break;
             case VIEW_TYPE_MESSAGE_RECEIVED:
+                ((ReceivedMessageHolder)viewHolder).setOnClickListener(mOnChatMessageItemClickListener);
                 ((ReceivedMessageHolder) viewHolder).bind(message);
                 break;
         }
+
     }
 
 
@@ -114,6 +119,10 @@ public class ChatAdapter extends RecyclerView.Adapter {
         mLoggedInUserId = userId;
     }
 
+    public void setOnUserItemClickListener(OnChatMessageItemClickListener onChatMessageItemClickListener) {
+        this.mOnChatMessageItemClickListener = onChatMessageItemClickListener;
+    }
+
 
     class SentMessageHolder extends RecyclerView.ViewHolder {
 
@@ -123,6 +132,8 @@ public class ChatAdapter extends RecyclerView.Adapter {
         @BindView(R.id.text_message_time_sent)
         TextView mSentTimeTextView;
 
+        ChatMessage mChatMessage;
+        private OnChatMessageItemClickListener mOnChatMessageClickListener;
 
         SentMessageHolder(View view) {
             super(view);
@@ -135,6 +146,16 @@ public class ChatAdapter extends RecyclerView.Adapter {
             String timeStamp = mDateFormatter.formatDateToString(message.getDateSent());
             mSentTimeTextView.setText(timeStamp);
 
+            mChatMessage = message;
+        }
+
+        @OnClick
+        public void onClick() {
+            mOnChatMessageClickListener.onClick(mChatMessage);
+        }
+
+        private void setOnClickListener(OnChatMessageItemClickListener onChatMessageClickListener) {
+            mOnChatMessageClickListener = onChatMessageClickListener;
         }
     }
 
@@ -148,6 +169,9 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         @BindView(R.id.civ_receiver_image)
         CircleImageView mReceiverCircleImageView;
+
+        ChatMessage mChatMessage;
+        private OnChatMessageItemClickListener mOnChatMessageClickListener;
 
         ReceivedMessageHolder(View view) {
             super(view);
@@ -166,7 +190,22 @@ public class ChatAdapter extends RecyclerView.Adapter {
             } else {
                 mReceiverCircleImageView.setImageBitmap(mReceiverImage);
             }
+
+            mChatMessage = message;
         }
+
+        @OnClick
+        public void onClick() {
+            mOnChatMessageClickListener.onClick(mChatMessage);
+        }
+
+        private void setOnClickListener(OnChatMessageItemClickListener onChatMessageClickListener) {
+            mOnChatMessageClickListener = onChatMessageClickListener;
+        }
+    }
+
+    interface OnChatMessageItemClickListener {
+        void onClick(ChatMessage chatMessage);
     }
 }
 

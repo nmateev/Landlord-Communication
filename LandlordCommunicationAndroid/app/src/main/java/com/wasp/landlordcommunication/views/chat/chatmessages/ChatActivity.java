@@ -1,13 +1,12 @@
 package com.wasp.landlordcommunication.views.chat.chatmessages;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.utils.Constants;
 import com.wasp.landlordcommunication.views.BaseDrawerActivity;
+import com.wasp.landlordcommunication.views.chat.image.ImageViewActivity;
 
 import javax.inject.Inject;
 
@@ -17,7 +16,7 @@ import static com.wasp.landlordcommunication.utils.Constants.CHAT_SESSION_ID_EXT
 import static com.wasp.landlordcommunication.utils.Constants.CHAT_SESSION_LANDLORD_ID_EXTRA;
 import static com.wasp.landlordcommunication.utils.Constants.CHAT_SESSION_TENANT_ID_EXTRA;
 
-public class ChatActivity extends BaseDrawerActivity {
+public class ChatActivity extends BaseDrawerActivity implements ChatContracts.Navigator {
     public static final long DRAWER_IDENTIFIER = -1;
 
     @Inject
@@ -53,7 +52,7 @@ public class ChatActivity extends BaseDrawerActivity {
         mChatPresenter.setUserId(getUserId());
         mChatPresenter.setUserType(getUserType());
 
-
+        mChatFragment.setNavigator(this);
         mChatFragment.setPresenter(mChatPresenter);
 
         getSupportFragmentManager()
@@ -67,5 +66,13 @@ public class ChatActivity extends BaseDrawerActivity {
     protected long getIdentifier() {
         //should not return valid identifier
         return DRAWER_IDENTIFIER;
+    }
+
+    @Override
+    public void navigateToImageView(String imageMessage) {
+
+        Intent intent = new Intent(this, ImageViewActivity.class);
+        intent.putExtra(Constants.IMAGE_MESSAGE_EXTRA, imageMessage);
+        startActivity(intent);
     }
 }

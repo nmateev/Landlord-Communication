@@ -69,4 +69,7 @@
     <string name="templates">Templates</string>
     <string name="template_formality_option_description">Select the formality level of template messages in chat</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -178,4 +178,8 @@ public class Constants {
     public static final String PLACE_NOT_RENTED_NO_OPTION_TO_CHAT_MESSAGE = "This place is not rented. There is no tenant to message!";
     public static final int SHAKE_ANIMATION_DURATION_VALUE = 1500;
 
+    public static final String IMAGE_CAPTURE_FAILURE = "Image capture failed!";
+    public static final String IMAGE_CHAT_MESSAGE = "Image file.\nClick to open!";
+    public static final String IMAGE_MESSAGE_EXTRA = "imageMessageExtra";
+    public static final String ERROR_LOADING_IMAGE = "Error loading image!";
 }

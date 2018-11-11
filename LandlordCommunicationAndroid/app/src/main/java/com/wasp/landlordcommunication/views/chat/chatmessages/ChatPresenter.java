@@ -261,7 +261,7 @@ public class ChatPresenter implements ChatContracts.Presenter {
                 .repeatWhen(completed -> completed.delay(LOOPER_DELAY_AMOUNT_SECONDS, TimeUnit.SECONDS))
                 .subscribe(chatMessages -> {
                     if (!chatMessages.isEmpty()) {
-                        mView.showChatMessages(chatMessages);
+                        mView.showNewChatMessages(chatMessages);
                         mView.scrollChatToBottom();
                         updateDeliveredStatusToMessagesForLoggedInUser(chatMessages);
                     }
@@ -364,6 +364,54 @@ public class ChatPresenter implements ChatContracts.Presenter {
     public void templateMessageIsSelected(String pickedTemplate) {
         mView.setTextToMessageInput(pickedTemplate);
         mView.dismissTemplatePicker();
+    }
+
+    @Override
+    public void takePictureButtonIsClicked() {
+        mView.presentOptionToTakePicture();
+    }
+
+    @Override
+    public void errorOccurredOnTakingPicture() {
+        mView.showMessage(Constants.IMAGE_CAPTURE_FAILURE);
+    }
+
+    @Override
+    public void pictureIsTaken(Bitmap image) {
+
+        String imageInString = mImageEncoder.encodeBitmapToString(image);
+
+        ChatMessage newChatMessage;
+
+        if (mUserType.equals(TENANT)) {
+            newChatMessage = new ChatMessage(mTenantId, mLandlordId, mUserId, mChatId, new Date(), Constants.IMAGE_CHAT_MESSAGE, imageInString, true, false);
+        } else {
+            newChatMessage = new ChatMessage(mTenantId, mLandlordId, mUserId, mChatId, new Date(), Constants.IMAGE_CHAT_MESSAGE, imageInString, false, true);
+        }
+
+        Disposable observable = Observable
+                .create((ObservableOnSubscribe<ChatMessage>) emitter -> {
+                    ChatMessage chatMessageToPost = mChatMessagesService.postChatMessage(newChatMessage);
+                    emitter.onNext(chatMessageToPost);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .subscribe(postedChatMessage -> {
+                            mView.showNewMessage(postedChatMessage);
+                            mView.scrollChatToBottom();
+                        },
+                        error -> mView.showError(error));
+    }
+
+    @Override
+    public void chatMessageIsClicked(ChatMessage chatMessage) {
+        if (Objects.equals(chatMessage.getImageMessage(), null)) {
+            return;
+        }
+
+        mView.showImage(chatMessage.getImageMessage());
+
     }
 
     private void assignTenantAndLandlordId(int mFirstChatMemberId, int mSecondChatMemberId) {

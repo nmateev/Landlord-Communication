@@ -1,10 +1,13 @@
 package com.wasp.landlordcommunication.views.chat.chatmessages;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.ChatMessage;
@@ -37,10 +41,14 @@ import butterknife.OnClick;
 import static com.daimajia.androidanimations.library.YoYo.with;
 
 
-public class ChatFragment extends Fragment implements ChatContracts.View {
+public class ChatFragment extends Fragment implements ChatContracts.View, ChatAdapter.OnChatMessageItemClickListener {
 
+    private static final int TAKE_PICTURE_REQUEST_CODE = 7;
     @BindView(R.id.prb_loading_view)
     ProgressBar mProgressBarView;
+
+    @BindView(R.id.fab_take_picture_in_chat)
+    FloatingActionButton mTakePictureFloatingActionButton;
 
     @BindView(R.id.et_message_input)
     EditText mInputMessageEditText;
@@ -60,6 +68,7 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
 
     private LinearLayoutManager mChatMessagesViewLayoutManager;
     private ChatContracts.Presenter mPresenter;
+    private ChatContracts.Navigator mNavigator;
 
     @Inject
     public ChatFragment() {
@@ -76,6 +85,7 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
         mChatMessagesRecyclerView.setAdapter(mChatMessagesAdapter);
         mChatMessagesViewLayoutManager = new LinearLayoutManager(getContext());
         mChatMessagesRecyclerView.setLayoutManager(mChatMessagesViewLayoutManager);
+        mChatMessagesAdapter.setOnUserItemClickListener(this);
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mTemplateMessagesAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()), android.R.layout.simple_list_item_1);
@@ -141,6 +151,7 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
 
     @Override
     public void showChatMessages(List<ChatMessage> chatMessages) {
+        mChatMessagesAdapter.clear();
         mChatMessagesAdapter.addAllMessages(chatMessages);
         mChatMessagesAdapter.notifyDataSetChanged();
     }
@@ -209,6 +220,23 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
                 .playOn(mUserOptionsRelativeLayout);
     }
 
+    @Override
+    public void presentOptionToTakePicture() {
+        Intent intentToTakePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intentToTakePicture, TAKE_PICTURE_REQUEST_CODE);
+    }
+
+    @Override
+    public void showImage(String imageMessage) {
+        mNavigator.navigateToImageView(imageMessage);
+    }
+
+    @Override
+    public void showNewChatMessages(List<ChatMessage> chatMessages) {
+        mChatMessagesAdapter.addAllMessages(chatMessages);
+        mChatMessagesAdapter.notifyDataSetChanged();
+    }
+
     @OnClick(R.id.ib_template_picker)
     public void onTemplatePickerButtonClick() {
 
@@ -222,5 +250,40 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
     public void onSendMessageButtonClick() {
         String message = mInputMessageEditText.getText().toString();
         mPresenter.sendButtonIsClicked(message);
+    }
+
+    @OnClick(R.id.fab_take_picture_in_chat)
+    public void onTakePictureButtonClick() {
+        mPresenter.takePictureButtonIsClicked();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == TAKE_PICTURE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if ((!Objects.equals(data, null)) && (!Objects.equals(data.getExtras(), null))) {
+                Bitmap image;
+                try {
+                    image = (Bitmap) Objects.requireNonNull(data.getExtras()).get(Constants.DATA_EXTRA);
+                    mPresenter.pictureIsTaken(image);
+                } catch (NullPointerException npe) {
+                    mPresenter.errorOccurredOnTakingPicture();
+                }
+            } else {
+                mPresenter.errorOccurredOnTakingPicture();
+            }
+        } else {
+            mPresenter.errorOccurredOnTakingPicture();
+        }
+    }
+
+    @Override
+    public void onClick(ChatMessage chatMessage) {
+        mPresenter.chatMessageIsClicked(chatMessage);
+    }
+
+    public void setNavigator(ChatContracts.Navigator navigator) {
+        mNavigator = navigator;
     }
 }

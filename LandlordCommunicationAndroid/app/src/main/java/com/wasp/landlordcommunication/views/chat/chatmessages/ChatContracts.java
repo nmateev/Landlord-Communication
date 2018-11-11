@@ -39,6 +39,12 @@ public interface ChatContracts {
         void dismissTemplatePicker();
 
         void shakeUserOptionsLayout();
+
+        void presentOptionToTakePicture();
+
+        void showImage(String imageMessage);
+
+        void showNewChatMessages(List<ChatMessage> chatMessages);
     }
 
     interface Presenter {
@@ -72,5 +78,17 @@ public interface ChatContracts {
         void templatePickerIsClickedWithPreference(String preference);
 
         void templateMessageIsSelected(String pickedTemplate);
+
+        void takePictureButtonIsClicked();
+
+        void errorOccurredOnTakingPicture();
+
+        void pictureIsTaken(Bitmap image);
+
+        void chatMessageIsClicked(ChatMessage chatMessage);
+    }
+
+    interface Navigator {
+        void navigateToImageView(String imageMessage);
     }
 }
