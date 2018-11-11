@@ -38,6 +38,7 @@ rent and much more.*
 - rent unoccupied properties
 - listing all of your chat sessions
 - instant chat with option to choose from predefined template messages for people in a hurry
+- option to send image to your tenant or landlord in chat
 - settings section to personalise your property listing layout or template messages formality level in chat
 
 **<h1>Images: </h1>**
