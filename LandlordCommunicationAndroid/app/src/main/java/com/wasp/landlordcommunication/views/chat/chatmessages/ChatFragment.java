@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.OnItemClickListener;
 import com.wasp.landlordcommunication.R;
 import com.wasp.landlordcommunication.models.ChatMessage;
 import com.wasp.landlordcommunication.utils.Constants;
@@ -135,7 +134,7 @@ public class ChatFragment extends Fragment implements ChatContracts.View {
 
     @Override
     public void showChatMessages(List<ChatMessage> chatMessages) {
-        mChatMessagesAdapter.addAll(chatMessages);
+        mChatMessagesAdapter.addAllMessages(chatMessages);
         mChatMessagesAdapter.notifyDataSetChanged();
     }
 

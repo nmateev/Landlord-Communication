@@ -80,6 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
                 break;
             case VIEW_TYPE_MESSAGE_RECEIVED:
                 ((ReceivedMessageHolder) viewHolder).bind(message);
+                break;
         }
     }
 
@@ -97,7 +98,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
         mChatMessages.clear();
     }
 
-    public void addAll(List<ChatMessage> chatMessages) {
+    public void addAllMessages(List<ChatMessage> chatMessages) {
         mChatMessages.addAll(chatMessages);
     }
 
